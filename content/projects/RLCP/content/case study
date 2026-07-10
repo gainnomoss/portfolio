@@ -1,0 +1,165 @@
+AI-Assisted Police Report Lodging
+Home Team Science & Technology Agency (HTX) × Singapore Police Force
+
+Project Overview
+SPF's existing online report lodging system required citizens to fill in a standardised form regardless of the type of incident they were reporting. While the system captured basic information, it provided no guidance on what level of detail was needed, resulting in reports that were frequently incomplete or ambiguous. Investigation officers routinely had to follow up with complainants to clarify missing information, reducing their capacity for higher-priority work.
+
+I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatbot that guides citizens through the report lodging process conversationally, using a curated question set adapted from existing SPF investigation workflows. R-COP surfaces case-type-specific follow-up questions based on what the citizen has described, prompting for the details officers need for their case investigation. Once the conversation is complete, the system generates a structured report summary for the citizen to review and confirm before submitting.
+My Contributions
+Product Design, UX Research
+Collaborators
+1 Product Manager, 1 Scrum master, 6 Engineers (Including Devops, AI Engineers)
+Date
+Nov 2024 – Mar 2026 (Sole Designer)
+Problem
+
+The existing Officer Clif interface asks open-ended questions with no prompting for case-specific details, resulting in submissions that frequently lacked the information investigation officers needed.
+Business/operational problem
+Officers spent significant time chasing missing details that could have been captured upfront, reducing their capacity for higher-priority work. Complainant reports may contain either too much or too little information, requiring officers to spend time reading through reports to gather crucial information needed for cases.
+User problem
+Citizens lodging reports online often are not aware of the case specific information police officers require for investigation. This results in a lot of back and forth between the complainant and the police officer, resulting in an lenghtened intial information gathering session for the complainant.
+Research & Discovery
+Understanding the As-Is System
+Before designing the AI chatbot, I conducted a heuristic analysis of the existing report lodging experience currently deployed at Self-Help Kiosks (SHKs) across Singapore's Electronic Police Centres.
+
+The existing system already used a conversational metaphor: a 3D animated avatar named "Officer Clif" guided users through the process, asking questions in natural language. The flow covered six sections, supported Singpass authentication with MyInfo auto-population, and allowed users to save a draft and return within 7 days.
+
+While the approach was well-intentioned, walking through the full flow surfaced several pain points:
+1
+The chatbot was a form in disguise.
+OBSERVATION
+Officer Clif asked questions, but the system didn't interpret or adapt to responses. Each section was a structured form regardless of the case details the complainant lodged. This also meant the system had no way to detect missing or incomplete information; it would accept whatever was submitted and move on.
+CONSEQUENCE
+The information gathered is preliminary and generic, requiring follow up for the police for more case specific information.
+2
+The free-text section gave citizens no guidance.
+OBSERVATION
+The “What happened?” section presented a blank text field with no indication of what level of detail was expected, what case-type-specific information was needed, or how officers would use the report.
+CONSEQUENCE
+Complainants are not aware of relevant information that may help officers in their investigations, and thus do not provide them when lodging a report.
+3
+The sentence-completion format created cognitive friction.
+OBSERVATION
+Filling in details mid-sentence felt unnatural, particularly for users with lower digital or language literacy.
+CONSEQUENCE
+The format required citizens to adapt to the system's grammar rather than describe events in their own words.
+4
+Error states were easy to miss.
+OBSERVATION
+When Singpass MyInfo retrieval failed due to an NRIC mismatch, the error appeared only as a dismissible banner at the top of the form.
+CONSEQUENCE
+Users who miss error notifications will face frustration during an experience which requires clarity and comfort.
+As-Is User Journey
+Mapping the end-to-end flow revealed a six-stage journey from kiosk landing to submission:
+1
+Landing & Avatar Introduction
+Officer Clif greeting and service overview.
+
+2
+Identity Verification
+Singpass QR scan, NRIC, or passport validation.
+
+3
+Personal Details
+MyInfo auto-population or manual entry (Section 1 of 6).
+
+4
+Incident Details
+Sections 2–4: What, when, where, and who involved.
+
+5
+Supporting Information
+Section 5: Witnesses, CCTV footage, and items.
+
+6
+Review & Submit
+Section 6: Final summary and official declaration.
+The critical gap was concentrated in Section 2: despite the structured flow, the free-text "What happened?" field consistently produced reports that were either too vague or missing case type-specific details that investigation officers (IOs) needed to assess and process the case. The resulting back-and-forth between IOs and complainants was the core operational inefficiency the product was built to solve.
+Design
+Structuring the conversation flow
+The conversation flow structure was defined by the product manager in collaboration with SPF stakeholders, drawing on existing investigation question frameworks. My role was to translate this flow into an interaction system that complainants could interact with easily. The flow map below shows the structure I was designing within.
+
+I identified different input types the questions types would require, and designed the look and feel of each input type. Due to time constraints, component designs were adapted from an existing UI Kit.
+
+Checkboxes for questions allowing multiple selections
+Radio buttons for mutually exclusive options
+Free-text input for open-ended incident descriptions
+Structured form fields for precise data like dates, times, and item values
+Progress indicator — navigating security constraints
+
+Vartion 1: Flat structure — all steps at same level
+
+Variation 2: Grouped structure — sub-steps nested under parent sections
+
+Chosen Variation: Simplified structure — condensed to 5 top-level steps
+I proposed a step-progress sidebar as a core navigation element, giving citizens visibility into how far along they were in the process. This was met with resistance from the engineering team, who raised a concern that exposing the question structure could allow malicious actors to predict and game the AI's logic. I worked with the team to find a middle ground: the progress indicator would show stage labels (Before You Begin, Incident Overview, Incident Details, Confirm Report, Submit Report) without surfacing the specific questions within each stage. This preserved user orientation without compromising the system's security posture.
+Loading state and avatar design
+I also designed a loading animation and avatar character for the chatbot — a friendly robot in a police uniform — to give the AI a visual identity that felt approachable without impersonating an actual officer. This was proposed to be used during loading states while the system would be processing user input, to provide some warmth to the journey of loding a police report. Although initial discussions with stakeholders shaped the final design of the avatar, they were eventually not used. This shaped the look and feel of the report lodging process to be more formal, though retaining its friendliness through other means such as copywriting.
+Usability Testing
+Participants
+Testing was conducted across two rounds (7 and 9 October 2025) with 9 participants from a cross-section of Singapore public sector professionals with varying levels of digital literacy. Participants were walked through multiple report lodging scenarios (physical assault, scam, theft) to test different chatbot conversation flows.
+
+‍Satisfaction ratings were collected across four dimensions on a 1–6 scale: Navigation, Ease of Use, Content & Language, and Overall Satisfaction.
+Key Tasks Tested
+Acknowledging terms and navigating the onboarding flow
+Entering incident details (date, time, location) via the chatbot
+Interacting with the AI chatbot to describe the incident in free text
+Editing previously submitted details
+Previewing and confirming the AI-generated report summary
+Submitting the report
+
+Top Findings & Design Changes
+1
+Contradictory messaging around editing caused user confusion
+OBSERVATION
+The system edit affordance (a small pen icon) was not obvious. Multiple participants were confused or missed the option entirely. Average scores for the editing step dropped to 4.9 across all dimensions, the lowest in the test.
+WHAT CHANGED
+Improved visibility of the edit affordance by replacing with it with a text button with the label 'Edit' instead.
+2
+The AI chatbot asked redundant or mismatched follow-up questions
+OBSERVATION
+When participants typed a detailed free-text description upfront, the chatbot still prompted them for information already provided (e.g. asking again about medical attention after the participant had already mentioned a clinic). In one case, a "yes" answer about CCTVs triggered a follow-up asking for a person's contact details — a logic mismatch. This eroded trust in the AI's capability.
+CONSEQUENCE
+Flagged as an engineering issue for the AI model to cross-reference existing inputs before prompting follow-up questions.
+3
+The "Confirm Report" page created anxiety rather than confidence
+OBSERVATION
+The final review page was labelled "Confirm Report" with only an "Edit Summary" button — leading participants to worry that clicking edit would cause them to lose the AI-generated summary. Several users couldn't find a way to confirm without editing.
+CONSEQUENCE
+Split up editing and previewing reports funcionality by allowing users to enter edit mode by clicking a button labelled "Edit" for each individual report section. Also updated the primary CTA button label to "Preview Report".
+What went well
+Positive feedback was consistent across the higher-scoring steps. Participants praised the conversational chatbot format for keeping them on track, the interactive map for location input (searchable by postal code and location name), and the ability to proofread and edit the AI-generated summary before submission. The Singpass auto-population of personal details was consistently noted as a time-saver.
+Final Design
+Through further iterations and monitoring of feedback, I developed the designs while maintaing these principles throughout:
+Progressive disclosure through guided conversation
+Rather than presenting all information at once, R-COP uses progressive disclosure to ensure that the support material that guides users to lodge their reports are not overwhelming, and is available when they need it. For instance, additional information are provided and hidden in dropdowns, and important key sentences are bolded to ensure greater clarity and hierachy in the information presented. The conversation flow is also able to detect the case type the user wishes to report, and asks relevant questions to the case at hand.
+
+Natural language over procedural language
+Police report forms traditionally use formal, procedural language that can feel intimidating or ambiguous to the general public. R-COP uses plain, conversational phrasing throughout. For example, rather than "State the date and time of the incident," the chatbot asks "When did the incident happen?" — with a supporting note in regular weight that explicitly gives citizens permission to estimate if they don't recall exactly.
+
+Clarity and control over AI generated portions
+While observing user feedback post-launched, we noticed that some complainants were not satisfied with the AI generated reports, due to over-summarisation, or missing out of aspects of their reports they deemed important. We decided to allow users to be able to refer back to their original initial input they submitted to the chatbot, so they could gain more control over the final report they submitted.
+‍
+I explored a few layout options and UI visual treatments and discussed them with the team before we decided on the final option.
+Previous Iterations
+
+Final Design
+
+Outcome
+During usability testing, participants completed the report lodging flow in approximately 4 minutes on average across the two rounds. For context, the existing system was estimated to take approximately 15 minutes for a comparable submission. The difference in completion time reflects the core design intent: replacing a six-section form with a guided conversational flow that structures the process for the user. A formal before/after time comparison would require controlled testing on both systems with the same participants and scenarios.
+
+After rollout to 9 kiosks across 7 divisional HQ Police Centres, users consistently gave ratings above 4 out of 5 for overall satisfaction\*.
+
+On the operational side, feedback indicated that the AI's case classification accuracy required further refinement — likely a result of training data gaps and the need to more precisely define classification categories through additional research sessions with domain experts. This highlighted a key learning: for AI-assisted government services, the design and research process doesn't end at launch. Ongoing iteration between designers, product managers, and subject matter experts is essential to ensure the AI performs reliably across the full range of real-world scenarios.
+
+\*R-COP was launched on 9 kiosks across 7 divisional HQ Electronic Police Centres in Oct 2025, with a roadmap to expand to 50% of all kiosks in Singapore by April 2026 and full nationwide rollout by end of 2026.
+Reflections
+Designing an AI-assisted product for a public-facing government context taught me things that a typical SaaS project wouldn't.
+Designing for AI failure modes, not just ideal flows.
+In most UX work, edge cases are about missing data or user error. With AI, the failure modes are different — hallucinations, misclassified inputs, redundant follow-up questions, responses that don't match what the user just said. Designing for these required building explicit trust scaffolding into the UI: the yellow highlight system for AI-generated content that needs verification, the side-by-side edit modal so users could always see their original words, and the "Restore Generated Content" safety net.
+Making AI output feel transparent, not opaque.
+Citizens submitting a police report need to feel confident that what gets submitted is accurate and theirs. The challenge was designing an AI that genuinely helps without making users feel like they've lost authorship of their own report. The visual distinction between the AI-generated summary and editable content, combined with the explicit declaration checkbox, was how we resolved that tension.
+Security and compliance shape design decisions.
+Working closely with engineers on a government product meant that design choices, such as how long data persists in a session, what gets logged, how edit states are handled had security and legal implications I hadn't encountered were raised. Learning to raise these questions early, and to arrive at solutions collaboratively rather than handing off a spec and hoping for the best, made me a more effective design partner on a cross-functional team.
+What I'd do differently.
+The case classification issue that surfaced post-launch suggests that earlier research sessions with SPF officers to define classification taxonomy — before training data was finalised — could have reduced the need for rework. In hindsight, I'd advocate for those sessions as a design research deliverable, not just an engineering input.

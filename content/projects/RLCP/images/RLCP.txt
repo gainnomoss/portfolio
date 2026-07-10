@@ -1,0 +1,237 @@
+### 1. Header / Hero
+
+**Project title:** AI-Assisted Report Lodging — Singapore Police Force
+
+**Tagline:** Designed an AI chatbot that guided citizens through police report lodging, reducing incomplete submissions and achieving a 5.3/6 satisfaction score in usability testing
+
+**Tags:** Public-facing · Conversational UI · AI/Chatbot · Heuristic Analysis · Usability Testing · Government Digital Services
+
+---
+
+### 2. Overview
+
+The existing online report lodging system required citizens to fill in a standardised form regardless of the type of incident they were reporting. While the system captured basic information, it provided no guidance on what level of detail was needed, resulting in reports that were frequently incomplete or ambiguous. Investigation officers routinely had to follow up with complainants to clarify or obtain missing information — a time-consuming process that reduced their capacity for higher-priority work.
+
+I was brought in to design the Report Lodging Co-Pilot (RLCP): an AI-assisted chatbot that guides citizens through the report lodging process conversationally, prompting for case type-specific details before submission. Testing with 9 participants returned an average satisfaction score of 5.3 out of 6 across navigation, ease of use, and content clarity.
+
+---
+
+### 3. The Problem
+
+**User problem:** Citizens lodging reports online often submitted incomplete or unclear information, leading to repeated follow-ups with police officers — a frustrating, time-consuming experience for both sides.
+
+**Business/operational problem:** Officers spent significant time chasing missing details that could have been captured upfront, reducing their capacity for higher-priority work.
+
+One gap: there's no quantification of the problem. "Officers spent significant time" is vague. If you know roughly how many reports required follow-up, or how long that back-and-forth typically took, add it. Even an approximation ("officers flagged that the majority of reports in certain case types required at least one follow-up clarification") adds credibility.
+
+---
+
+### 4. My Role
+
+I was the sole UX designer embedded in a cross-functional team with 1 product manager, 1 scrum master, and 6 engineers (including devops and AI engineers). I led the end-to-end design process from heuristic analysis through to usability-tested prototypes, and worked directly with SPF stakeholders on design decisions.
+
+---
+
+### 5. Research & Discovery
+
+### Understanding the As-Is System
+
+Before designing the AI chatbot, I conducted a heuristic analysis of the existing report lodging kiosk — the system currently deployed at Self-Help Kiosks (SHKs) across Singapore's Electronic Police Centres.
+
+The existing system already used a conversational metaphor: a 3D animated avatar named "Officer Clif" guided users through the process, asking questions in natural language. Citizens completed their details using a sentence-completion format — "My name is ***, I am*** , my contact no. is ___" — rather than a traditional labelled form. The flow covered six sections, supported Singpass authentication with MyInfo auto-population, and allowed users to save a draft and return within 7 days.
+
+While the approach was well-intentioned, walking through the full flow surfaced several pain points:
+
+**Finding 1: The chatbot was a form in disguise.** Officer Clif asked questions, but the system didn't interpret or adapt to responses. Each section was a structured form regardless of how the citizen described their situation — creating an expectation of intelligence the product couldn't deliver. Crucially, this also meant the system had no way to detect missing or incomplete information; it would accept whatever was submitted and move on.
+
+**Finding 2: The free-text section gave citizens no guidance.** The "What happened?" section presented a blank text field with no indication of what level of detail was expected, what case type-specific information was needed, or how officers would use the report. This was the direct source of the operational problem: incomplete submissions that required officers to follow up manually.
+
+**Finding 3: The sentence-completion format created cognitive friction.** Filling in details mid-sentence felt unnatural, particularly for users with lower digital or language literacy. The format required citizens to adapt to the system's grammar rather than describe events in their own words.
+
+**Finding 4: Error states were easy to miss.** When Singpass MyInfo retrieval failed due to an NRIC mismatch, the error appeared only as a dismissible banner at the top of the form. Users who missed it would continue filling in fields manually, unaware their data hadn't pre-populated — leading to inconsistencies downstream.
+
+---
+
+### As-Is User Journey
+
+Mapping the end-to-end flow revealed a six-stage journey from kiosk landing to submission:
+
+1. Landing and avatar introduction (Officer Clif greeting)
+2. Identity verification — Singpass QR scan, NRIC, or passport
+3. Personal details — MyInfo auto-population or manual entry (Section 1 of 6)
+4. Incident details — what happened, when, where, and who was involved (Section 2–4)
+5. Supporting information — witnesses, CCTV, items involved (Section 5)
+6. Review and submit (Section 6)
+
+The critical gap was concentrated in Section 2: despite the structured flow, the free-text "What happened?" field consistently produced reports that were either too vague or missing case type-specific details — information that investigation officers (IOs) needed to assess and process the case. The resulting back-and-forth between IOs and complainants was the core operational inefficiency the product was built to solve, with a target of reducing IO follow-up rates by 30–40%.
+
+---
+
+### Design Opportunity
+
+The heuristic analysis pointed to a precise opportunity: rather than adding more structured form fields, an AI chatbot could read what citizens wrote in natural language and dynamically surface follow-up questions based on case type — prompting for missing details before submission rather than after. For Hurt cases, it might ask about medical attention and the suspect's description. For Lost Property, it would prompt for item details and transaction records. For Scam cases, it would ask for the scammer's contact details and transfer amounts.
+
+This wasn't just a UX improvement — it was the mechanism that would allow the product to meet its core KPIs: a user satisfaction score above 80%, report accuracy improved by 25%, and misclassification rates kept below 10%.
+
+Two things to add: (1) a note on which heuristics you applied (Nielsen's 10 is fine — just name them), and (2) a visual. Even one annotated screenshot of the Officer Clif system with your findings called out would make this section dramatically more credible. Right now it's all text.
+
+---
+
+### 6. Design Process
+
+### Structuring the conversation flow
+
+Working with the product manager, I mapped out the proposed conversation flow agreed with SPF stakeholders — covering what questions needed to be asked, in what order, and what case type-specific information each flow had to capture. The five initial case classifications were: Hurt, Harassment, Cheating, Lost Property, and General.
+
+My first design challenge was structuring the flow so it felt genuinely conversational without losing the completeness that officers needed. I proposed breaking the questions into two phases: an Incident Overview section to capture factual anchors (date, time, location, case type), followed by an Incident Details section where the AI chatbot would guide citizens through a free-text description and dynamically surface follow-up questions based on what they had written.
+
+### Progress indicator — navigating security constraints
+
+I proposed a step-progress sidebar as a core navigation element, giving citizens visibility into how far along they were in the process. This was met with resistance from the engineering team, who raised a concern that exposing the question structure could allow malicious actors to predict and game the AI's logic. I worked with the team to find a middle ground: the progress indicator would show stage labels (Before You Begin, Incident Overview, Incident Details, Confirm Report, Submit Report) without surfacing the specific questions within each stage. This preserved user orientation without compromising the system's security posture.
+
+### Input type design
+
+Not all questions were equal, and a single free-text input couldn't serve every question type well. I mapped out the different question categories and designed appropriate input patterns for each:
+
+- **Checkboxes** for yes/no questions (e.g. "Were there any witnesses?")
+- **Radio buttons** for mutually exclusive options (e.g. case type selection)
+- **Free-text input** for open-ended incident descriptions
+- **Structured form fields** for precise data like dates, times, and item values
+
+This reduced cognitive load by matching the interaction pattern to the nature of the question, rather than asking citizens to parse everything through a single text box.
+
+### Designing for AI trust
+
+Because the system generates a report summary from the citizen's inputs, I needed to design explicit trust scaffolding into the review stage — making it clear what was AI-generated, what required the citizen's verification, and how to make corrections without losing their original inputs. This led to the yellow highlight system for flagging uncertain AI-generated content, the side-by-side edit modal showing original inputs alongside the AI summary, and the "Restore Generated Content" safety net.
+
+### Loading state and avatar design
+
+I also designed a loading animation and avatar character for the chatbot — a friendly robot in a police uniform — to give the AI a visual identity that felt approachable without impersonating an actual officer. This was used during the AI processing state while the system generated the report summary. These were eventually not used as SPF's branding team did not want public-facing material to have any inconsistencies, and we thus used Officer Clif instead.
+
+**What else you could cover in Section 6:**
+
+- **How you handled the Singpass integration UX** — the decision to auto-populate personal details and what happens when it fails (the NRIC mismatch error state you saw in the As-Is analysis)
+- **How you designed for the kiosk form factor** — this runs on physical SHKs, not just a web browser. Were there constraints around screen size, touch input, session timeouts, or accessibility that shaped your decisions?
+- **The OneMap location picker** — the interactive map for location input was noted as a highlight in usability testing. Was that a deliberate UX decision to replace a text field, and what were the tradeoffs?
+- **How you structured the Confirm Report page** — the decision to show section-by-section Edit buttons rather than one global "edit" flow, and how that connected to the usability findings
+
+---
+
+### 7. Usability Testing
+
+**Participants**
+
+Testing was conducted across two rounds (7 and 9 October 2025) with **9 participants** from a cross-section of Singapore public sector professionals with varying levels of digital literacy. Participants were walked through multiple report lodging scenarios (physical assault, scam, theft) to test different chatbot conversation flows.
+
+**Satisfaction ratings were collected across four dimensions on a 1–6 scale:** Navigation, Ease of Use, Content & Language, and Overall Satisfaction.
+
+---
+
+**Key Tasks Tested**
+
+- Acknowledging terms and navigating the onboarding flow
+- Entering incident details (date, time, location) via the chatbot
+- Interacting with the AI chatbot to describe the incident in free text
+- Editing previously submitted details
+- Previewing and confirming the AI-generated report summary
+- Submitting the report
+
+---
+
+**Top Findings & Design Changes**
+
+**Finding 1: Contradictory messaging around editing caused user confusion**
+
+The system displayed a warning that incident details "cannot be edited after proceeding," yet the interface still allowed edits — and the edit affordance (a small pen icon) was not obvious. Multiple participants were confused or missed the option entirely. Average scores for the editing step dropped to **4.9 across all dimensions**, the lowest in the test.
+
+*What changed:* Clarified and consolidated the system messaging to remove the contradiction. Improved visibility of the edit affordance and simplified the chatbot's confirmation copy to: "This section is complete. Click Continue to proceed."
+
+---
+
+**Finding 2: The AI chatbot asked redundant or mismatched follow-up questions**
+
+When participants typed a detailed free-text description upfront, the chatbot still prompted them for information already provided (e.g. asking again about medical attention after the participant had already mentioned a clinic). In one case, a "yes" answer about CCTVs triggered a follow-up asking for a person's contact details — a logic mismatch. This eroded trust in the AI's capability.
+
+*What changed:* Flagged as an engineering issue for the AI model to cross-reference existing inputs before prompting follow-up questions. From a UX side, added clearer instruction copy to set user expectations: "You will be answering a series of questions to help our officers assess your case accurately."
+
+---
+
+**Finding 3: The "Confirm Report" page created anxiety rather than confidence**
+
+The final review page was labelled "Confirm Report" with only an "Edit Summary" button — leading participants to worry that clicking edit would cause them to lose the AI-generated summary. Several users couldn't find a way to confirm without editing.
+
+*What changed:* Renamed the page to "Preview Generated Report" and updated the CTA to "Confirm or Edit Summary" to reduce anxiety and clarify that both paths were available. This was flagged as a recurring issue across multiple participants and prioritised accordingly.
+
+---
+
+**What Went Well**
+
+Positive feedback was consistent across the higher-scoring steps. Participants praised the conversational chatbot format for keeping them on track, the interactive map for location input (searchable by postal code and location name), and the ability to proofread and edit the AI-generated summary before submission. The Singpass auto-population of personal details was consistently noted as a time-saver.
+
+One addition that would strengthen it: a simple table or visual showing the satisfaction scores by section — with the editing step clearly lower than the others. Numbers on their own are good; numbers visualised are memorable.
+
+---
+
+### 8. Final Design
+
+The final design centres on three core moments in the user journey: the AI chatbot interaction, the AI-generated report review, and the inline editing experience. The interface uses a consistent two-panel layout throughout — a step-progress sidebar on the left, and the main content area on the right — giving citizens a clear sense of where they are in the process at all times.
+
+---
+
+**Screen 1 — Incident Overview (Chatbot Opening)**
+
+The chatbot opens with a personal greeting using the citizen's Singpass-authenticated name, immediately establishing that the system knows who they are and reducing the friction of re-entering identity information. The first question — "When did the incident happen?" — is surfaced as a bold chatbot bubble with a supporting note in regular weight: "If you do not have the exact date/time, please provide us your best estimate."
+
+This pairing was a deliberate design decision. Police report forms traditionally demand precision, but citizens often can't recall exact times. Explicitly giving permission to estimate reduces drop-off and anxiety at the very first step — setting a more conversational, supportive tone for the whole flow.
+
+The chat history grows upward as the conversation progresses, keeping the most recent question anchored at the bottom where the citizen's attention naturally sits.
+
+---
+
+**Screen 2 — Confirm Report (AI-Generated Summary)**
+
+Once the chatbot conversation is complete, the AI generates a structured report summary for the citizen to review before submission. The page is clearly labelled "Confirm Report" with a subheading explaining that the summary was generated by AI and can be edited section by section.
+
+Two distinct alert states sit at the top: a red warning reminding users of legal liability for false information, and a yellow advisory noting that AI-generated content may contain inaccuracies, with specific sections highlighted in yellow to draw attention to details that require verification. Each section — Incident Summary, Items Involved — has its own Edit button, so users can make targeted corrections without having to re-enter the entire flow. A declaration checkbox at the bottom requires users to explicitly confirm the accuracy of their report before proceeding.
+
+---
+
+**Screen 3 — Edit Summary (Side-by-Side Modal)**
+
+When a user clicks Edit on the Incident Summary, a modal opens with a split-panel layout: the citizen's original free-text input ("Initial Facts") on the left for reference, and the editable AI-generated summary on the right. The AI-generated panel is visually distinct with a purple border and sparkle icon, reinforcing that this is AI output rather than the citizen's own words.
+
+A "Restore Generated Content" button gives users a clear safety net if they make unwanted edits — directly addressing the usability testing finding that users feared losing the AI summary. The editable text area includes a character counter and an "Update" button to confirm changes, keeping the interaction contained and clear.
+
+---
+
+**Accessibility and language considerations across the flow**
+
+Throughout all three screens, system prompts use plain, conversational English rather than formal police or legal language. Warning and error states combine both colour and iconography — never colour alone. The step-progress sidebar uses both icons and text labels to indicate completion status, making the flow scannable without requiring users to read every step in full.
+
+---
+
+### 9. Outcome / Impact
+
+The RLCP was designed to address a concrete operational problem: reducing the rate of incomplete police reports that required officer follow-up. During user trials, a user completed a sample report via R-COP in 4 minutes — compared to 15 minutes on the existing e-service. This 75% reduction in submission time reflects the core design intent: replacing a six-section form with a guided conversational flow that structures the process for the user.
+
+Testing with 9 participants across two rounds returned an average satisfaction score of **5.3 out of 6**, already exceeding the 80% satisfaction threshold. Qualitatively, participants consistently praised the AI chatbot's ability to guide them through the report without needing to understand police report structure themselves. The conversational format was described as "intuitive and user friendly," and the Singpass auto-population of personal details was highlighted as a meaningful time-saver.
+
+Usability issues identified in testing — including the contradictory edit warning, the ambiguous "Confirm Report" labelling, and the AI's redundant follow-up questions — were prioritised and addressed before handoff, directly improving the experience for lower-confidence users.
+
+On the operational side, feedback indicated that the AI's **case classification accuracy** required further refinement — likely a result of training data gaps and the need to more precisely define classification categories through additional research sessions with domain experts. This highlighted a key learning: for AI-assisted government services, the design and research process doesn't end at launch. Ongoing iteration between designers, product managers, and subject matter experts is essential to ensure the AI performs reliably across the full range of real-world scenarios.
+
+The RLCP launched on 9 kiosks across 7 divisional HQ Electronic Police Centres, with a roadmap to expand to 50% of all kiosks in Singapore by April 2026 and full nationwide rollout by end of 2026.
+
+---
+
+### 10. Reflections
+
+Designing an AI-assisted product for a public-facing government context taught me things that a typical SaaS project wouldn't.
+
+**Designing for AI failure modes, not just ideal flows.** In most UX work, edge cases are about missing data or user error. With AI, the failure modes are different — hallucinations, misclassified inputs, redundant follow-up questions, responses that don't match what the user just said. Designing for these required building explicit trust scaffolding into the UI: the yellow highlight system for AI-generated content that needs verification, the side-by-side edit modal so users could always see their original words, and the "Restore Generated Content" safety net. These weren't afterthoughts — they became core design decisions.
+
+**Making AI output feel transparent, not opaque.** Citizens submitting a police report need to feel confident that what gets submitted is accurate and theirs. The challenge was designing an AI that genuinely helps without making users feel like they've lost authorship of their own report. The visual distinction between the AI-generated summary (purple border, sparkle icon) and editable content, combined with the explicit declaration checkbox, was how we resolved that tension.
+
+**Security and compliance shape design decisions.** Working closely with engineers on a government product meant that design choices — how long data persists in a session, what gets logged, how edit states are handled — had security and legal implications I hadn't encountered at that scale before. Learning to raise these questions early, and to arrive at solutions collaboratively rather than handing off a spec and hoping for the best, made me a more effective design partner on a cross-functional team.
+
+**What I'd do differently.** The case classification issue that surfaced post-launch suggests that earlier research sessions with SPF officers to define classification taxonomy — before training data was finalised — could have reduced the need for rework. In hindsight, I'd advocate for those sessions as a design research deliverable, not just an engineering input.

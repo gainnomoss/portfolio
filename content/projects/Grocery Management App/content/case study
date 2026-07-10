@@ -1,0 +1,156 @@
+## **Overview**
+
+**What it is**
+
+GroceryPal is a mobile app that helps individual shoppers track their grocery buys by expiry dates, so as to minimise food waste.
+
+**The problem**
+
+I regularly forgot what groceries I already had, overbought items, and discovered expired food too late. Existing pantry apps either created too much administrative work or hid key features behind subscriptions.
+
+I wanted to build an app I could use to keep track of my own food inventory.
+
+**My role**
+
+I was the sole product designer for this project, and used Claude Code as a co-working partner to implement the development.
+
+**Timeline**
+
+I worked on this app for roughly a week (early-mid July 2026), scoped as MVP.
+
+**Tools**
+
+Figma, Claude Code
+
+## Opportunity
+
+**Why not existing apps?**
+
+I looked at existing grocery management apps - such as KitchenPal, Pantry Pal, Stock Pal, but found them to not meet my needs. For some, the UI wasn’t clean or minimalistic, and required a learning curve to use the app. Some did not have AI receipt-scanning capabilities, or gated it behind a paywall.
+
+I wanted to design and ship an MVP quickly, and Claude Code enabled that.
+
+Having done preliminary research into this problem space during a Build For Good Hackathon in 2024, I realized that this was an interesting and rich problem space, and thus wanted to try my hand at designing for it.
+
+## Goals
+
+**Project goals**
+
+- Ship a working, interactive MVP
+- Explore an AI-assisted product design and implementation workflow.
+
+**User goals**
+
+- Add or remove items easily from inventory with minimal friction
+- Make administrative workload of managing food inventory enjoyable
+- Make calm, informed decisions about groceries
+
+## Research Insights
+
+From prior research done with 25 participants in a user testing session with a previous iteration of a grocery management app (KiasuKitchen), these were some key research findings:
+
+- Manual logging/editing is the top friction point and adoption risk. Participants found it tiring to scan receipts, and won’t want to have to update the app constantly.
+- Users don't know or want to type exact expiry dates. Users are unsure of exact expiry dates, and want the app to auto populate them.
+- Cooked food/leftovers are a bigger waste source than groceries for several households.
+
+## Design Principles
+
+**Core UX principles**
+
+Here are some principles I kept in mind as I worked through the designs:
+
+- Minimize friction for stock upload or deletion. I learned through prior research that tedious processes of managing stock was the number one reasons users would be put off from using the app. As a user myself, I heavily empathized with this.
+- Maximize visibility into current stock. Not being able to see what was bought, thus forgetting about them was a high reason for food wastage.
+- Maximize joy. The task of maintaining a grocery inventory is already a tedious task, thus a well-designed product can make the experience more enjoyable and satisfying.
+
+**Visual direction**
+
+Muted and calm tones, with pops of colour at key moments were chosen to create an experience that feels calm, organised, and enjoyable, rather than anxiety inducing. Green was chosen as a primary brand colour, to convey the freshness users will be able to enjoy with regular stock management. A clean and minimal UI helps users scan through the interface quickly, and focus on key actions they want to take, reducing friction in the tasks they want to carry out. WCAG 2 was adhered to, creating an accessible and user-friendly experience.
+
+**Motion**
+
+The goal is for motion to be calm, purposeful, and invisible, helping the app feel more polished. For instance, an editable card that expands in place and scrolls to the top of the screen helps to anchor users in their current flows without losing context of where they were along the items they need to review. Claude Code was used to add motion to the developed UI, through prompting and iterations.
+
+### AI-Assisted Design Workflow
+
+**Rapid concept generation**
+
+I used Claude design to do up first draft designs of the flows/screens I wanted to work on first, such as the Home screen/adding items flow. It was able to quickly create a working prototype, so I could start interacting with it on my device, and also start thinking more deeply about how interactions should be. Once a flow was validated in code, I continued to work in Figma on refining the design - colours, spacing, hierachy etc. At this point, matching tokens between Figma and Claude Code was not a priority.
+
+!home_v2.jpg
+
+!first pass home screen.png
+
+!Home 060726.jpg
+
+**Interaction refinement**
+
+Working with AI prototypes, I was able to better understand how the editing flow looks and feels. I was able to refine it further, making the decision to switch from using a bottomsheet to an in place editing card, so the user is able to remain in context of how far along the list of items they were. I further refined the interaction so the motion would be smooth and tactile.
+
+!Edit item 050726.jpg
+
+!Editing 060726.jpg
+
+!Editing 090726.jpg
+
+**Visual polish**
+
+Once I had refined the flow, I wanted to explore visual directions, and asked Claude Code to give me 3 variations. I considered the pros and cons of each one, and went back to Figma to refine the visual identity and interactions of the design. Once I reached a state I was happy with, I went back to Claude Code and asked it to match the current codebase to my designs.
+
+!cc generated 1.png
+
+I liked the calm colour tones used here. I did not find the pie chart to be particularly helpful in understanding current inventory.
+
+!cc generated 2.png
+
+I liked the playful typography here, and the fresh look of the app.
+
+!cc generated 3.png
+
+I liked the more restrained colour palette used here.
+
+**Development implementation**
+
+Claude Code was able to produce a reasonably well matched designs, but of course, I had to go in and fix little bug every now and there. I prompted each one by one. And whenever I made updates to the design, I had to check through to see if the design changes were applied throughout. By this time, I had been working on DESIGN.md, and was adding rules to the document through my iterations with Claude Code. With DESIGN.md was in place, the generated designs were reasonably close, but of course, required adjustments.
+
+!cc generated home 090726.jpg
+
+!Single item page 090726.jpg
+
+### Challenges
+
+**Product Challenges**
+
+Seeking the right balance between highlighting elements using brighter colours/chips was something I wanted to do well. Too much would cause the interface to look cluttered, and too little would defeat the purpose of the app. I made a design decision to remove the expiry notification chips from each card, and only use them to highlight food items that needed immediate attention.
+
+Another challenge was balancing how much control to give users in adjusting AI generated values. AI will generate Item name, Category, Item Quantity, Quantity units, Expiry date whenever a user uploads an item. Using a date picker might have allowed users to choose an exact expiry date, but from user research and personal experience, it wasn’t very often that people are able to give an exact expiry date. Thus, a stepper component was used for both Expiry dates and Item quantities.
+
+**AI Workflow**
+
+I had to learn better techniques for prompting in order to manage my tokens better. I frequently ran out of tokens, and learned about techniques of choosing models, starting new sessions for new tasks, compacting sessions in order to better utilise my tokens.
+
+There are a lot of resources to learn on how to get started using AI, that it might be tempted to keep ingesting resources, but once you get started, there are specific questions you might be interested to learn more about, and it’s easier to go from there. From example, wanting to learn how I can get Claude Code to generate designs based on my current designs led me to learn about DESIGN.md and how to properly structure it.
+
+### Final Product
+
+Grocery Pal is a working MVP deployed via Vercel, connected to Claude API, able to scan receipts and log them as part of a grocery management system. I was able to quickly iterate and ship my designs in 1 week as part of this experiment to learn about using Claude Code, and it has only increased my appetite to learn more about how I can better use it.
+
+Some of its current features include:
+
+- Receipt scanning
+- AI categorisation
+- Expiry tracking
+- Editing
+- Inventory management
+
+A list of backlogged items and features are awaiting further work and development.
+
+### Reflections
+
+**As a product designer**
+
+Working directly in code with AI changed how I evaluate my own design decisions. A tradeoff between complexity in build and nice to have features became more real because I had to manage the cost of it directly, which made me more honest about ‘nice to have’ ideas, and also pare down on refining the most important parts of the app.
+
+**Working with AI tools**
+
+Incorporating AI into my design flow at specific points seems to offer benefits that I would want to take more advantage of. AI can help in quickly exploring different initial directions, doing up a first draft of a screen or flow that undergoes further refinement, and also for prototyping. It’s a fast way to get past a blank canvas and into iterating on your designs, so that designers can take over to get the designs to become ready for development.
