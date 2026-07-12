@@ -4,7 +4,7 @@ name: ux-portfolio-design-system
 description: A typography-led, dual-theme personal portfolio system. Restraint over decoration — one grotesk voice (display and body), one mono voice for small credibility details, one accent color, generous whitespace, and a single deliberate animated hero moment. Light and dark are both fully designed, not an inverted afterthought. Synthesized from thatedchao.com, billysweeney.com, linear.app, aleksitappura.com, and rebeccaling.com — see "Inspiration Synthesis" for the reasoning, not to be copied verbatim.
 
 colors:
-  canvas-light: "#ffffff"
+  canvas-light: "#fdfdfd"
   canvas-subtle-light: "#f6f6f8"
   ink-light: "#14151a"
   body-light: "#45464f"
@@ -157,9 +157,11 @@ components:
     typography: "{typography.label}"
     rounded: "{rounded.pill}"
     padding: "4px 12px"
-  hero-visual:
-    rounded: "{rounded.lg}"
-    backgroundColor: "{colors.canvas-subtle}"
+  hero-dot-field:
+    dotColor: "{colors.border-strong}"
+    spotlightColor: "{colors.accent}"
+    spacing: 24px
+    visibility: "desktop only (lg+), right-aligned"
   password-gate:
     backgroundColor: "{colors.canvas-subtle}"
     rounded: "{rounded.lg}"
@@ -183,7 +185,7 @@ This system exists to get a hiring manager to trust the designer's craft within 
 - One mono voice (Geist Mono) reserved for small credibility-signaling details: tags, timeline dates, the footer colophon line — a deliberate second voice used sparingly, the way Billy Sweeney's colophon or Rebecca Ling's timeline dates read as "considered," not decorative.
 - Light and dark are both first-class. The toggle lives top-right, always, and is itself a small delight moment (Aleksi Tappura) — not a system-preference afterthought.
 - One accent color (`{colors.accent}`, a confident blue evolved from the current site's brand blue), used only for links, the active nav state, the toggle icon, and primary interactive affordances. Everything else is ink/canvas grays in both themes.
-- One deliberate animated hero moment on the homepage (a quiet grain/gradient visual, Aleksi Tappura-style) — everywhere else, motion is a micro-interaction (hover/press, tab switch, scroll-reveal) gated behind `prefers-reduced-motion`.
+- One deliberate animated hero moment on the homepage (a quiet interactive dot field that lights up near the cursor, desktop-only, Aleksi Tappura-style restraint) — everywhere else, motion is a micro-interaction (hover/press, tab switch, scroll-reveal) gated behind `prefers-reduced-motion`.
 - Real UI screenshots are shown inside a believable frame with its own shadow and rounding (Linear-style), never floating flat — this extends the case-study screenshot pattern already on the current site.
 - A connector-line timeline component is the one recurring structural motif (Rebecca Ling-style), used for the About page's experience section and every case study's process/journey narrative.
 
@@ -202,7 +204,7 @@ Five sites were reviewed for this direction; none are copied directly.
 Every color is defined as a light/dark pair; components reference `{colors.X}` and resolve to the active theme via CSS variables switched on the `.dark` class (see `app/globals.css` and `next-themes`).
 
 ### Surface
-- **Canvas** (`{colors.canvas-light}` #ffffff / `{colors.canvas-dark}` #0a0a0d) — the page floor.
+- **Canvas** (`{colors.canvas-light}` #fdfdfd / `{colors.canvas-dark}` #0a0a0d) — the page floor.
 - **Canvas Subtle** (`{colors.canvas-subtle-light}` #f6f6f8 / `{colors.canvas-subtle-dark}` #141417) — cards, tags, the password-gate panel, alternating section backgrounds. The only surface elevation step in the system — no shadows-as-depth beyond this.
 
 ### Text
@@ -255,7 +257,8 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - `{motion.duration-base}` (200ms) — theme toggle crossfade, tab/segment switches.
 - `{motion.duration-slow}` (400ms) — scroll-reveal of section content, timeline entries animating in.
 - Easing: `{motion.easing-standard}` everywhere — no bounce, no spring for content reveals (a subtle spring is acceptable only on the theme toggle icon itself).
-- **The one deliberate hero moment:** a quiet animated grain/gradient visual in the homepage hero, inside `{component.hero-visual}`'s rounded card — this is the only ambient/looping animation on the entire site.
+- **The one deliberate hero moment:** on the homepage hero, right side, desktop only (`lg+`) — a faint dot field (`{component.hero-dot-field}`) that brightens near the cursor via a masked spotlight, fading into the canvas on its inner edge. Never present on mobile/tablet; no autoplay/looping — it only reacts to real pointer input, so it fully disables (not just collapses) under `prefers-reduced-motion`.
+- **Hero entrance:** on first paint the headline reveals with a typed-in effect (real text is present in the DOM throughout for SEO/screen readers; the animation is a decorative overlay), then the greeting line, subtitle, and buttons fade up in sequence. Reduced motion shows the final state immediately, no delay.
 - **`prefers-reduced-motion`:** every transition and scroll-reveal above collapses to an instant state change (opacity-only fade at most) when the user has this preference set. Non-negotiable per product.md.
 
 ## Components
@@ -278,7 +281,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`tag`** — Small pill, `{colors.canvas-subtle}` background, `{colors.muted}` text, `{typography.label}` (mono, uppercase). Used for project tags and a distinct "Password protected" indicator (paired with a small lock glyph) per product.md's requirement that protected projects are clearly marked before opening.
 
-**`hero-visual`** — Large `{rounded.lg}` card on the homepage only, containing the one animated grain/gradient treatment. Never repeated elsewhere on the site.
+**`hero-dot-field`** — A faint grid of `{colors.border-strong}` dots anchored to the right edge of the homepage hero, visible desktop-only (`lg+`). A second dot layer in `{colors.accent}` is revealed only inside a small radius around the cursor (a CSS mask, no canvas/JS drawing) and fades into the canvas color on its inner edge. Never repeated elsewhere on the site.
 
 **`password-gate`** — Centered `{colors.canvas-subtle}` card, `{rounded.lg}`, generous `{spacing.2xl}` padding. Single password input (`{colors.border-strong}` outline, focus ring in `{colors.accent}`), primary button, inline `{colors.danger}` error text on failure. No modal — a real page at `/work/[slug]` so the URL stays stable.
 
@@ -315,6 +318,5 @@ No horizontal scrolling at any width. Touch targets ≥44px everywhere (nav link
 
 ## Known Gaps
 
-- The homepage hero's animated grain/gradient visual needs a concrete implementation choice (CSS-only noise vs. a lightweight canvas) — to be decided during the hero build, informed by performance testing (must not hurt Lighthouse/CLS scores).
 - Exact focus-ring treatment (`{colors.accent}` outline width/offset) needs a final pass against WCAG AA once components are built, not just specified here.
 - Motion durations above are starting points — tune after the timeline and scroll-reveal components are built and feel tested by hand.

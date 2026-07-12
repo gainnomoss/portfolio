@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --canvas: #ffffff;
+  --canvas: #fdfdfd;
   --canvas-subtle: #f6f6f8;
   --ink: #14151a;
   --body: #45464f;
@@ -39,6 +39,7 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
