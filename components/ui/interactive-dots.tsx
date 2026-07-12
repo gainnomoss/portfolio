@@ -41,12 +41,19 @@ export function InteractiveDots() {
     };
   }, [shouldReduceMotion]);
 
+  const edgeFade = "linear-gradient(to right, transparent, transparent 30%, black 65%)";
+
   return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-y-0 right-0 hidden w-[45%] max-w-[560px] overflow-hidden lg:block"
-    >
-      <div ref={containerRef} className="absolute inset-0 [--mx:50%] [--my:50%] [--spotlight-opacity:0]">
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block">
+      {/* Tracks the cursor across the full hero, not just the visible dot band, so the
+          spotlight is easy to discover no matter where on the hero the pointer enters.
+          The fade mask here applies to everything nested inside, so it also restrains
+          the spotlight layer below without needing multi-layer mask compositing. */}
+      <div
+        ref={containerRef}
+        className="absolute inset-0 [--mx:50%] [--my:50%] [--spotlight-opacity:0]"
+        style={{ maskImage: edgeFade, WebkitMaskImage: edgeFade }}
+      >
         <div
           className="absolute inset-0 opacity-40 dark:opacity-60"
           style={{
@@ -60,12 +67,11 @@ export function InteractiveDots() {
             opacity: "var(--spotlight-opacity)",
             backgroundImage: "radial-gradient(var(--accent) 1px, transparent 1px)",
             backgroundSize: DOT_SIZE,
-            WebkitMaskImage: "radial-gradient(160px circle at var(--mx) var(--my), black, transparent 70%)",
             maskImage: "radial-gradient(160px circle at var(--mx) var(--my), black, transparent 70%)",
+            WebkitMaskImage: "radial-gradient(160px circle at var(--mx) var(--my), black, transparent 70%)",
           }}
         />
       </div>
-      <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-canvas to-transparent" />
     </div>
   );
 }

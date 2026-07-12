@@ -161,7 +161,7 @@ components:
     dotColor: "{colors.border-strong}"
     spotlightColor: "{colors.accent}"
     spacing: 24px
-    visibility: "desktop only (lg+), right-aligned"
+    visibility: "desktop only (lg+), spans the full hero, fades in from the copy column"
   password-gate:
     backgroundColor: "{colors.canvas-subtle}"
     rounded: "{rounded.lg}"
@@ -257,7 +257,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - `{motion.duration-base}` (200ms) — theme toggle crossfade, tab/segment switches.
 - `{motion.duration-slow}` (400ms) — scroll-reveal of section content, timeline entries animating in.
 - Easing: `{motion.easing-standard}` everywhere — no bounce, no spring for content reveals (a subtle spring is acceptable only on the theme toggle icon itself).
-- **The one deliberate hero moment:** on the homepage hero, right side, desktop only (`lg+`) — a faint dot field (`{component.hero-dot-field}`) that brightens near the cursor via a masked spotlight, fading into the canvas on its inner edge. Never present on mobile/tablet; no autoplay/looping — it only reacts to real pointer input, so it fully disables (not just collapses) under `prefers-reduced-motion`.
+- **The one deliberate hero moment:** on the homepage hero, desktop only (`lg+`) — a faint dot field (`{component.hero-dot-field}`) spanning the full hero that brightens near the cursor via a masked spotlight, fading out under the copy column so it never competes with the text. Never present on mobile/tablet; no autoplay/looping — it only reacts to real pointer input, so it fully disables (not just collapses) under `prefers-reduced-motion`.
 - **Hero entrance:** on first paint the headline reveals with a typed-in effect (real text is present in the DOM throughout for SEO/screen readers; the animation is a decorative overlay), then the greeting line, subtitle, and buttons fade up in sequence. Reduced motion shows the final state immediately, no delay.
 - **`prefers-reduced-motion`:** every transition and scroll-reveal above collapses to an instant state change (opacity-only fade at most) when the user has this preference set. Non-negotiable per product.md.
 
@@ -281,7 +281,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`tag`** — Small pill, `{colors.canvas-subtle}` background, `{colors.muted}` text, `{typography.label}` (mono, uppercase). Used for project tags and a distinct "Password protected" indicator (paired with a small lock glyph) per product.md's requirement that protected projects are clearly marked before opening.
 
-**`hero-dot-field`** — A faint grid of `{colors.border-strong}` dots anchored to the right edge of the homepage hero, visible desktop-only (`lg+`). A second dot layer in `{colors.accent}` is revealed only inside a small radius around the cursor (a CSS mask, no canvas/JS drawing) and fades into the canvas color on its inner edge. Never repeated elsewhere on the site.
+**`hero-dot-field`** — A faint grid of `{colors.border-strong}` dots spanning the full homepage hero, visible desktop-only (`lg+`) and fading out under the copy column so it stays a quiet background texture rather than competing with the text. A second dot layer in `{colors.accent}` is revealed only inside a small radius around the cursor (a CSS mask, no canvas/JS drawing) — because the pointer is tracked across the whole hero, the spotlight is easy to find no matter where it enters, not just over a narrow strip. Never repeated elsewhere on the site.
 
 **`password-gate`** — Centered `{colors.canvas-subtle}` card, `{rounded.lg}`, generous `{spacing.2xl}` padding. Single password input (`{colors.border-strong}` outline, focus ring in `{colors.accent}`), primary button, inline `{colors.danger}` error text on failure. No modal — a real page at `/work/[slug]` so the URL stays stable.
 
