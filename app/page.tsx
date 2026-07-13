@@ -26,14 +26,14 @@ export default function Home() {
         <InteractiveDots />
         <div className="relative z-[2] mx-auto max-w-content px-6 py-16 sm:py-24 lg:py-32">
           <div className="max-w-[640px]">
-            <HeroCopy avatarSrc={about.photo} />
+            <HeroCopy avatarSrc="/avatar.png" />
           </div>
         </div>
       </section>
 
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-content px-6">
-          <SectionHeading>Case studies</SectionHeading>
+          <SectionHeading>Work</SectionHeading>
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
             {featured.map((project, index) => (
               <Reveal key={project.slug} delay={index * 0.05}>
