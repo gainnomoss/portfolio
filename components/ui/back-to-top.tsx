@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import { MAINTENANCE_PATH } from "@/lib/maintenance";
 
 export function BackToTop() {
+  const pathname = usePathname();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -12,6 +15,7 @@ export function BackToTop() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  if (pathname === MAINTENANCE_PATH) return null;
   if (!visible) return null;
 
   return (
