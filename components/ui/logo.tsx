@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function Logo() {
@@ -5,10 +6,9 @@ export function Logo() {
     <Link
       href="/"
       aria-label="Ke Er Zhang — Home"
-      className="flex flex-col text-title-md font-semibold leading-[0.95] text-accent rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+      className="flex items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
     >
-      <span>Z</span>
-      <span className="self-end">KE</span>
+      <Image src="/logo.png" alt="" width={40} height={40} priority className="h-9 w-9" />
     </Link>
   );
 }
