@@ -41,10 +41,8 @@ export function getProjectBySlug(slug: string): Project | null {
   return readProject(slug);
 }
 
-export function getFeaturedProjects(limit = 2): Project[] {
-  return getAllProjects()
-    .filter((project) => !project.comingSoon)
-    .slice(0, limit);
+export function getFeaturedProjects(): Project[] {
+  return getAllProjects().filter((project) => !project.comingSoon);
 }
 
 export function getAbout(): { photo: string; content: string } {

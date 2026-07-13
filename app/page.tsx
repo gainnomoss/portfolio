@@ -16,7 +16,7 @@ const skills = [
 ];
 
 export default function Home() {
-  const featured = getFeaturedProjects(2);
+  const featured = getFeaturedProjects();
   const about = getAbout();
 
   return (
@@ -41,12 +41,7 @@ export default function Home() {
 
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-content px-6">
-          <div className="flex items-end justify-between gap-4">
-            <SectionHeading>Selected work</SectionHeading>
-            <Button href="/work" variant="secondary" className="hidden sm:inline-flex">
-              View all
-            </Button>
-          </div>
+          <SectionHeading>Case studies</SectionHeading>
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
             {featured.map((project, index) => (
               <Reveal key={project.slug} delay={index * 0.05}>
@@ -54,9 +49,6 @@ export default function Home() {
               </Reveal>
             ))}
           </div>
-          <Button href="/work" variant="secondary" className="mt-8 sm:hidden">
-            View all work
-          </Button>
         </div>
       </section>
 
