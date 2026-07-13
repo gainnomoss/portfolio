@@ -13,7 +13,7 @@ export function ProjectCard({ project }: { project: Project }) {
       )}
     >
       <div className="relative shrink-0 overflow-hidden px-6 py-4">
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: project.thumbnailAspect }}>
+        <div className="relative aspect-[4/3] w-full overflow-hidden">
           {project.thumbnail ? (
             <Image
               src={project.thumbnail}
@@ -49,13 +49,17 @@ export function ProjectCard({ project }: { project: Project }) {
   );
 
   if (project.comingSoon) {
-    return <div aria-disabled="true">{content}</div>;
+    return (
+      <div aria-disabled="true" className="h-full">
+        {content}
+      </div>
+    );
   }
 
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+      className="block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
     >
       {content}
     </Link>
