@@ -6,6 +6,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { Logo } from "@/components/ui/logo";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { MAINTENANCE_PATH } from "@/lib/maintenance";
 
 const links = [
   { href: "/work", label: "Work" },
@@ -16,6 +17,9 @@ const links = [
 export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  // No nav chrome on the maintenance page — it's a standalone, calm state.
+  if (pathname === MAINTENANCE_PATH) return null;
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-canvas/90 backdrop-blur">
