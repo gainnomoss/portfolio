@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { getFeaturedProjects, getAbout } from "@/lib/content";
 import { Button } from "@/components/ui/button";
-import { HeroVisual } from "@/components/ui/hero-visual";
+import { HeroCopy } from "@/components/ui/hero-copy";
+import { InteractiveDots } from "@/components/ui/interactive-dots";
 import { ProjectCard } from "@/components/ui/project-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
@@ -21,22 +22,13 @@ export default function Home() {
 
   return (
     <div>
-      <section className="mx-auto grid max-w-content grid-cols-1 items-center gap-12 px-6 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16">
-        <div>
-          <p className="text-body-sm text-muted">Hi, I&apos;m Ke Er</p>
-          <h1 className="mt-3 text-display-xl text-ink">I design clarity into complex flows.</h1>
-          <p className="mt-6 max-w-reading text-body-lg text-body">
-            Product Designer based in Singapore, focused on end-to-end journeys, accessibility,
-            and shipping AI-assisted tools for government and enterprise.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Button href="/work">See my work</Button>
-            <Button href="/contact" variant="secondary">
-              Get in touch
-            </Button>
+      <section className="relative overflow-hidden">
+        <InteractiveDots />
+        <div className="relative z-[2] mx-auto max-w-content px-6 py-16 sm:py-24 lg:py-32">
+          <div className="max-w-[640px]">
+            <HeroCopy avatarSrc={about.photo} />
           </div>
         </div>
-        <HeroVisual />
       </section>
 
       <section className="border-t border-border py-16 sm:py-24">

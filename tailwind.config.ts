@@ -57,15 +57,6 @@ const config: Config = {
       transitionTimingFunction: {
         standard: "cubic-bezier(0.4, 0, 0.2, 1)",
       },
-      keyframes: {
-        "hero-drift": {
-          "0%, 100%": { transform: "translate3d(0, 0, 0) scale(1)" },
-          "50%": { transform: "translate3d(-2%, 2%, 0) scale(1.05)" },
-        },
-      },
-      animation: {
-        "hero-drift": "hero-drift 18s ease-in-out infinite",
-      },
     },
   },
   plugins: [],
