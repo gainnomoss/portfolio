@@ -26,7 +26,7 @@ export default function Home() {
         <InteractiveDots />
         <div className="relative z-[2] mx-auto max-w-content px-6 py-16 sm:py-24 lg:py-32">
           <div className="max-w-[640px]">
-            <HeroCopy avatarSrc={about.photo} />
+            <HeroCopy avatarSrc="/avatar.png" />
           </div>
         </div>
       </section>
