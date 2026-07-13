@@ -23,8 +23,10 @@ colors:
   accent-dark: "#5b8cff"
   accent-dark-active: "#7fa3ff"
   on-accent: "#ffffff"
-  danger-light: "#c0392b"
+  danger-light: "#c43737"
   danger-dark: "#ff6b5c"
+  danger-subtle-light: "rgba(255, 74, 74, 0.05)"
+  danger-subtle-dark: "rgba(255, 107, 92, 0.08)"
   warning-light: "#a8710a"
   warning-dark: "#e6b34d"
   success-light: "#1f7a4d"
@@ -221,7 +223,8 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - **Accent Active** — press/hover state, darkens in light mode, lightens further in dark mode (`{colors.accent-dark-active}` #7fa3ff) to stay visible against the near-black canvas.
 
 ### Semantic
-- **Danger** (`{colors.danger-light}` #c0392b / `{colors.danger-dark}` #ff6b5c) — wrong-password state, legal/liability warnings (RLCP's case study references this exact pattern).
+- **Danger** (`{colors.danger-light}` #c43737 / `{colors.danger-dark}` #ff6b5c) — wrong-password state, the "Password protected" tag text, legal/liability warnings (RLCP's case study references this exact pattern). The light value sits a hair darker than the Figma source (#c73a3a) to clear WCAG AA (≥4.5:1) on the danger-subtle tag fill.
+- **Danger Subtle** (`{colors.danger-subtle-light}` / `{colors.danger-subtle-dark}`) — a barely-there red fill reserved for the "Password protected" tag background; never used as a large surface.
 - **Warning** (`{colors.warning-light}` #a8710a / `{colors.warning-dark}` #e6b34d) — advisory notices.
 - **Success** (`{colors.success-light}` #1f7a4d / `{colors.success-dark}` #4ade95) — confirmation states (e.g. unlocked case study).
 
@@ -279,7 +282,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`timeline`** — A vertical rail (`{colors.border}`) with dot markers (`{colors.accent}`) at each entry; entry content sits in a `{component.project-card}`-style block to its right. Used on the About page (experience) and inside case studies (multi-stage journeys, iteration history).
 
-**`tag`** — Small pill, `{colors.canvas-subtle}` background, `{colors.muted}` text, `{typography.label}` (mono, uppercase). Used for project tags and a distinct "Password protected" indicator (paired with a small lock glyph) per product.md's requirement that protected projects are clearly marked before opening.
+**`tag`** — Small pill, `{colors.canvas-subtle}` background, `{colors.muted}` text, `{typography.label}` (mono, uppercase). Used for project tags. The "Password protected" variant (per product.md's requirement that protected projects are clearly marked before opening) swaps to `{colors.danger-subtle}` fill with `{colors.danger}` text and lock glyph, so the locked state reads as a semantic warning rather than a neutral tag.
 
 **`hero-dot-field`** — A faint grid of `{colors.border-strong}` dots anchored to the right edge of the homepage hero, visible desktop-only (`lg+`). A second dot layer in `{colors.accent}` is revealed only inside a small radius around the cursor (a CSS mask, no canvas/JS drawing) and fades into the canvas color on its inner edge. Never repeated elsewhere on the site.
 

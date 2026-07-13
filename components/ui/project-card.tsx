@@ -20,27 +20,26 @@ export function ProjectCard({ project }: { project: Project }) {
               alt=""
               width={800}
               height={600}
-              className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.02]"
+              className={clsx(
+                "h-full w-full transition-transform duration-slow group-hover:scale-[1.02]",
+                project.thumbnailFit === "contain" ? "object-contain" : "object-cover"
+              )}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-canvas-subtle">
               <span className="font-mono text-label text-muted">Coming soon</span>
             </div>
           )}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-[29%] bg-gradient-to-t from-canvas-subtle to-transparent"
-          />
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-3 px-6 pb-6 pt-0">
+      <div className="flex flex-1 flex-col gap-3 px-6 pb-6 pt-4">
         <div className="flex flex-col gap-1">
           <h3 className="text-title-lg text-ink">{project.title}</h3>
           <p className="text-body-sm text-muted">{project.company}</p>
         </div>
         <p className="text-body-sm text-body">{project.summary}</p>
         {project.protected ? (
-          <div className="mt-auto flex flex-wrap gap-2 pt-2">
+          <div className="mt-auto flex flex-wrap gap-2">
             <Tag locked>Password protected</Tag>
           </div>
         ) : null}
