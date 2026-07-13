@@ -17,6 +17,7 @@ const config: Config = {
         "accent-active": "var(--accent-active)",
         "on-accent": "var(--on-accent)",
         danger: "var(--danger)",
+        "danger-subtle": "var(--danger-subtle)",
         warning: "var(--warning)",
         success: "var(--success)",
       },

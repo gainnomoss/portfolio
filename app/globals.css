@@ -13,7 +13,8 @@
   --accent: #0b5fff;
   --accent-active: #0a4fd6;
   --on-accent: #ffffff;
-  --danger: #c0392b;
+  --danger: #c43737;
+  --danger-subtle: rgba(255, 74, 74, 0.05);
   --warning: #a8710a;
   --success: #1f7a4d;
 }
@@ -30,6 +31,7 @@
   --accent-active: #7fa3ff;
   --on-accent: #0a0a0d;
   --danger: #ff6b5c;
+  --danger-subtle: rgba(255, 107, 92, 0.08);
   --warning: #e6b34d;
   --success: #4ade95;
 }
