@@ -12,6 +12,7 @@ export interface Project {
   type: string;
   tags: string[];
   thumbnail: string | null;
+  thumbnailAspect: string;
   protected: boolean;
   comingSoon: boolean;
   order: number;
@@ -25,6 +26,7 @@ export interface ProjectFrontmatter {
   type: string;
   tags: string[];
   thumbnail?: string;
+  thumbnailAspect?: string;
   protected?: boolean;
   comingSoon?: boolean;
   order?: number;

@@ -19,6 +19,7 @@ function readProject(slug: string): Project {
     type: fm.type,
     tags: fm.tags ?? [],
     thumbnail: fm.thumbnail ?? null,
+    thumbnailAspect: fm.thumbnailAspect ?? "4/3",
     protected: fm.protected ?? false,
     comingSoon: fm.comingSoon ?? false,
     order: fm.order ?? 999,
