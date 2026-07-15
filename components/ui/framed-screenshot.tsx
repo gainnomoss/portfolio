@@ -16,18 +16,14 @@ export function FramedScreenshot({
   const { width, height } = imageDimensions[src] ?? { width: 1600, height: 1000 };
 
   return (
-    <div
-      className={clsx(
-        "overflow-hidden rounded-md border border-border shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_1px_2px_rgba(0,0,0,0.2),0_8px_24px_rgba(0,0,0,0.35)]",
-        className
-      )}
-    >
+    <div className={clsx("overflow-hidden rounded-md bg-canvas", className)}>
       <Image
         src={src}
         alt={alt}
         width={width}
         height={height}
         priority={priority}
+        quality={95}
         className="h-auto w-full"
         sizes="(min-width: 1024px) 960px, 100vw"
       />

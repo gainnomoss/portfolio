@@ -153,6 +153,12 @@ components:
     backgroundColor: "{colors.canvas-subtle}"
     rounded: "{rounded.lg}"
     padding: "{spacing.lg}"
+  principle-card:
+    backgroundColor: "{colors.canvas}"
+    border: "1px solid {colors.accent-weak}"
+    rounded: "{rounded.lg}"
+    padding: 20px
+    shadow: "0 1px 1px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.10)"
   section-heading:
     textColor: "{colors.body}"
     typography: "{typography.display-md}"
@@ -213,7 +219,7 @@ This system exists to get a hiring manager to trust the designer's craft within 
 - Light and dark are both first-class. The toggle lives top-right, always, and is itself a small delight moment (Aleksi Tappura) — not a system-preference afterthought.
 - One accent color (`{colors.accent}`, a confident blue evolved from the current site's brand blue), used only for links, the active nav state, the toggle icon, and primary interactive affordances. Everything else is ink/canvas grays in both themes.
 - One deliberate animated hero moment on the homepage (a quiet interactive dot field that lights up near the cursor, desktop-only, Aleksi Tappura-style restraint) — everywhere else, motion is a micro-interaction (hover/press, tab switch, scroll-reveal) gated behind `prefers-reduced-motion`.
-- Real UI screenshots are shown inside a believable frame with its own shadow and rounding (Linear-style), never floating flat — this extends the case-study screenshot pattern already on the current site.
+- Real UI screenshots sit flat on the canvas with subtle rounding (`{rounded.md}`) — no border, no shadow — so the interface being shown carries the visual weight, not its container.
 - A connector-line timeline component is the one recurring structural motif (Rebecca Ling-style), used for the About page's experience section and every case study's process/journey narrative.
 
 ## Inspiration Synthesis
@@ -279,7 +285,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - **Base spacing unit:** 4px. Tokens: `{spacing.xxs}` 4 · `{spacing.xs}` 8 · `{spacing.sm}` 12 · `{spacing.md}` 16 · `{spacing.lg}` 24 · `{spacing.xl}` 32 · `{spacing.2xl}` 48 · `{spacing.3xl}` 64.
 - **Section rhythm:** `{spacing.section-desktop}` (96px) top+bottom padding between major page sections on desktop, `{spacing.section-mobile}` (56px) on mobile. Whitespace separates sections — rules/dividers are rare, reserved for the nav-to-CTA divider pattern only.
 - **Reading column:** case-study body copy caps at ~680px (`{layout.reading}`) regardless of viewport width, matching the current site's long-form legibility.
-- **Screenshot breakout:** framed screenshots inside case-study body copy break out of the reading column to a wider ~960px cap (`{layout.breakout}`), centered, so UI detail stays legible on wide viewports while prose stays narrow. Captions stay reading-width to match body text.
+- **Screenshot breakout:** screenshots inside case-study body copy break out of the reading column to a wider ~960px cap (`{layout.breakout}`), centered, so UI detail stays legible on wide viewports while prose stays narrow. Captions stay reading-width to match body text.
 - **Max content width:** 1200px (`{layout.content}`) centered, with a minimum 24px (mobile) to 64px (desktop) outer gutter.
 
 ## Motion
@@ -304,7 +310,9 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, contains a framed screenshot (see below), title in `{typography.title-lg}`, company/type in `{typography.body-sm}` muted, tags as `{component.tag}` row. A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern and disables the click-through.
 
-**Framed screenshot** — Product/UI images sit inside a card with `{rounded.md}`, a 1px `{colors.border}` outline, and a soft shadow (elevation is this single shadow step, nothing heavier) — the Linear-style "real interface" treatment, applied to every case-study screenshot embed.
+**Case-study screenshot** — Product/UI images sit flat on `{colors.canvas}` with `{rounded.md}` corners — no border, no shadow. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge.
+
+**`principle-card`** — Small informational card used inside case-study body copy to present a set of guiding principles: `{colors.canvas}` background, 1px `{colors.accent-weak}` border, `{rounded.lg}`, 20px padding, and a single micro-shadow (0 1px 1px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.10)) — the system's one allowed card elevation. A 40px icon sits on top, followed by a bold 16px title and a regular 16px description in `{colors.body}`. Cards stack in one column on mobile and sit three-up from 768px.
 
 **`section-heading`** — Large `{typography.display-md}` label in `{colors.body}`, used to open each case-study section ("Overview," "Problem," "Process," "Outcome").
 
@@ -335,12 +343,12 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - Let weight and size build hierarchy. Resist the urge to add a second typeface for "personality" — the mono voice already provides that contrast in small doses.
 - Treat the theme toggle as a real feature: test both themes for every component before calling it done, not just the default.
 - Reserve motion for the homepage hero visual plus small state-change micro-interactions. If a component's animation doesn't communicate a state change or an entrance, cut it.
-- Frame every embedded product screenshot — never let a raw flat image float directly on the canvas.
+- Let case-study screenshots sit flat on the canvas at content width — the interface itself is the frame. Reserve borders and shadows for the `principle-card` micro-shadow, the system's single card elevation step.
 
 ### Don't
 - Don't add a second display typeface or a serif — that's Rebecca Ling's move specifically, not a shared "premium" pattern, and would clash with the single-voice system here.
 - Don't make the dark theme an inverted afterthought — every color pair above was chosen independently for contrast and warmth in its own theme.
-- Don't add shadows beyond the two documented elevation steps (`{colors.canvas-subtle}` + framed-screenshot shadow, and the `principle-card` shadow). No layered/soft-glow shadow systems.
+- Don't add shadows beyond the one elevation step (`{colors.canvas-subtle}` surfaces + the `principle-card` micro-shadow). No layered/soft-glow shadow systems.
 - Don't animate on scroll everywhere — a scroll-reveal on every single section reads as a template, not craft.
 - Don't use `{rounded.pill}` on cards or containers — it's reserved for buttons, tags, and the theme toggle.
 
