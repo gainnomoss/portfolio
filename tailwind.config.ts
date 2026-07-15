@@ -15,6 +15,7 @@ const config: Config = {
         "border-strong": "var(--border-strong)",
         accent: "var(--accent)",
         "accent-active": "var(--accent-active)",
+        "accent-weak": "var(--accent-weak)",
         "on-accent": "var(--on-accent)",
         danger: "var(--danger)",
         "danger-subtle": "var(--danger-subtle)",
@@ -48,6 +49,7 @@ const config: Config = {
       },
       maxWidth: {
         content: "1200px",
+        breakout: "960px",
         reading: "680px",
       },
       transitionDuration: {

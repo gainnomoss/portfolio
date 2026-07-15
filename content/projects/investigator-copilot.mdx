@@ -3,7 +3,7 @@ title: "Investigator Copilot (Transcription Use Case)"
 company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
 summary: "Redesigning the Speech-to-Text experience of an AI investigation platform, turning an inherited MVP into a workflow built for live interviews — achieving a SUS score of 75."
 type: "Product Design"
-tags: ["AI/Chatbot", "Government Digital Services"]
+tags: ["Speech-to-Text", "Government Digital Services", "Usability Testing"]
 thumbnail: "/projects/investigator-copilot/cover.png"
 thumbnailFit: contain
 protected: false
@@ -66,9 +66,23 @@ I then studied transcription apps, such as Otter, Dovetail, and Transcribe, to i
 
 Every design decision was guided by three principles:
 
-- **Reduce cognitive load.** Important states should be immediately distinguishable without requiring users to remember interaction history.
-- **Support live investigations.** Interactions should remain reliable even while transcripts continue updating in real time.
-- **Keep investigators focused.** The interface should reduce context switching by bringing summaries, notes, and marked evidence into a single workspace.
+<Principles>
+  <PrincipleCard
+    title="Reduce cognitive load"
+    description="Important states should be immediately distinguishable without requiring users to remember interaction history."
+    icon="/projects/investigator-copilot/principle-icon-1.svg"
+  />
+  <PrincipleCard
+    title="Support live investigations"
+    description="Interactions should remain reliable even while transcripts continue updating in real time."
+    icon="/projects/investigator-copilot/principle-icon-2.svg"
+  />
+  <PrincipleCard
+    title="Keep investigators focused"
+    description="The interface should reduce context switching by bringing summaries, notes, and marked evidence into a single workspace."
+    icon="/projects/investigator-copilot/principle-icon-3.svg"
+  />
+</Principles>
 
 I explored different variations of how the transcript row could be designed — whether the bookmark icon should always be displayed, how speaker avatars should be shown, in what order the speaker names, timestamps, and text should appear, and how the different states affect the layout.
 
@@ -95,22 +109,6 @@ I considered using an overlay modal because it required minimal layout changes. 
 **03 Supporting live note-taking.** To allow officers to record key observations noted during interviews, a note-taking feature was implemented alongside marked transcript text. This allowed officers to remain on the platform throughout the course of the interview without having to switch between manual note-taking and transcription review.
 
 <Screenshot src="/projects/investigator-copilot/marked-segments-card-states.png" alt="Marked segment cards in the new side panel, shown alongside live note-taking" />
-
-### Design System
-
-There was also a gap in our workflow as a team. There was no existing design system or UI library in place — the team had to spend time making decisions on UI components or patterns frequently, and developers also implemented components differently. I worked on a set of reusable components that improved consistency across the different use cases in this product.
-
-<Screenshot src="/projects/investigator-copilot/design-system-components.png" alt="The reusable component set built for Investigator Copilot" />
-
-I worked together with developers to agree on a set of components we would deliver first, and based on the developers' preference, I took shadcn/ui as the base set, adjusting styling and colour further from there to fit SPF branding. We also discussed how we could name our design tokens, and — due to time constraints and not needing to cater for dark mode or other brand colours — decided on a two-layer token naming system.
-
-<Screenshot src="/projects/investigator-copilot/design-tokens-naming.png" alt="The two-layer design token naming system adopted for the component library" />
-
-The component set has also been adopted as the default set of components used across all Investigator Copilot use cases.
-
-<Screenshot src="/projects/investigator-copilot/other-screens.png" alt="The component set adopted as the default across other Investigator Copilot use cases" />
-
-As a team, this helped us make decisions more quickly, and freed us up to discuss issues beyond UI.
 
 ## Usability Testing
 

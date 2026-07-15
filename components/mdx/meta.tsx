@@ -14,7 +14,7 @@ export function Meta({
   ];
 
   return (
-    <div className="grid grid-cols-1 gap-6 border-y border-border py-8 sm:grid-cols-3">
+    <div className="mx-auto grid max-w-reading grid-cols-1 gap-6 border-y border-border py-8 sm:grid-cols-3">
       {items.map((item) => (
         <div key={item.label}>
           <p className="font-mono text-label text-muted">{item.label}</p>

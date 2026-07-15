@@ -2,22 +2,29 @@ import type { MDXComponents } from "mdx/types";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Meta } from "@/components/mdx/meta";
 import { Screenshot } from "@/components/mdx/screenshot";
+import { Principles, PrincipleCard } from "@/components/mdx/principle-card";
 
 export const mdxComponents: MDXComponents = {
   h2: ({ children }) => (
-    <SectionHeading className="mb-6 mt-16 first:mt-0">{children}</SectionHeading>
+    <SectionHeading className="mx-auto mb-6 mt-16 max-w-reading first:mt-0">
+      {children}
+    </SectionHeading>
   ),
   h3: ({ children }) => (
-    <h3 className="mb-4 mt-10 text-title-lg text-ink">{children}</h3>
+    <h3 className="mx-auto mb-4 mt-10 max-w-reading text-title-lg text-ink">{children}</h3>
   ),
   p: ({ children }) => (
-    <p className="mb-5 text-body-md text-body">{children}</p>
+    <p className="mx-auto mb-5 max-w-reading text-body-md text-body">{children}</p>
   ),
   ul: ({ children }) => (
-    <ul className="mb-5 ml-5 list-disc space-y-2 text-body-md text-body">{children}</ul>
+    <ul className="mx-auto mb-5 ml-5 max-w-reading list-disc space-y-2 text-body-md text-body">
+      {children}
+    </ul>
   ),
   ol: ({ children }) => (
-    <ol className="mb-5 ml-5 list-decimal space-y-2 text-body-md text-body">{children}</ol>
+    <ol className="mx-auto mb-5 ml-5 max-w-reading list-decimal space-y-2 text-body-md text-body">
+      {children}
+    </ol>
   ),
   li: ({ children }) => <li className="pl-1">{children}</li>,
   strong: ({ children }) => <strong className="font-medium text-ink">{children}</strong>,
@@ -32,10 +39,12 @@ export const mdxComponents: MDXComponents = {
     </a>
   ),
   blockquote: ({ children }) => (
-    <blockquote className="my-8 border-l-2 border-accent py-1 pl-6 text-body-lg text-ink [&>p]:mb-0">
+    <blockquote className="mx-auto my-8 max-w-reading border-l-2 border-accent py-1 pl-6 text-body-lg text-ink [&>p]:mb-0">
       {children}
     </blockquote>
   ),
   Meta,
   Screenshot,
+  Principles,
+  PrincipleCard,
 };

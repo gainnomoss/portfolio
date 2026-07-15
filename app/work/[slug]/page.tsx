@@ -84,7 +84,7 @@ export default async function CaseStudyPage({
         </div>
       </header>
 
-      <div className="mx-auto max-w-reading px-6 py-16 sm:py-24">
+      <div className="mx-auto max-w-content px-6 py-16 sm:py-24">
         <MDXRemote source={project.content} components={mdxComponents} />
       </div>
     </article>

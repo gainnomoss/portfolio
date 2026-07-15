@@ -12,6 +12,7 @@
   --border-strong: #c7c8d1;
   --accent: #0b5fff;
   --accent-active: #0a4fd6;
+  --accent-weak: #3a72dc;
   --on-accent: #ffffff;
   --danger: #c43737;
   --danger-subtle: rgba(255, 74, 74, 0.05);
@@ -29,6 +30,7 @@
   --border-strong: #38383f;
   --accent: #5b8cff;
   --accent-active: #7fa3ff;
+  --accent-weak: #3a589e;
   --on-accent: #0a0a0d;
   --danger: #ff6b5c;
   --danger-subtle: rgba(255, 107, 92, 0.08);
