@@ -1,7 +1,7 @@
 ---
 title: "Investigator Copilot (Transcription Use Case)"
 company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
-summary: "Speech-to-Text transcription for the Singapore Police Force, as part of an AI platform with various AI use cases for investigation officers."
+summary: "Redesigning the Speech-to-Text experience of an AI investigation platform, turning an inherited MVP into a workflow built for live interviews — achieving a SUS score of 75."
 type: "Product Design"
 tags: ["AI/Chatbot", "Government Digital Services"]
 thumbnail: "/projects/investigator-copilot/cover.png"
@@ -11,4 +11,128 @@ comingSoon: false
 order: 1
 ---
 
-This case study is being written up. Check back soon.
+## Overview
+
+Investigator Copilot is an AI-powered platform built for the Singapore Police Force. I led the redesign of its Speech-to-Text experience — a desktop web tool used by investigation officers during live interviews — after inheriting an MVP from an external vendor, transforming it into a workflow that better supports live investigations through clearer interactions, real-time note-taking, and AI-assisted review.
+
+<Meta
+  role="Sole Product Designer"
+  collaborators="1 Product Manager, 5 Engineers"
+  date="Nov 2024 – Present"
+/>
+
+**30 second overview**
+
+- **Users:** Investigation officers
+- **Goal:** Review interviews while they are ongoing, live
+- **Challenge:** Redesign an existing MVP to better support officers during live interviews
+- **My contribution:** Redesigned the core transcription workflow from research through implementation
+
+## The Problem
+
+Every investigative interview generates hours of audio that must be reviewed and documented accurately. Traditionally, officers either waited several days for outsourced transcription or attempted to take notes manually during interviews, often dividing their attention between listening and documenting.
+
+An MVP transcription tool had already been developed by an external vendor, but usability testing revealed that it introduced new friction rather than reducing it. Officers struggled to keep up with live transcripts, important interactions were difficult to discover, and the interface lacked support for the way investigations are actually conducted.
+
+- Difficult to review transcripts during live interviews
+- Important transcript interactions were easy to miss
+- No workspace for capturing investigative observations
+
+## My Role
+
+I was the sole product designer responsible for the Speech-to-Text experience after taking over an MVP delivered by an external vendor. I conducted usability testing, redesigned key workflows, created reusable UI components, and partnered closely with one product manager and five engineers through implementation.
+
+## Research & Discovery
+
+### Understanding Investigators' Workflow
+
+> I conducted moderated usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
+
+### Three Key Insights
+
+**1. Officers couldn't confidently distinguish transcript states.** Hover and selection shared similar visual treatments. Users frequently clicked twice because they couldn't tell whether a transcript had already been marked.
+
+<Screenshot src="/projects/investigator-copilot/mvp-before-mark.png" alt="Before: the MVP's transcript view, where hover and marked states were visually near-identical" />
+
+**2. Live transcription made interaction difficult.** The transcript continuously shifted during interviews, forcing users to chase moving content whenever they wanted to bookmark an important statement.
+
+**3. Investigation isn't just transcription.** Officers needed to capture observations, identify admissions, rename speakers, and summarize interviews. The transcript alone wasn't enough.
+
+## Design Process
+
+I then studied transcription apps, such as Otter, Dovetail, and Transcribe, to identify common design patterns and layouts to learn from what was already out there.
+
+### Design Principles
+
+Every design decision was guided by three principles:
+
+- **Reduce cognitive load.** Important states should be immediately distinguishable without requiring users to remember interaction history.
+- **Support live investigations.** Interactions should remain reliable even while transcripts continue updating in real time.
+- **Keep investigators focused.** The interface should reduce context switching by bringing summaries, notes, and marked evidence into a single workspace.
+
+I explored different variations of how the transcript row could be designed — whether the bookmark icon should always be displayed, how speaker avatars should be shown, in what order the speaker names, timestamps, and text should appear, and how the different states affect the layout.
+
+<Screenshot src="/projects/investigator-copilot/transcript-row-iterations.png" alt="Exploring the transcript row layout across the vendor's original design, two iterations, and the final row structure" />
+
+### Key Design Decisions
+
+**01 Clear transcript states.** To make the hover and marked states more visually distinct, I explored a few options, including changing the colours used to indicate hover/marked states, and changing the interaction of how a transcript can get marked. One consideration was to make the clickable area of marking a transcript larger, as the current area was determined by the length of the transcript text.
+
+<Screenshot src="/projects/investigator-copilot/transcript-states-before.png" alt="Default, hover, and marked states for a transcript row before the redesign" />
+
+<Screenshot src="/projects/investigator-copilot/hover-marked-exploration.png" alt="Exploring higher-contrast hover and marked treatments, including a persistent bookmark icon on marked rows" />
+
+I eventually decided on a mark button that would appear whenever the user hovered over a transcript row, informing users that they can click on it to mark the text. A persistent bookmark icon in sufficient colour contrast would show if the text was marked, so that it is easily identifiable.
+
+<Screenshot src="/projects/investigator-copilot/transcript-states-final.png" alt="Final default, hover, and marked states — a mark button appears on hover, and a persistent bookmark icon marks saved rows" />
+
+**02 Side panel instead of modal.** Investigators constantly reference transcripts through the course of the interview, and a modal would block investigators from referring to the current transcript if they wanted to view any of the segments they bookmarked during the interview.
+
+<Screenshot src="/projects/investigator-copilot/marked-segments-modal-before.png" alt="Viewing marked segments required opening a modal on the original design" />
+
+I considered using an overlay modal because it required minimal layout changes. However, officers frequently referenced transcripts while reviewing marked evidence, forcing them to repeatedly open and close the modal. I instead explored a persistent side panel, accepting slightly narrower transcript columns in exchange for continuous access to both views.
+
+**03 Supporting live note-taking.** To allow officers to record key observations noted during interviews, a note-taking feature was implemented alongside marked transcript text. This allowed officers to remain on the platform throughout the course of the interview without having to switch between manual note-taking and transcription review.
+
+<Screenshot src="/projects/investigator-copilot/marked-segments-card-states.png" alt="Marked segment cards in the new side panel, shown alongside live note-taking" />
+
+### Design System
+
+There was also a gap in our workflow as a team. There was no existing design system or UI library in place — the team had to spend time making decisions on UI components or patterns frequently, and developers also implemented components differently. I worked on a set of reusable components that improved consistency across the different use cases in this product.
+
+<Screenshot src="/projects/investigator-copilot/design-system-components.png" alt="The reusable component set built for Investigator Copilot" />
+
+I worked together with developers to agree on a set of components we would deliver first, and based on the developers' preference, I took shadcn/ui as the base set, adjusting styling and colour further from there to fit SPF branding. We also discussed how we could name our design tokens, and — due to time constraints and not needing to cater for dark mode or other brand colours — decided on a two-layer token naming system.
+
+<Screenshot src="/projects/investigator-copilot/design-tokens-naming.png" alt="The two-layer design token naming system adopted for the component library" />
+
+The component set has also been adopted as the default set of components used across all Investigator Copilot use cases.
+
+<Screenshot src="/projects/investigator-copilot/other-screens.png" alt="The component set adopted as the default across other Investigator Copilot use cases" />
+
+As a team, this helped us make decisions more quickly, and freed us up to discuss issues beyond UI.
+
+## Usability Testing
+
+During a usability testing session conducted with the new designs with 11 participants, it achieved a SUS score of 75. Users did not report further issues with bookmarking transcripts, and gave feedback that the improved interface was easier to use.
+
+## Outcome / Impact
+
+The product was launched in April 2026, with officers adopting it for their workflows.
+
+The redesign introduced:
+
+- Clearer transcript interactions
+- Integrated investigative notes
+- AI-generated summaries
+- Improved transcript organisation
+
+The team is still gathering feedback as the product goes live, and working on further enhancements.
+
+## Reflections
+
+**1. Designing begins at the component level.** One thing I underestimated was how many interaction states a transcript could have simultaneously. What initially appeared to be a list became a system where playback, editing, marking, and scrolling all influenced one another. Designing at the component level before designing screens ultimately reduced complexity and made the interface more scalable.
+
+<Screenshot src="/projects/investigator-copilot/transcript-row-component.png" alt="The transcript row component, broken down into its interaction states" />
+
+**2. Balancing user needs, technical limitations, and stakeholder priorities.** Designing for investigators reinforced that productivity tools are rarely about adding more features — they're about reducing cognitive effort during high-pressure work. Working within government constraints also taught me the importance of balancing user needs, technical limitations, and stakeholder priorities while still advocating for better user experiences.
