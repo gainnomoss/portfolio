@@ -85,7 +85,9 @@ export default function Home() {
 
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-content px-6 text-center">
-          <h2 className="text-display-md text-ink">Let&apos;s work together.</h2>
+          <h2 className="text-display-md font-semibold tracking-tight text-ink">
+            Let&apos;s work together.
+          </h2>
           <p className="mx-auto mt-4 max-w-reading text-body-lg text-body">
             Open to product design roles on meaningful, complex problems — especially in public
             sector, government-adjacent, or AI-native products.

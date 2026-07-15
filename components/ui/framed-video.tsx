@@ -1,20 +1,16 @@
-import Image from "next/image";
 import clsx from "clsx";
-import { imageDimensions } from "@/lib/image-dimensions";
 
-export function FramedScreenshot({
+export function FramedVideo({
   src,
-  alt,
-  priority,
   className,
+  width = 960,
+  height = 540,
 }: {
   src: string;
-  alt: string;
-  priority?: boolean;
   className?: string;
+  width?: number;
+  height?: number;
 }) {
-  const { width, height } = imageDimensions[src] ?? { width: 1600, height: 1000 };
-
   return (
     <div
       className={clsx(
@@ -22,14 +18,15 @@ export function FramedScreenshot({
         className
       )}
     >
-      <Image
+      <video
         src={src}
-        alt={alt}
+        controls
+        playsInline
+        preload="metadata"
         width={width}
         height={height}
-        priority={priority}
         className="h-auto w-full"
-        sizes="(min-width: 1024px) 960px, 100vw"
+        style={{ aspectRatio: `${width} / ${height}` }}
       />
     </div>
   );
