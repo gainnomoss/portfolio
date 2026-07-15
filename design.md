@@ -22,8 +22,8 @@ colors:
   accent-light-active: "#0a4fd6"
   accent-dark: "#5b8cff"
   accent-dark-active: "#7fa3ff"
-  accent-weak-light: "#3a72dc"
-  accent-weak-dark: "#3a589e"
+  accent-weak-light: "#3468c9"
+  accent-weak-dark: "#7c93d1"
   on-accent: "#ffffff"
   danger-light: "#c43737"
   danger-dark: "#ff6b5c"
@@ -49,10 +49,16 @@ typography:
     letterSpacing: "-0.01em"
   display-md:
     fontFamily: "var(--font-geist-sans)"
-    fontSize: "1.875rem"
-    fontWeight: 600
-    lineHeight: 1.2
-    letterSpacing: "-0.01em"
+    fontSize: "1.9375rem"
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: "0.01em"
+  display-sm:
+    fontFamily: "var(--font-geist-sans)"
+    fontSize: "1.5625rem"
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: "0.01em"
   title-lg:
     fontFamily: "var(--font-geist-sans)"
     fontSize: "1.375rem"
@@ -154,8 +160,11 @@ components:
     padding: 20px
     shadow: "0 1px 1px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.10)"
   section-heading:
-    textColor: "{colors.muted}"
+    textColor: "{colors.body}"
     typography: "{typography.display-md}"
+  case-study-subheading:
+    textColor: "{colors.body}"
+    typography: "{typography.display-sm}"
   timeline:
     railColor: "{colors.border}"
     dotColor: "{colors.accent}"
@@ -184,6 +193,20 @@ components:
     size: 44px
     rounded: "{rounded.pill}"
     backgroundColor: "{colors.canvas-subtle}"
+  numbered-callout:
+    labelColor: "{colors.accent-weak}"
+    numberColor: "{colors.accent-weak}"
+    titleColor: "{colors.body}"
+    borderColor: "{colors.border}"
+  principle-card:
+    backgroundColor: "{colors.canvas}"
+    borderColor: "{colors.accent-weak}"
+    rounded: "{rounded.lg}"
+    shadow: "0px 1px 1px rgba(0,0,0,0.1), 0px 1px 0.5px rgba(0,0,0,0.06)"
+  numbered-list:
+    markerBackground: "{colors.accent}"
+    markerTextColor: "{colors.on-accent}"
+    itemTextColor: "{colors.body}"
 ---
 
 ## Overview
@@ -227,9 +250,9 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - **Border Strong** (`{colors.border-strong-light}` #c7c8d1 / `{colors.border-strong-dark}` #38383f) — secondary-button outline, input borders.
 
 ### Accent
-- **Accent** (`{colors.accent-light}` #0b5fff / `{colors.accent-dark}` #5b8cff) — links, active nav/tab state, theme-toggle icon, primary button fill (paired with `{colors.on-accent}` #ffffff text), focus rings. This is the only chromatic color in the system outside semantic states — reserve it.
+- **Accent** (`{colors.accent-light}` #0b5fff / `{colors.accent-dark}` #5b8cff) — links, active nav/tab state, theme-toggle icon, primary button fill (paired with `{colors.on-accent}` #ffffff text), focus rings. This is the only *primary* chromatic color in the system outside semantic states — reserve it.
 - **Accent Active** — press/hover state, darkens in light mode, lightens further in dark mode (`{colors.accent-dark-active}` #7fa3ff) to stay visible against the near-black canvas.
-- **Accent Weak** (`{colors.accent-weak-light}` #3a72dc / `{colors.accent-weak-dark}` #3a589e) — a quieter companion to the accent, reserved for hairline borders on informational cards (the `principle-card` outline). Never used for text, fills, or interactive states.
+- **Accent Weak** (`{colors.accent-weak-light}` #3468c9 / `{colors.accent-weak-dark}` #7c93d1) — a secondary, less-saturated blue reserved for case-study narrative markers: the `numbered-callout` label/number and the `principle-card` border. Never used for primary interactive affordances (links, buttons, focus rings) — those stay on `{colors.accent}`. The light value sits a step darker than the Figma source (#3a72dc) to clear WCAG AA (≥4.5:1) as 14px label text on `{colors.canvas-subtle}`.
 
 ### Semantic
 - **Danger** (`{colors.danger-light}` #c43737 / `{colors.danger-dark}` #ff6b5c) — wrong-password state, the "Password protected" tag text, legal/liability warnings (RLCP's case study references this exact pattern). The light value sits a hair darker than the Figma source (#c73a3a) to clear WCAG AA (≥4.5:1) on the danger-subtle tag fill.
@@ -245,7 +268,8 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 |---|---|---|---|---|
 | `{typography.display-xl}` | 44–64px (clamp) | 600 | 1.05 | Homepage hero headline only |
 | `{typography.display-lg}` | 36–44px (clamp) | 600 | 1.1 | Page titles (case study, About, Work) |
-| `{typography.display-md}` | 30px | 600 | 1.2 | Case-study section headings ("Problem", "Process"), rendered in `{colors.muted}` per the current site's pattern |
+| `{typography.display-md}` | 31px | 400 | 1 | Case-study section headings ("Overview", "The Problem", "Design Process"), rendered in `{colors.body}` with +1% tracking |
+| `{typography.display-sm}` | 25px | 400 | 1 | Case-study subsection headings ("Design Principles", "Key Design Decisions"), rendered in `{colors.body}` with +1% tracking |
 | `{typography.title-lg}` | 22px | 500 | 1.3 | Project-card titles, subsection headers |
 | `{typography.title-md}` | 18px | 500 | 1.4 | Timeline entry titles, button label size |
 | `{typography.body-lg}` | 18px | 400 | 1.6 | Case-study lead paragraphs |
@@ -261,7 +285,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - **Base spacing unit:** 4px. Tokens: `{spacing.xxs}` 4 · `{spacing.xs}` 8 · `{spacing.sm}` 12 · `{spacing.md}` 16 · `{spacing.lg}` 24 · `{spacing.xl}` 32 · `{spacing.2xl}` 48 · `{spacing.3xl}` 64.
 - **Section rhythm:** `{spacing.section-desktop}` (96px) top+bottom padding between major page sections on desktop, `{spacing.section-mobile}` (56px) on mobile. Whitespace separates sections — rules/dividers are rare, reserved for the nav-to-CTA divider pattern only.
 - **Reading column:** case-study body copy caps at ~680px (`{layout.reading}`) regardless of viewport width, matching the current site's long-form legibility.
-- **Screenshot width:** screenshots inside case-study body copy break out of the reading column and span the full content width (`{layout.content}`, 1200px), so UI detail stays legible on wide viewports while prose stays narrow. Captions span the figure and align flush with the image's left edge.
+- **Screenshot breakout:** screenshots inside case-study body copy break out of the reading column to a wider ~960px cap (`{layout.breakout}`), centered, so UI detail stays legible on wide viewports while prose stays narrow. Captions stay reading-width to match body text.
 - **Max content width:** 1200px (`{layout.content}`) centered, with a minimum 24px (mobile) to 64px (desktop) outer gutter.
 
 ## Motion
@@ -290,7 +314,15 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`principle-card`** — Small informational card used inside case-study body copy to present a set of guiding principles: `{colors.canvas}` background, 1px `{colors.accent-weak}` border, `{rounded.lg}`, 20px padding, and a single micro-shadow (0 1px 1px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.10)) — the system's one allowed card elevation. A 40px icon sits on top, followed by a bold 16px title and a regular 16px description in `{colors.body}`. Cards stack in one column on mobile and sit three-up from 768px.
 
-**`section-heading`** — Large `{typography.display-md}` label in `{colors.muted}`, used to open each case-study section ("Overview," "Problem," "Process," "Outcome") — directly preserves the current site's pattern.
+**`section-heading`** — Large `{typography.display-md}` label in `{colors.body}`, used to open each case-study section ("Overview," "Problem," "Process," "Outcome").
+
+**`case-study-subheading`** — `{typography.display-sm}` in `{colors.body}`, used for subsection headings inside a case-study section ("Design Principles," "Key Design Decisions").
+
+**`numbered-callout`** — A small structural marker inside case-study body copy that calls out a research insight or design decision before its supporting paragraph: an uppercase-free `{colors.accent-weak}` label ("Research insight" / "Design decision"), a numbered circle in the same color, and a bold `{colors.body}` statement, sitting above a `{colors.border}` rule. Distinct from `numbered-list` — this marks a narrative beat, not a summary list.
+
+**`principle-card`** — A 3-up card grid (1-up on mobile) used for the "guiding principles" moment in a case study's process section: `{colors.canvas}` background, `{colors.accent-weak}` 1px border, `{rounded.lg}`, and a documented shadow exception (`0px 1px 1px rgba(0,0,0,0.1), 0px 1px 0.5px rgba(0,0,0,0.06)`) — the one other place besides the framed-screenshot elevation that a shadow is allowed, because the card sits directly on the page canvas with no other depth cue. Each card holds a 40px icon (in a `{colors.accent}`-tinted circle), a bold title, and a short description.
+
+**`numbered-list`** — A vertical list of outcome statements, each with a filled `{colors.accent}` circle (white number) and a bold `{colors.body}` statement. Used for "what the redesign introduced"-style outcome summaries; visually distinct from the plain bulleted `<ul>` used elsewhere in body copy.
 
 **`timeline`** — A vertical rail (`{colors.border}`) with dot markers (`{colors.accent}`) at each entry; entry content sits in a `{component.project-card}`-style block to its right. Used on the About page (experience) and inside case studies (multi-stage journeys, iteration history).
 

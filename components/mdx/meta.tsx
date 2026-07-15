@@ -8,7 +8,7 @@ export function Meta({
   date: string;
 }) {
   const items = [
-    { label: "My Contribution", value: role },
+    { label: "My Role", value: role },
     { label: "Collaborators", value: collaborators },
     { label: "Date", value: date },
   ];

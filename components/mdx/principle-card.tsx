@@ -2,7 +2,11 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 
 export function Principles({ children }: { children: ReactNode }) {
-  return <div className="my-8 grid grid-cols-1 gap-4 md:grid-cols-3">{children}</div>;
+  return (
+    <div className="mx-auto my-8 grid w-full max-w-breakout grid-cols-1 gap-4 md:grid-cols-3">
+      {children}
+    </div>
+  );
 }
 
 export function PrincipleCard({

@@ -8,7 +8,7 @@ export function SectionHeading({
   className?: string;
 }) {
   return (
-    <h2 className={clsx("text-display-md text-muted", className)}>
+    <h2 className={clsx("text-display-md text-body", className)}>
       {children}
     </h2>
   );

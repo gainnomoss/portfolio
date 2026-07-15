@@ -1,5 +1,6 @@
 import Image from "next/image";
 import clsx from "clsx";
+import { imageDimensions } from "@/lib/image-dimensions";
 
 export function FramedScreenshot({
   src,
@@ -12,17 +13,19 @@ export function FramedScreenshot({
   priority?: boolean;
   className?: string;
 }) {
+  const { width, height } = imageDimensions[src] ?? { width: 1600, height: 1000 };
+
   return (
     <div className={clsx("overflow-hidden rounded-md bg-canvas", className)}>
       <Image
         src={src}
         alt={alt}
-        width={1600}
-        height={1000}
+        width={width}
+        height={height}
         priority={priority}
         quality={95}
         className="h-auto w-full"
-        sizes="(min-width: 1248px) 1200px, 100vw"
+        sizes="(min-width: 1024px) 960px, 100vw"
       />
     </div>
   );

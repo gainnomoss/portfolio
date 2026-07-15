@@ -2,7 +2,10 @@ import type { MDXComponents } from "mdx/types";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Meta } from "@/components/mdx/meta";
 import { Screenshot } from "@/components/mdx/screenshot";
+import { Callout } from "@/components/mdx/callout";
 import { Principles, PrincipleCard } from "@/components/mdx/principle-card";
+import { OutcomeList, OutcomeItem } from "@/components/mdx/outcome-list";
+import { HeroVideo } from "@/components/mdx/hero-video";
 
 export const mdxComponents: MDXComponents = {
   h2: ({ children }) => (
@@ -11,7 +14,7 @@ export const mdxComponents: MDXComponents = {
     </SectionHeading>
   ),
   h3: ({ children }) => (
-    <h3 className="mx-auto mb-4 mt-10 max-w-reading text-title-lg text-ink">{children}</h3>
+    <h3 className="mx-auto mb-4 mt-10 max-w-reading text-display-sm text-body">{children}</h3>
   ),
   p: ({ children }) => (
     <p className="mx-auto mb-5 max-w-reading text-body-md text-body">{children}</p>
@@ -47,4 +50,8 @@ export const mdxComponents: MDXComponents = {
   Screenshot,
   Principles,
   PrincipleCard,
+  Callout,
+  OutcomeList,
+  OutcomeItem,
+  HeroVideo,
 };

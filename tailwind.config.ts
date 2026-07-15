@@ -29,7 +29,8 @@ const config: Config = {
       fontSize: {
         "display-xl": ["clamp(2.75rem, 6vw, 4rem)", { lineHeight: "1.05", letterSpacing: "-0.02em", fontWeight: "600" }],
         "display-lg": ["clamp(2.25rem, 4.5vw, 2.75rem)", { lineHeight: "1.1", letterSpacing: "-0.01em", fontWeight: "600" }],
-        "display-md": ["1.875rem", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "600" }],
+        "display-md": ["1.9375rem", { lineHeight: "1", letterSpacing: "0.01em", fontWeight: "400" }],
+        "display-sm": ["1.5625rem", { lineHeight: "1", letterSpacing: "0.01em", fontWeight: "400" }],
         "title-lg": ["1.375rem", { lineHeight: "1.3", fontWeight: "500" }],
         "title-md": ["1.125rem", { lineHeight: "1.4", fontWeight: "500" }],
         "body-lg": ["1.125rem", { lineHeight: "1.6", fontWeight: "400" }],
