@@ -14,7 +14,7 @@ export function FramedVideo({
   return (
     <div
       className={clsx(
-        "overflow-hidden rounded-md border border-border shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] dark:shadow-[0_1px_2px_rgba(0,0,0,0.2),0_8px_24px_rgba(0,0,0,0.35)]",
+        "overflow-hidden rounded-md bg-canvas",
         className
       )}
     >
