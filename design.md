@@ -310,7 +310,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, contains a framed screenshot (see below), title in `{typography.title-lg}`, company/type in `{typography.body-sm}` muted, tags as `{component.tag}` row. A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern and disables the click-through.
 
-**Case-study screenshot** — Product/UI images sit flat on `{colors.canvas}` with `{rounded.md}` corners — no border, no shadow. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge.
+**Case-study screenshot** — Product/UI images and video embeds sit flat on `{colors.canvas}` with `{rounded.md}` corners — no border, no shadow. This is a site-wide rule for every media embed, not a per-case-study choice. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge.
 
 **`principle-card`** — Small informational card used inside case-study body copy to present a set of guiding principles: `{colors.canvas}` background, 1px `{colors.accent-weak}` border, `{rounded.lg}`, 20px padding, and a single micro-shadow (0 1px 1px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.10)) — the system's one allowed card elevation. A 40px icon sits on top, followed by a bold 16px title and a regular 16px description in `{colors.body}`. Cards stack in one column on mobile and sit three-up from 768px.
 
@@ -343,7 +343,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - Let weight and size build hierarchy. Resist the urge to add a second typeface for "personality" — the mono voice already provides that contrast in small doses.
 - Treat the theme toggle as a real feature: test both themes for every component before calling it done, not just the default.
 - Reserve motion for the homepage hero visual plus small state-change micro-interactions. If a component's animation doesn't communicate a state change or an entrance, cut it.
-- Let case-study screenshots sit flat on the canvas at content width — the interface itself is the frame. Reserve borders and shadows for the `principle-card` micro-shadow, the system's single card elevation step.
+- Let case-study screenshots and videos sit flat on the canvas at content width — the interface itself is the frame. Reserve borders and shadows for the `principle-card` micro-shadow, the system's single card elevation step.
 
 ### Don't
 - Don't add a second display typeface or a serif — that's Rebecca Ling's move specifically, not a shared "premium" pattern, and would clash with the single-voice system here.
