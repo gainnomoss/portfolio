@@ -6,6 +6,11 @@ import { Callout } from "@/components/mdx/callout";
 import { Principles, PrincipleCard } from "@/components/mdx/principle-card";
 import { OutcomeList, OutcomeItem } from "@/components/mdx/outcome-list";
 import { HeroVideo } from "@/components/mdx/hero-video";
+import { StatementHeading } from "@/components/mdx/statement-heading";
+import { InfoCards } from "@/components/mdx/info-cards";
+import { StepFlow } from "@/components/mdx/step-flow";
+import { NumberedList } from "@/components/mdx/numbered-list";
+import { ScreenshotPair } from "@/components/mdx/screenshot-pair";
 
 export const mdxComponents: MDXComponents = {
   h2: ({ children }) => (
@@ -54,4 +59,9 @@ export const mdxComponents: MDXComponents = {
   OutcomeList,
   OutcomeItem,
   HeroVideo,
+  StatementHeading,
+  InfoCards,
+  StepFlow,
+  NumberedList,
+  ScreenshotPair,
 };

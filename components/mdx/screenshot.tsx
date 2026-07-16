@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { FramedScreenshot } from "@/components/ui/framed-screenshot";
 
 export function Screenshot({
@@ -9,16 +10,21 @@ export function Screenshot({
 }: {
   src: string;
   alt: string;
-  caption?: string;
+  /**
+   * Optional override for the visible figcaption text/content. Defaults to `alt`
+   * (existing behaviour). Pass `caption={null}` to render `alt` for accessibility
+   * only, without a visible caption.
+   */
+  caption?: ReactNode | null;
   captionLead?: string;
   priority?: boolean;
 }) {
-  const captionText = caption ?? alt;
+  const captionContent = caption === undefined ? alt : caption;
 
   return (
     <figure className="mx-auto mb-4 mt-12 max-w-breakout">
       <FramedScreenshot src={src} alt={alt} priority={priority} />
-      {captionText ? (
+      {captionContent ? (
         <figcaption
           className={
             captionLead
@@ -27,7 +33,7 @@ export function Screenshot({
           }
         >
           {captionLead ? <strong className="font-bold">{captionLead} </strong> : null}
-          {captionText}
+          {captionContent}
         </figcaption>
       ) : null}
     </figure>
