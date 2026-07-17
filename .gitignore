@@ -43,3 +43,9 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# claude code local session files
+.claude/
+
+# temporary figma verification screenshots
+.figma-check-*.png

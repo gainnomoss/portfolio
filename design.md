@@ -22,7 +22,7 @@ colors:
   accent-light-active: "#0a4fd6"
   accent-dark: "#5b8cff"
   accent-dark-active: "#7fa3ff"
-  accent-weak-light: "#3468c9"
+  accent-weak-light: "#4772c2"
   accent-weak-dark: "#7c93d1"
   on-accent: "#ffffff"
   danger-light: "#c43737"
@@ -55,9 +55,9 @@ typography:
     letterSpacing: "0.01em"
   display-sm:
     fontFamily: "var(--font-geist-sans)"
-    fontSize: "1.5625rem"
-    fontWeight: 400
-    lineHeight: 1
+    fontSize: "1.25rem"
+    fontWeight: 500
+    lineHeight: 1.3
     letterSpacing: "0.01em"
   title-lg:
     fontFamily: "var(--font-geist-sans)"
@@ -269,7 +269,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 | `{typography.display-xl}` | 44–64px (clamp) | 600 | 1.05 | Homepage hero headline only |
 | `{typography.display-lg}` | 36–44px (clamp) | 600 | 1.1 | Page titles (case study, About, Work) |
 | `{typography.display-md}` | 31px | 600 | 1 | Case-study section headings ("Overview", "The Problem", "Design Process"), rendered in `{colors.body}` with +1% tracking |
-| `{typography.display-sm}` | 25px | 400 | 1 | Case-study subsection headings ("Design Principles", "Key Design Decisions"), rendered in `{colors.body}` with +1% tracking |
+| `{typography.display-sm}` | 20px | 500 | 1.3 | Case-study subsection headings ("Design Principles", "Key Design Decisions"), rendered in `{colors.body}` with +1% tracking |
 | `{typography.title-lg}` | 22px | 500 | 1.3 | Project-card titles, subsection headers |
 | `{typography.title-md}` | 18px | 500 | 1.4 | Timeline entry titles, button label size |
 | `{typography.body-lg}` | 18px | 400 | 1.6 | Case-study lead paragraphs |
