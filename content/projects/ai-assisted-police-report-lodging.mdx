@@ -13,7 +13,7 @@ order: 2
 
 SPF's existing online report lodging system required citizens to fill in a standardised form regardless of the type of incident they were reporting. While the system captured basic information, it provided no guidance on what level of detail was needed, resulting in reports that were frequently incomplete or ambiguous. Investigation officers routinely had to follow up with complainants to clarify missing information, reducing their capacity for higher-priority work.
 
-I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatbot that guides citizens through the report lodging process conversationally, using a curated question set adapted from existing SPF investigation workflows. R-COP surfaces case-type-specific follow-up questions based on what the citizen has described, prompting for the details officers need for their case investigation, and reducing back and forth between officers and citizens.
+I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatbot that guides citizens through the report lodging process conversationally, using a curated question set adapted from existing SPF investigation workflows. R-COP surfaces case type-specific follow-up questions based on what the citizen has described, prompting for the details officers need for their case investigation, and reducing back and forth between officers and citizens.
 
 <Meta
   role="Product Design, UX Research"
@@ -31,12 +31,14 @@ I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatb
   items={[
     {
       src: "/projects/ai-assisted-police-report-lodging/before-standard-form.png",
-      mobileSrc: "/projects/ai-assisted-police-report-lodging/before-standard-form-mobile.png",
+      mobileSrc:
+        "/projects/ai-assisted-police-report-lodging/before-standard-form-mobile.png",
       alt: "Same structured form filling process for all case types",
     },
     {
       src: "/projects/ai-assisted-police-report-lodging/after-case-specific.png",
-      mobileSrc: "/projects/ai-assisted-police-report-lodging/after-case-specific-mobile.png",
+      mobileSrc:
+        "/projects/ai-assisted-police-report-lodging/after-case-specific-mobile.png",
       alt: "Case type specific questions",
     },
   ]}
@@ -48,7 +50,7 @@ I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatb
       src: "/projects/ai-assisted-police-report-lodging/rcop-intro-poster.png",
       alt: "Public-facing poster introducing the Report Lodging Co-Pilot (R-COP), covering what it is, how to lodge a report with the AI assistant, and its benefits",
       caption:
-        "Infographic posters I designed to introduce Report Lodging Co-Pilot (R-COP)",
+        "Infographic poster I designed to introduce Report Lodging Co-Pilot (R-COP)",
     },
     [
       {
@@ -60,7 +62,7 @@ I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatb
         src: "/projects/ai-assisted-police-report-lodging/after-lodging-poster.png",
         alt: "Public-facing poster explaining what to expect after lodging a police report, including how reports are assessed and how to get case updates",
         caption:
-          "Infographic posters I designed to introduce Report Lodging Co-Pilot (R-COP)",
+          "Infographic poster I designed with information on what happens after lodging a report",
       },
     ],
   ]}
@@ -131,7 +133,7 @@ Walking through the full flow surfaced a few main pain points:
   title="Inaccessible colour contrasts and text sizes"
 />
 
-The current UI frequently had inaccessible colour pairing for main CTA buttons, and text sizes that were too small. There were extra critical fixes, considering that the police lodging kiosk would be serving the general public which may consist of users with visual impairments.
+The current UI frequently had inaccessible colour pairing for main CTA buttons, and text sizes that were too small. These were especially critical fixes, considering that the police lodging kiosk would be serving the general public, which may include users with visual impairments.
 
 <StatementHeading
   label="Pain point"
@@ -139,7 +141,7 @@ The current UI frequently had inaccessible colour pairing for main CTA buttons, 
   title="The chatbot was a form in disguise"
 />
 
-The current system was not able to adapt to different case types being lodged. A standard set of questions were posed regardless of the user's initial prompt. This contributed to the operational problem of police officers having to reach out to the complainant to gather more information after the report was lodged.
+The current system was not able to adapt to different case types being lodged. A standard set of questions was posed regardless of the user's initial prompt. This contributed to the operational problem of police officers having to reach out to the complainant to gather more information after the report was lodged.
 
 <StatementHeading
   label="Pain point"
@@ -159,7 +161,7 @@ Mapping the end-to-end flow revealed a six-stage journey from kiosk landing to s
   caption={null}
 />
 
-The critical gap was concentrated in Section 4 and 5: despite the structured flow, the free-text "What happened?" field consistently produced reports that were either too vague or missing case type-specific details that investigation officers (IOs) needed to assess and process the case.
+The critical gap was concentrated in Sections 4 and 5: despite the structured flow, the free-text "What happened?" field consistently produced reports that were either too vague or missing case type-specific details that investigation officers (IOs) needed to assess and process the case.
 
 ## Design
 
@@ -211,7 +213,7 @@ Rather than having the user revisit the history of the entire conversation to ma
 <Screenshot
   src="/projects/ai-assisted-police-report-lodging/edit-options-separate-dialogs.png"
   alt="Final approach with separate editing dialogs for each report section"
-  caption="Various options to enable the editing of report details and summary were explored. I also had to consider stakeholder requirements, such as not allowing the editing of date and time, and also product requirements of requiring users verify any AI generated content that may contain hallucinations. I showed these options to the team, and in the end, we all decided that separate editing dialogs for each section was preferred, as we could allow for more editing options in each separate dialog box."
+  caption="Various options to enable the editing of report details and summary were explored. I also had to consider stakeholder requirements, such as not allowing the editing of date and time, and also product requirements of requiring users to verify any AI-generated content that may contain hallucinations. I showed these options to the team, and in the end, we all decided that separate editing dialogs for each section was preferred, as we could allow for more editing options in each separate dialog box."
 />
 
 <StatementHeading
@@ -220,7 +222,7 @@ Rather than having the user revisit the history of the entire conversation to ma
   title="Choosing the right interaction for each question type"
 />
 
-Some responses required open-ended responses (such as incident descriptions), while some required yes/no responses (such as sighting of CCTVs). I designed the input components to translate the conversation flow into an interaction system that complainants could interact with easily. Instead of the current system which displays two primary buttons, I used inputs that were more intuitive to understand.
+Some questions required open-ended responses (such as incident descriptions), while some required yes/no responses (such as the presence of CCTV cameras). I designed the input components to translate the conversation flow into an interaction system that complainants could interact with easily. Instead of the current system which displays two primary buttons, I used inputs that were more intuitive to understand.
 
 <Screenshot
   src="/projects/ai-assisted-police-report-lodging/input-types.png"
@@ -235,11 +237,11 @@ while structured form fields captured precise data like dates, times, and item v
   items={[
     {
       src: "/projects/ai-assisted-police-report-lodging/before-two-buttons.png",
-      alt: "Two primary buttons the user neeed to choose from",
+      alt: "Two primary buttons the user needed to choose from",
     },
     {
       src: "/projects/ai-assisted-police-report-lodging/after-radio-input.png",
-      alt: " A radio input clearly labeled with responses, which the user can review before submitting their response.",
+      alt: "A radio input clearly labelled with responses, which the user can review before submitting their response.",
     },
   ]}
 />
@@ -279,10 +281,10 @@ Instead of asking, "How can AI do this task?", I now find myself asking, "How ca
 <StatementHeading
   label="Reflection"
   number={2}
-  title="Making AI output feel transparent, not opaque."
+  title="Making AI output feel transparent, not opaque"
 />
 
-Traditional UX often focuses on preventing user errors, but AI introduces an entirely different set of failure modes - hallucinated content, incorrect interpretations, redundant follow-up questions, and responses that don't match a user's intent.
+Traditional UX often focuses on preventing user errors, but AI introduces an entirely different set of failure modes — hallucinated content, incorrect interpretations, redundant follow-up questions, and responses that don't match a user's intent.
 
 Rather than treating these as edge cases, I learned to design for them from the outset. Features such as highlighting AI-generated content, providing side-by-side comparisons during editing, and allowing users to restore the original generated content were trust mechanisms that helped users stay in control of the final report.
 
