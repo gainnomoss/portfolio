@@ -50,7 +50,7 @@ typography:
   display-md:
     fontFamily: "var(--font-geist-sans)"
     fontSize: "1.9375rem"
-    fontWeight: 400
+    fontWeight: 600
     lineHeight: 1
     letterSpacing: "0.01em"
   display-sm:
@@ -268,7 +268,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 |---|---|---|---|---|
 | `{typography.display-xl}` | 44–64px (clamp) | 600 | 1.05 | Homepage hero headline only |
 | `{typography.display-lg}` | 36–44px (clamp) | 600 | 1.1 | Page titles (case study, About, Work) |
-| `{typography.display-md}` | 31px | 400 | 1 | Case-study section headings ("Overview", "The Problem", "Design Process"), rendered in `{colors.body}` with +1% tracking |
+| `{typography.display-md}` | 31px | 600 | 1 | Case-study section headings ("Overview", "The Problem", "Design Process"), rendered in `{colors.body}` with +1% tracking |
 | `{typography.display-sm}` | 25px | 400 | 1 | Case-study subsection headings ("Design Principles", "Key Design Decisions"), rendered in `{colors.body}` with +1% tracking |
 | `{typography.title-lg}` | 22px | 500 | 1.3 | Project-card titles, subsection headers |
 | `{typography.title-md}` | 18px | 500 | 1.4 | Timeline entry titles, button label size |
@@ -285,7 +285,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - **Base spacing unit:** 4px. Tokens: `{spacing.xxs}` 4 · `{spacing.xs}` 8 · `{spacing.sm}` 12 · `{spacing.md}` 16 · `{spacing.lg}` 24 · `{spacing.xl}` 32 · `{spacing.2xl}` 48 · `{spacing.3xl}` 64.
 - **Section rhythm:** `{spacing.section-desktop}` (96px) top+bottom padding between major page sections on desktop, `{spacing.section-mobile}` (56px) on mobile. Whitespace separates sections — rules/dividers are rare, reserved for the nav-to-CTA divider pattern only.
 - **Reading column:** case-study body copy caps at ~680px (`{layout.reading}`) regardless of viewport width, matching the current site's long-form legibility.
-- **Screenshot breakout:** screenshots inside case-study body copy break out of the reading column to a wider ~960px cap (`{layout.breakout}`), centered, so UI detail stays legible on wide viewports while prose stays narrow. Captions stay reading-width to match body text.
+- **Screenshot breakout:** screenshots inside case-study body copy break out of the reading column to a wider ~960px cap (`{layout.breakout}`), centered, so UI detail stays legible on wide viewports while prose stays narrow. Captions span the full width of the image they describe — never narrower than the media above them.
 - **Max content width:** 1200px (`{layout.content}`) centered, with a minimum 24px (mobile) to 64px (desktop) outer gutter.
 
 ## Motion
@@ -310,7 +310,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, contains a framed screenshot (see below), title in `{typography.title-lg}`, company/type in `{typography.body-sm}` muted, tags as `{component.tag}` row. A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern and disables the click-through.
 
-**Case-study screenshot** — Product/UI images and video embeds sit flat on `{colors.canvas}` with `{rounded.md}` corners — no border, no shadow. This is a site-wide rule for every media embed, not a per-case-study choice. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge.
+**Case-study screenshot** — Product/UI images and video embeds sit flat on `{colors.canvas}` with `{rounded.md}` corners — no border, no shadow. This is a site-wide rule for every media embed, not a per-case-study choice. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge and spanning the image's full width. This caption-matches-media-width rule applies to every captioned embed (single screenshots, pairs, videos).
 
 **`principle-card`** — Small informational card used inside case-study body copy to present a set of guiding principles: `{colors.canvas}` background, 1px `{colors.accent-weak}` border, `{rounded.lg}`, 20px padding, and a single micro-shadow (0 1px 1px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.10)) — the system's one allowed card elevation. A 40px icon sits on top, followed by a bold 16px title and a regular 16px description in `{colors.body}`. Cards stack in one column on mobile and sit three-up from 768px.
 

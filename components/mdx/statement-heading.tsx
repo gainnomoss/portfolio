@@ -8,9 +8,9 @@ export function StatementHeading({
   title: string;
 }) {
   return (
-    <div className="mx-auto mt-10 flex max-w-reading flex-col gap-2 border-b border-border pb-1 first:mt-0">
+    <div className="mx-auto mt-10 mb-4 flex max-w-reading flex-col gap-2 border-b border-border pb-1 first:mt-0">
       <p className="text-body-sm text-accent">{label}</p>
-      <div className="flex items-center gap-2 pb-3">
+      <div className="flex items-center gap-2">
         <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-body-sm font-bold text-accent">
           {number}
         </span>

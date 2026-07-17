@@ -8,7 +8,6 @@ import { OutcomeList, OutcomeItem } from "@/components/mdx/outcome-list";
 import { HeroVideo } from "@/components/mdx/hero-video";
 import { StatementHeading } from "@/components/mdx/statement-heading";
 import { InfoCards } from "@/components/mdx/info-cards";
-import { StepFlow } from "@/components/mdx/step-flow";
 import { NumberedList } from "@/components/mdx/numbered-list";
 import { ScreenshotPair } from "@/components/mdx/screenshot-pair";
 
@@ -61,7 +60,6 @@ export const mdxComponents: MDXComponents = {
   HeroVideo,
   StatementHeading,
   InfoCards,
-  StepFlow,
   NumberedList,
   ScreenshotPair,
 };
