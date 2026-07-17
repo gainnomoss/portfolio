@@ -3,7 +3,13 @@ title: "AI-Assisted Police Report Lodging"
 company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
 summary: "An AI chatbot that guides citizens through police report lodging conversationally, cutting submission time from ~15 minutes to ~4."
 type: "Product Design, UX Research"
-tags: ["Public-facing", "AI/Chatbot", "Government Digital Services", "Usability Testing"]
+tags:
+  [
+    "Public-facing",
+    "AI/Chatbot",
+    "Government Digital Services",
+    "Usability Testing",
+  ]
 thumbnail: "/projects/ai-assisted-police-report-lodging/cover.png"
 protected: true
 order: 2
@@ -31,11 +37,11 @@ I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatb
   items={[
     {
       src: "/projects/ai-assisted-police-report-lodging/before-standard-form.png",
-      alt: "Before: Same structured form filling process for all case types",
+      alt: "Same structured form filling process for all case types",
     },
     {
       src: "/projects/ai-assisted-police-report-lodging/after-case-specific.png",
-      alt: "After: Case-specific questions",
+      alt: "Case-specific questions",
     },
   ]}
 />
@@ -46,13 +52,15 @@ I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatb
   items={[
     {
       image: "/projects/ai-assisted-police-report-lodging/problem-public.png",
-      imageAlt: "Illustration of a member of the public lodging a police report online",
+      imageAlt:
+        "Illustration of a member of the public lodging a police report online",
       title: "For members of the public lodging reports",
       body: "Citizens lodging reports online often are not aware of the case specific information police officers require for investigation. This results in a lot of back and forth between the complainant and the police officer.",
     },
     {
       image: "/projects/ai-assisted-police-report-lodging/problem-officers.png",
-      imageAlt: "Illustration of an investigation officer reviewing a submitted case report",
+      imageAlt:
+        "Illustration of an investigation officer reviewing a submitted case report",
       title: "For investigation officers receiving cases",
       body: "Officers spent significant time chasing missing details that could have been captured upfront, reducing their capacity for higher-priority work. Complainant reports may contain either too much or too little information, requiring officers to spend time reading through reports to gather crucial information needed for cases.",
     },
@@ -71,47 +79,53 @@ Before designing the AI chatbot, I conducted a heuristic analysis of the existin
 
 The existing system already used a conversational metaphor: a 3D animated avatar named "Officer Clif" guided users through the process, asking questions in natural language. The flow covered six sections, supported Singpass authentication with MyInfo auto-population, and allowed users to save a draft and return within 7 days.
 
-<ScreenshotPair
-  items={[
-    {
-      src: "/projects/ai-assisted-police-report-lodging/heuristic-1.png",
-      alt: "Existing kiosk report lodging system — heuristic analysis screen 1",
-      caption: null,
-    },
-    {
-      src: "/projects/ai-assisted-police-report-lodging/heuristic-2.png",
-      alt: "Existing kiosk report lodging system — heuristic analysis screen 2",
-      caption: null,
-    },
-  ]}
+<Screenshot
+  src="/projects/ai-assisted-police-report-lodging/heuristic-1.png"
+  alt="Existing kiosk report lodging system — heuristic analysis screen 1"
+  caption={null}
 />
 
-<ScreenshotPair
-  items={[
-    {
-      src: "/projects/ai-assisted-police-report-lodging/heuristic-3.png",
-      alt: "Existing kiosk report lodging system — heuristic analysis screen 3",
-      caption: null,
-    },
-    {
-      src: "/projects/ai-assisted-police-report-lodging/heuristic-4.png",
-      alt: "Existing kiosk report lodging system — heuristic analysis screen 4",
-      caption: null,
-    },
-  ]}
+<Screenshot
+  src="/projects/ai-assisted-police-report-lodging/heuristic-2.png"
+  alt="Existing kiosk report lodging system — heuristic analysis screen 2"
+  caption={null}
+/>
+
+<Screenshot
+  src="/projects/ai-assisted-police-report-lodging/heuristic-3.png"
+  alt="Existing kiosk report lodging system — heuristic analysis screen 3"
+  caption={null}
+/>
+
+<Screenshot
+  src="/projects/ai-assisted-police-report-lodging/heuristic-4.png"
+  alt="Existing kiosk report lodging system — heuristic analysis screen 4"
+  caption={null}
 />
 
 Walking through the full flow surfaced a few main pain points:
 
-<StatementHeading label="Pain point" number={1} title="Inaccessible colour contrasts and text sizes" />
+<StatementHeading
+  label="Pain point"
+  number={1}
+  title="Inaccessible colour contrasts and text sizes"
+/>
 
 The current UI frequently had inaccessible colour pairing for main CTA buttons, and text sizes that were too small. There were extra critical fixes, considering that the police lodging kiosk would be serving the general public which may consist of users with visual impairments.
 
-<StatementHeading label="Pain point" number={2} title="The chatbot was a form in disguise" />
+<StatementHeading
+  label="Pain point"
+  number={2}
+  title="The chatbot was a form in disguise"
+/>
 
 The current system was not able to adapt to different case types being lodged. A standard set of questions were posed regardless of the user's initial prompt. This contributed to the operational problem of police officers having to reach out to the complainant to gather more information after the report was lodged.
 
-<StatementHeading label="Pain point" number={3} title="Editing any fields became a difficult process" />
+<StatementHeading
+  label="Pain point"
+  number={3}
+  title="Editing any fields became a difficult process"
+/>
 
 After complainants reached the preview stage before submitting their final report, if they wished to edit any of the information they entered, they were redirected to a chat log history, where they had to navigate to the exact chat bubble to be able to make edits. This requires a lot of recall on the user's part.
 
@@ -119,16 +133,10 @@ After complainants reached the preview stage before submitting their final repor
 
 Mapping the end-to-end flow revealed a six-stage journey from kiosk landing to submission: landing and avatar introduction, identity verification (Singpass QR, NRIC, or passport), personal details (MyInfo auto-population), incident details across three sections (what, when, where, who), supporting information (witnesses, CCTV, items), and review and submit.
 
-<StepFlow
-  steps={[
-    { title: "Introduction", subtitle: "Overview of service." },
-    { title: "Identity Verification", subtitle: "Singpass QR scan, NRIC, or passport validation." },
-    { title: "Personal Details", subtitle: "MyInfo auto-population or manual entry." },
-    { title: "Incident Details", subtitle: "What, when, where, and who involved." },
-    { title: "Supporting Information", subtitle: "Witnesses, CCTV footage, and items." },
-    { title: "Review & Generate Report", subtitle: "Review report summary and supporting information." },
-    { title: "Submit Report", subtitle: "Case is lodged into the system." },
-  ]}
+<Screenshot
+  src="/projects/ai-assisted-police-report-lodging/current-kiosk-journey.png"
+  alt="Current kiosk user journey: seven steps from introduction and identity verification through incident details to report submission"
+  caption={null}
 />
 
 The critical gap was concentrated in Section 4 and 5: despite the structured flow, the free-text "What happened?" field consistently produced reports that were either too vague or missing case type-specific details that investigation officers (IOs) needed to assess and process the case.
@@ -137,27 +145,60 @@ The critical gap was concentrated in Section 4 and 5: despite the structured flo
 
 With the research findings in mind, I made a few key design decisions:
 
-<StatementHeading label="Design decision" number={1} title="Including a progress indicator" />
+<StatementHeading
+  label="Design decision"
+  number={1}
+  title="Including a progress indicator"
+/>
 
-I proposed a step-progress sidebar as a core navigation element, giving citizens visibility into how far along they were in the process. This was met with resistance from the engineering team, who raised a concern that exposing the question structure could allow malicious actors to predict and game the AI's logic. I worked with the team to find an acceptable level of breakdown. This preserved user orientation without compromising the system's security posture.
+I proposed a step-progress sidebar as a core navigation element, giving citizens visibility into how far along they were in the process. This was met with resistance from the engineering team, who raised a concern that exposing the question structure could allow malicious actors to predict and game the AI's logic. I worked with the team to find an acceptable level of breakdown. This preserved user orientation without compromising the system's security.
 
 <Screenshot
   src="/projects/ai-assisted-police-report-lodging/progress-indicator-iterations.png"
   alt="Three progress indicator iterations explored for the report lodging step navigation"
-  caption={<>Iteration 1: Progress indicator with all of the report lodging steps shown<br />Iteration 2: Nesting steps under parent steps<br />Iteration 3: A more simplified progress indicator to mitigate security concerns</>}
+  caption={
+    <>
+      Iteration 1: Progress indicator with all of the report lodging steps shown
+      <br />
+      Iteration 2: Nesting steps under parent steps
+      <br />
+      Iteration 3: A more simplified progress indicator to mitigate security
+      concerns
+    </>
+  }
 />
 
-<StatementHeading label="Design decision" number={2} title="Helping users verify AI-generated reports" />
+<StatementHeading
+  label="Design decision"
+  number={2}
+  title="Helping users verify AI-generated reports"
+/>
 
 Rather than having the user revisit the history of the entire conversation to make an edit to any submitted input, I added an additional step of reviewing the submitted inputs before the report was generated.
 
 <Screenshot
-  src="/projects/ai-assisted-police-report-lodging/edit-options-explorations.png"
-  alt="Editing options explored for reviewing AI-generated report details"
+  src="/projects/ai-assisted-police-report-lodging/edit-options-toggle-in-place.png"
+  alt="Exploration where each report section toggles between edit and read-only in place"
+  caption={null}
+/>
+
+<Screenshot
+  src="/projects/ai-assisted-police-report-lodging/edit-options-single-dialog.png"
+  alt="Exploration with one editing dialog for the entire report"
+  caption={null}
+/>
+
+<Screenshot
+  src="/projects/ai-assisted-police-report-lodging/edit-options-separate-dialogs.png"
+  alt="Final approach with separate editing dialogs for each report section"
   caption="Various options to enable the editing of report details and summary were explored. I also had to consider stakeholder requirements, such as not allowing the editing of date and time, and also product requirements of requiring users verify any AI generated content that may contain hallucinations. I showed these options to the team, and in the end, we all decided that separate editing dialogs for each section was preferred, as we could allow for more editing options in each separate dialog box."
 />
 
-<StatementHeading label="Design decision" number={3} title="Choosing the right interaction for each question type" />
+<StatementHeading
+  label="Design decision"
+  number={3}
+  title="Choosing the right interaction for each question type"
+/>
 
 Some responses required open-ended responses (such as incident descriptions), while some required yes/no responses (such as sighting of CCTVs). I designed the input components to translate the conversation flow into an interaction system that complainants could interact with easily. Instead of the current system which displays two primary buttons, I used inputs that were more intuitive to understand.
 
@@ -169,10 +210,19 @@ Some responses required open-ended responses (such as incident descriptions), wh
 
 <NumberedList
   items={[
-    { term: "Checkboxes", description: "for questions allowing multiple selections" },
+    {
+      term: "Checkboxes",
+      description: "for questions allowing multiple selections",
+    },
     { term: "Radio buttons", description: "for mutually exclusive options" },
-    { term: "Free-text input", description: "for open-ended incident descriptions" },
-    { term: "Structured form fields", description: "for precise data like dates, times, and item values" },
+    {
+      term: "Free-text input",
+      description: "for open-ended incident descriptions",
+    },
+    {
+      term: "Structured form fields",
+      description: "for precise data like dates, times, and item values",
+    },
   ]}
 />
 
@@ -180,11 +230,11 @@ Some responses required open-ended responses (such as incident descriptions), wh
   items={[
     {
       src: "/projects/ai-assisted-police-report-lodging/before-two-buttons.png",
-      alt: "Before: Two primary buttons the user can choose from",
+      alt: "Two primary buttons the user neeed to choose from",
     },
     {
       src: "/projects/ai-assisted-police-report-lodging/after-radio-input.png",
-      alt: "After: A radio input clearly labeled with responses, which the user can edit before submitting their response.",
+      alt: " A radio input clearly labeled with responses, which the user can review before submitting their response.",
     },
   ]}
 />
@@ -197,7 +247,7 @@ Testing was conducted across two rounds (7 and 9 October 2025) with 9 participan
 
 <Screenshot
   src="/projects/ai-assisted-police-report-lodging/usability-testing.png"
-  alt="Usability testing session walking a participant through a report lodging scenario"
+  alt="Bar chart of usability testing scores for 13 report lodging tasks, all rated between 5.0 and 5.7 out of 6, with an overall satisfaction of 5.3"
   caption={null}
 />
 
@@ -211,18 +261,30 @@ R-COP was launched on 9 kiosks across 7 divisional HQ Electronic Police Centres 
 
 ## Reflections
 
-<StatementHeading label="Reflection" number={1} title="Designing with AI means designing human oversight" />
+<StatementHeading
+  label="Reflection"
+  number={1}
+  title="Designing with AI means designing human oversight"
+/>
 
 This project changed how I think about AI products. The goal isn't to replace human judgment, but to help users work more efficiently while keeping them firmly in control of the outcome.
 
 Instead of asking, "How can AI do this task?", I now find myself asking, "How can the interface help users understand, verify, and confidently take ownership of AI-generated content?" That shift in perspective has influenced how I approach every AI-assisted experience I design.
 
-<StatementHeading label="Reflection" number={2} title="Making AI output feel transparent, not opaque." />
+<StatementHeading
+  label="Reflection"
+  number={2}
+  title="Making AI output feel transparent, not opaque."
+/>
 
 Traditional UX often focuses on preventing user errors, but AI introduces an entirely different set of failure modes - hallucinated content, incorrect interpretations, redundant follow-up questions, and responses that don't match a user's intent.
 
 Rather than treating these as edge cases, I learned to design for them from the outset. Features such as highlighting AI-generated content, providing side-by-side comparisons during editing, and allowing users to restore the original generated content were trust mechanisms that helped users stay in control of the final report.
 
-<StatementHeading label="Reflection" number={3} title="Trust is designed, not assumed" />
+<StatementHeading
+  label="Reflection"
+  number={3}
+  title="Trust is designed, not assumed"
+/>
 
 Throughout the project, I worked to balance stakeholder requirements for legal accountability (such as declarations and acknowledgement checkboxes) with a user experience that encouraged meaningful review rather than checkbox compliance. This reinforced my belief that trust is built through thoughtful interaction design, not simply through warnings or disclaimers.

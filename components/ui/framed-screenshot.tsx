@@ -7,11 +7,13 @@ export function FramedScreenshot({
   alt,
   priority,
   className,
+  imageClassName,
 }: {
   src: string;
   alt: string;
   priority?: boolean;
   className?: string;
+  imageClassName?: string;
 }) {
   const { width, height } = imageDimensions[src] ?? { width: 1600, height: 1000 };
 
@@ -24,7 +26,7 @@ export function FramedScreenshot({
         height={height}
         priority={priority}
         quality={95}
-        className="h-auto w-full"
+        className={clsx("h-auto w-full", imageClassName)}
         sizes="(min-width: 1024px) 960px, 100vw"
       />
     </div>
