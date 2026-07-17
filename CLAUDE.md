@@ -70,6 +70,25 @@ Do not blindly implement requests if there is a better UX solution.
 
 ---
 
+# Git Workflow
+
+Every coding task follows this loop. Complete steps 1–5 in one go without pausing to ask for permission — the review pause is step 6.
+
+1. Start from up-to-date `origin/master`: fast-forward local master, prune already-merged branches, then create a feature branch (or worktree in background sessions).
+2. Implement the change.
+3. Run `npm run lint` and `npm run build` (plus tests if they exist). Fix any failures before proceeding.
+4. Self-review the diff and validate the work against review.md.
+5. Commit with a clear conventional commit message, push the branch, and open a pull request. The Vercel preview deployment on the PR is the verification artifact.
+6. Stop and hand over. The user verifies the change on the Vercel preview and merges via GitHub's "Squash and merge" button. If they request fixes, push follow-up commits to the same PR — never open a new one for revisions.
+
+Rules:
+
+- Never commit directly to `master` and never push to `master`.
+- Never merge a PR unless the user explicitly says to merge (interactive sessions only).
+- Remote branches are deleted automatically on merge (`delete_branch_on_merge` is enabled). Clean up local branches and worktrees as part of step 1 housekeeping on the next task.
+
+---
+
 # Design Principles
 
 Prefer:
