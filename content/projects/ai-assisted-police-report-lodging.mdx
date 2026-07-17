@@ -3,13 +3,7 @@ title: "AI-Assisted Police Report Lodging"
 company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
 summary: "An AI chatbot that guides citizens through police report lodging conversationally, cutting submission time from ~15 minutes to ~4."
 type: "Product Design, UX Research"
-tags:
-  [
-    "Public-facing",
-    "AI/Chatbot",
-    "Government Digital Services",
-    "Usability Testing",
-  ]
+tags: ["AI Chatbot", "Government Digital Services"]
 thumbnail: "/projects/ai-assisted-police-report-lodging/cover.png"
 protected: true
 order: 2
@@ -37,16 +31,42 @@ I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatb
   items={[
     {
       src: "/projects/ai-assisted-police-report-lodging/before-standard-form.png",
+      mobileSrc: "/projects/ai-assisted-police-report-lodging/before-standard-form-mobile.png",
       alt: "Same structured form filling process for all case types",
     },
     {
       src: "/projects/ai-assisted-police-report-lodging/after-case-specific.png",
-      alt: "Case-specific questions",
+      mobileSrc: "/projects/ai-assisted-police-report-lodging/after-case-specific-mobile.png",
+      alt: "Case type specific questions",
     },
   ]}
 />
 
-## The Problem
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/ai-assisted-police-report-lodging/rcop-intro-poster.png",
+      alt: "Public-facing poster introducing the Report Lodging Co-Pilot (R-COP), covering what it is, how to lodge a report with the AI assistant, and its benefits",
+      caption:
+        "Infographic posters I designed to introduce Report Lodging Co-Pilot (R-COP)",
+    },
+    [
+      {
+        src: "/projects/ai-assisted-police-report-lodging/kiosk-in-context.png",
+        alt: "A member of the public lodging a police report at a Self-Help Kiosk in a Neighbourhood Police Centre",
+        caption: null,
+      },
+      {
+        src: "/projects/ai-assisted-police-report-lodging/after-lodging-poster.png",
+        alt: "Public-facing poster explaining what to expect after lodging a police report, including how reports are assessed and how to get case updates",
+        caption:
+          "Infographic posters I designed to introduce Report Lodging Co-Pilot (R-COP)",
+      },
+    ],
+  ]}
+/>
+
+## Problem
 
 <InfoCards
   items={[
@@ -208,23 +228,8 @@ Some responses required open-ended responses (such as incident descriptions), wh
   caption={null}
 />
 
-<NumberedList
-  items={[
-    {
-      term: "Checkboxes",
-      description: "for questions allowing multiple selections",
-    },
-    { term: "Radio buttons", description: "for mutually exclusive options" },
-    {
-      term: "Free-text input",
-      description: "for open-ended incident descriptions",
-    },
-    {
-      term: "Structured form fields",
-      description: "for precise data like dates, times, and item values",
-    },
-  ]}
-/>
+Checkboxes were used for acknowledgements and questions allowing multiple selections. Radio buttons were used for mutually exclusive options. Free-text input supported open-ended incident descriptions, dropdowns were used for choosing an option for a response,
+while structured form fields captured precise data like dates, times, and item values.
 
 <ScreenshotPair
   items={[
