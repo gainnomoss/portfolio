@@ -28,12 +28,13 @@ Investigator Copilot is an AI-powered platform built for the Singapore Police Fo
     {
       src: "/projects/investigator-copilot/transcription-row-states.png",
       alt: "The redesigned transcript row in its five states: default, hover, highlight, marked and playback",
-      caption: null,
+      caption:
+        "I redesigned the transcription row component and its various states",
     },
     {
       src: "/projects/investigator-copilot/transcription-row-anatomy.png",
       alt: "Anatomy of the redesigned transcript row: speaker avatar, speaker name, speaker role, timestamp and transcript text",
-      caption: null,
+      caption: "Anatomy of a transcription row",
     },
   ]}
 />
@@ -52,9 +53,9 @@ I was the sole product designer responsible for the Speech-to-Text experience af
 
 I conducted moderated usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
 
-<Callout
+<StatementHeading
   label="Research insight"
-  number="1"
+  number={1}
   title="Officers couldn't confidently distinguish transcript states"
 />
 
@@ -62,20 +63,20 @@ Hover and selection shared similar visual treatments. Users frequently clicked t
 
 <Screenshot
   src="/projects/investigator-copilot/mvp-before-mark.png"
-  alt="Before: the MVP's transcript view, where hover and marked states were visually near-identical"
+  alt="The MVP's hover and marked states were visually identical"
 />
 
-<Callout
+<StatementHeading
   label="Research insight"
-  number="2"
+  number={2}
   title="Live transcription made interaction difficult"
 />
 
 The transcript continuously shifted during interviews, forcing users to chase moving content whenever they wanted to bookmark an important statement.
 
-<Callout
+<StatementHeading
   label="Research insight"
-  number="3"
+  number={3}
   title="Investigation isn't just transcription"
 />
 
@@ -114,34 +115,30 @@ I explored different variations of how the transcript row could be designed — 
 <Screenshot
   src="/projects/investigator-copilot/design-iteration-before.png"
   alt="The original design did not differentiate between speakers visually"
-  captionLead="Before:"
   caption="The original design did not differentiate between speakers visually, and could be rearranged to better represent the information hierarchy."
 />
 
 <Screenshot
   src="/projects/investigator-copilot/design-iteration-1.png"
   alt="Iteration 1 of the transcript row design"
-  captionLead="Iteration 1"
-  caption="had too much visual weight taken by the speaker avatar, and the colour contrast of the speaker avatar was insufficient."
+  caption="Iteration 1 had too much visual weight taken by the speaker avatar, and the colour contrast of the speaker avatar was insufficient."
 />
 
 <Screenshot
   src="/projects/investigator-copilot/design-iteration-2.png"
   alt="Iteration 2 of the transcript row design"
-  captionLead="Iteration 2"
-  caption="had better colour contrast for speaker avatars, and made the bookmarking feature more obvious."
+  caption="Iteration 2 had better colour contrast for speaker avatars, and made the bookmarking feature more obvious."
 />
 
 <Screenshot
   src="/projects/investigator-copilot/design-iteration-3.png"
   alt="Iteration 3 of the transcript row design"
-  captionLead="Iteration 3"
-  caption="added link styling to the timestamp, making it obvious it could be clicked to navigate to that point in the recording. There is also better visual hierarchy of information, with a darker text colour used for transcript text."
+  caption="Iteration 3 added link styling to the timestamp, making it obvious it could be clicked to navigate to that point in the recording. There is also better visual hierarchy of information, with a darker text colour used for transcript text."
 />
 
 ### Key Design Decisions
 
-<Callout label="Design decision" number="1" title="Clear transcript states" />
+<StatementHeading label="Design decision" number={1} title="Clear transcript states" />
 
 To make the hover and marked states more visually distinct, I explored a few options, including changing the colours used to indicate hover/marked states, and changing the interaction of how a transcript can get marked. One consideration was to make the clickable area of marking a transcript larger, as the current area was determined by the length of the transcript text.
 
@@ -166,9 +163,9 @@ I eventually decided on a mark button that would appear whenever the user hovere
   caption="a mark button appears on hover, and a persistent bookmark icon marks saved rows."
 />
 
-<Callout
+<StatementHeading
   label="Design decision"
-  number="2"
+  number={2}
   title="Side panel instead of modal"
 />
 
@@ -190,9 +187,9 @@ Investigators constantly reference transcripts through the course of the intervi
 
 I considered using an overlay modal because it required minimal layout changes. However, officers frequently referenced transcripts while reviewing marked evidence, forcing them to repeatedly open and close the modal. I instead explored a persistent side panel, accepting slightly narrower transcript columns in exchange for continuous access to both views.
 
-<Callout
+<StatementHeading
   label="Design decision"
-  number="3"
+  number={3}
   title="Supporting live note-taking"
 />
 
@@ -226,9 +223,9 @@ The team is still gathering feedback as the product goes live, and working on fu
 
 ## Reflections
 
-<Callout
+<StatementHeading
   label="Reflection"
-  number="1"
+  number={1}
   title="Designing begins at the component level"
 />
 
@@ -239,9 +236,9 @@ One thing I underestimated was how many interaction states a transcript could ha
   alt="The transcript row component, broken down into its interaction states"
 />
 
-<Callout
+<StatementHeading
   label="Reflection"
-  number="2"
+  number={2}
   title="Balancing user needs, technical limitations, and stakeholder priorities"
 />
 
