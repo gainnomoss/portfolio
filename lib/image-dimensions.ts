@@ -1,5 +1,6 @@
 export const imageDimensions: Record<string, { width: number; height: number }> = {
-  "/projects/investigator-copilot/overview-before-comparison.png": { width: 960, height: 248 },
+  "/projects/investigator-copilot/transcription-row-states.png": { width: 1220, height: 1271 },
+  "/projects/investigator-copilot/transcription-row-anatomy.png": { width: 1275, height: 1328 },
   "/projects/investigator-copilot/mvp-before-mark.png": { width: 2984, height: 768 },
   "/projects/investigator-copilot/design-iteration-before.png": { width: 1192, height: 90 },
   "/projects/investigator-copilot/design-iteration-1.png": { width: 960, height: 57 },

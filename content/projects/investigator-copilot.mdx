@@ -3,7 +3,7 @@ title: "Investigator Copilot (Transcription Use Case)"
 company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
 summary: "Redesigning the Speech-to-Text experience of an AI investigation platform, turning an inherited MVP into a workflow built for live interviews — achieving a SUS score of 75."
 type: "Product Design"
-tags: ["Speech-to-Text", "Government Digital Services", "Usability Testing"]
+tags: ["Speech-to-Text", "Government Digital Services"]
 thumbnail: "/projects/investigator-copilot/cover.png"
 thumbnailFit: contain
 protected: false
@@ -23,10 +23,19 @@ Investigator Copilot is an AI-powered platform built for the Singapore Police Fo
 
 <HeroVideo src="/projects/investigator-copilot/live-stt-demo.mp4" />
 
-<Screenshot
-  src="/projects/investigator-copilot/overview-before-comparison.png"
-  alt="Side-by-side comparison of the MVP's transcript view, where hover and marked states were visually near-identical"
-  caption=""
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/investigator-copilot/transcription-row-states.png",
+      alt: "The redesigned transcript row in its five states: default, hover, highlight, marked and playback",
+      caption: null,
+    },
+    {
+      src: "/projects/investigator-copilot/transcription-row-anatomy.png",
+      alt: "Anatomy of the redesigned transcript row: speaker avatar, speaker name, speaker role, timestamp and transcript text",
+      caption: null,
+    },
+  ]}
 />
 
 ## The Problem
@@ -43,17 +52,32 @@ I was the sole product designer responsible for the Speech-to-Text experience af
 
 I conducted moderated usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
 
-<Callout label="Research insight" number="1" title="Officers couldn't confidently distinguish transcript states" />
+<Callout
+  label="Research insight"
+  number="1"
+  title="Officers couldn't confidently distinguish transcript states"
+/>
 
 Hover and selection shared similar visual treatments. Users frequently clicked twice because they couldn't tell whether a transcript had already been marked.
 
-<Screenshot src="/projects/investigator-copilot/mvp-before-mark.png" alt="Before: the MVP's transcript view, where hover and marked states were visually near-identical" />
+<Screenshot
+  src="/projects/investigator-copilot/mvp-before-mark.png"
+  alt="Before: the MVP's transcript view, where hover and marked states were visually near-identical"
+/>
 
-<Callout label="Research insight" number="2" title="Live transcription made interaction difficult" />
+<Callout
+  label="Research insight"
+  number="2"
+  title="Live transcription made interaction difficult"
+/>
 
 The transcript continuously shifted during interviews, forcing users to chase moving content whenever they wanted to bookmark an important statement.
 
-<Callout label="Research insight" number="3" title="Investigation isn't just transcription" />
+<Callout
+  label="Research insight"
+  number="3"
+  title="Investigation isn't just transcription"
+/>
 
 Officers needed to capture observations, identify admissions, rename speakers, and summarize interviews. The transcript alone wasn't enough.
 
@@ -142,7 +166,11 @@ I eventually decided on a mark button that would appear whenever the user hovere
   caption="a mark button appears on hover, and a persistent bookmark icon marks saved rows."
 />
 
-<Callout label="Design decision" number="2" title="Side panel instead of modal" />
+<Callout
+  label="Design decision"
+  number="2"
+  title="Side panel instead of modal"
+/>
 
 Investigators constantly reference transcripts through the course of the interview, and a modal would block investigators from referring to the current transcript if they wanted to view any of the segments they bookmarked during the interview.
 
@@ -162,7 +190,11 @@ Investigators constantly reference transcripts through the course of the intervi
 
 I considered using an overlay modal because it required minimal layout changes. However, officers frequently referenced transcripts while reviewing marked evidence, forcing them to repeatedly open and close the modal. I instead explored a persistent side panel, accepting slightly narrower transcript columns in exchange for continuous access to both views.
 
-<Callout label="Design decision" number="3" title="Supporting live note-taking" />
+<Callout
+  label="Design decision"
+  number="3"
+  title="Supporting live note-taking"
+/>
 
 To allow officers to record key observations noted during interviews, a note-taking feature was implemented alongside marked transcript text. This allowed officers to remain on the platform throughout the course of the interview without having to switch between manual note-taking and transcription review.
 
@@ -194,12 +226,23 @@ The team is still gathering feedback as the product goes live, and working on fu
 
 ## Reflections
 
-<Callout label="Reflection" number="1" title="Designing begins at the component level" />
+<Callout
+  label="Reflection"
+  number="1"
+  title="Designing begins at the component level"
+/>
 
 One thing I underestimated was how many interaction states a transcript could have simultaneously. What initially appeared to be a list became a system where playback, editing, marking, and scrolling all influenced one another. Designing at the component level before designing screens ultimately reduced complexity and made the interface more scalable.
 
-<Screenshot src="/projects/investigator-copilot/transcript-row-component.png" alt="The transcript row component, broken down into its interaction states" />
+<Screenshot
+  src="/projects/investigator-copilot/transcript-row-component.png"
+  alt="The transcript row component, broken down into its interaction states"
+/>
 
-<Callout label="Reflection" number="2" title="Balancing user needs, technical limitations, and stakeholder priorities" />
+<Callout
+  label="Reflection"
+  number="2"
+  title="Balancing user needs, technical limitations, and stakeholder priorities"
+/>
 
 Designing for investigators reinforced that productivity tools are rarely about adding more features — they're about reducing cognitive effort during high-pressure work. Working within government constraints also taught me the importance of balancing user needs, technical limitations, and stakeholder priorities while still advocating for better user experiences.
