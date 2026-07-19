@@ -3,7 +3,6 @@ import { SectionHeading } from "@/components/ui/section-heading";
 import { Meta } from "@/components/mdx/meta";
 import { Screenshot } from "@/components/mdx/screenshot";
 import { Principles, PrincipleCard } from "@/components/mdx/principle-card";
-import { OutcomeList, OutcomeItem } from "@/components/mdx/outcome-list";
 import { HeroVideo } from "@/components/mdx/hero-video";
 import { StatementHeading } from "@/components/mdx/statement-heading";
 import { InfoCards } from "@/components/mdx/info-cards";
@@ -23,12 +22,12 @@ export const mdxComponents: MDXComponents = {
     <p className="mx-auto mb-5 max-w-reading text-body-md text-body">{children}</p>
   ),
   ul: ({ children }) => (
-    <ul className="mx-auto mb-5 ml-5 max-w-reading list-disc space-y-2 text-body-md text-body">
+    <ul className="mx-auto mb-5 max-w-reading list-disc space-y-2 pl-5 text-body-md text-body">
       {children}
     </ul>
   ),
   ol: ({ children }) => (
-    <ol className="mx-auto mb-5 ml-5 max-w-reading list-decimal space-y-2 text-body-md text-body">
+    <ol className="mx-auto mb-5 max-w-reading list-decimal space-y-2 pl-5 text-body-md text-body">
       {children}
     </ol>
   ),
@@ -53,8 +52,6 @@ export const mdxComponents: MDXComponents = {
   Screenshot,
   Principles,
   PrincipleCard,
-  OutcomeList,
-  OutcomeItem,
   HeroVideo,
   StatementHeading,
   InfoCards,
