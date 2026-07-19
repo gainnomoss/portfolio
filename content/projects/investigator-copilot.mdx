@@ -86,7 +86,7 @@ Officers needed to capture observations, identify admissions, rename speakers, a
 
 I then studied transcription apps, such as Otter, Dovetail, and Transcribe, to identify common design patterns and layouts to learn from what was already out there.
 
-### Design Principles
+### Design principles
 
 Every design decision was guided by three principles:
 
@@ -110,7 +110,7 @@ Every design decision was guided by three principles:
 
 I explored different variations of how the transcript row could be designed — whether the bookmark icon should always be displayed, how speaker avatars should be shown, in what order the speaker names, timestamps, and text should appear, and how the different states affect the layout.
 
-### Design Iterations
+### Design iterations
 
 <Screenshot
   src="/projects/investigator-copilot/design-iteration-before.png"
@@ -136,31 +136,30 @@ I explored different variations of how the transcript row could be designed — 
   caption="Iteration 3 added link styling to the timestamp, making it obvious it could be clicked to navigate to that point in the recording. There is also better visual hierarchy of information, with a darker text colour used for transcript text."
 />
 
-### Key Design Decisions
+### Key design decisions
 
 <StatementHeading label="Design decision" number={1} title="Clear transcript states" />
 
 To make the hover and marked states more visually distinct, I explored a few options, including changing the colours used to indicate hover/marked states, and changing the interaction of how a transcript can get marked. One consideration was to make the clickable area of marking a transcript larger, as the current area was determined by the length of the transcript text.
 
 <Screenshot
-  src="/projects/investigator-copilot/transcript-states-before.png"
-  alt="Default, hover, and marked states for a transcript row before the redesign"
+  src="/projects/investigator-copilot/hover-marked-exploration-before.png"
+  alt="Default, hover, and marked states before the redesign — hovering highlights only the transcript text with a mark tooltip, and marked rows use a yellow text highlight"
 />
 
 <Screenshot
-  src="/projects/investigator-copilot/hover-marked-exploration.png"
-  alt="Exploring higher-contrast hover and marked treatments, including a persistent bookmark icon on marked rows"
-  captionLead="Iterations in-between:"
-  caption="I increased the visual contrast between text and hover/highlight colours between iterations, and added visual cues to guide marking actions."
+  src="/projects/investigator-copilot/hover-marked-exploration-1.png"
+  alt="Iteration 1 of the default, hover, and marked states — a red speaker avatar is added and the text highlight treatments are kept from the original design"
 />
 
-I eventually decided on a mark button that would appear whenever the user hovered over a transcript row, informing users that they can click on it to mark the text. A persistent bookmark icon in sufficient colour contrast would show if the text was marked, so that it is easily identifiable.
+<Screenshot
+  src="/projects/investigator-copilot/hover-marked-exploration-2.png"
+  alt="Iteration 2 of the default, hover, and marked states — a floating mark button appears beside the row on hover, and a persistent bookmark icon shows on marked rows"
+/>
 
 <Screenshot
-  src="/projects/investigator-copilot/transcript-states-final.png"
-  alt="Final default, hover, and marked states — a mark button appears on hover, and a persistent bookmark icon marks saved rows"
-  captionLead="Final default, hover, and marked states:"
-  caption="a mark button appears on hover, and a persistent bookmark icon marks saved rows."
+  src="/projects/investigator-copilot/hover-marked-exploration-3.png"
+  alt="Iteration 3 of the default, hover, and marked states — the bookmark button sits within the highlighted row on hover, and marked rows keep the highlight with a filled bookmark icon"
 />
 
 <StatementHeading
