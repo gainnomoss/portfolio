@@ -45,21 +45,21 @@ Three principles guided the design: minimize friction for stock upload or deleti
 
 ## AI-Assisted Design Workflow
 
-### Rapid Concept Generation
+### Rapid concept generation
 
 I used Claude to produce first-draft designs for the flows I wanted to tackle first — the home screen and adding-items flow — which gave me a working prototype to interact with on my device almost immediately and start thinking concretely about the interactions. Once a flow was validated in code, I moved back into Figma to refine colour, spacing, and hierarchy; matching design tokens between Figma and code wasn't a priority at this stage.
 
 <Screenshot src="/projects/grocerypal/home-first-pass.png" alt="First-pass home screen exploration" />
 <Screenshot src="/projects/grocerypal/home-v2.jpg" alt="Second iteration of the home screen" />
 
-### Interaction Refinement
+### Interaction refinement
 
 Working with AI-built prototypes let me feel out the editing flow directly. I decided to switch from a bottom sheet to an in-place editing card, so users stay in context of how far along their item list they are, and refined the motion until it felt smooth and tactile.
 
 <Screenshot src="/projects/grocerypal/edit-item-iteration-1.jpg" alt="Early edit-item interaction" />
 <Screenshot src="/projects/grocerypal/editing-iteration-2.jpg" alt="Refined in-place editing card" />
 
-### Visual Polish
+### Visual polish
 
 Once the flow was refined, I asked Claude Code for three visual-direction variations and weighed the trade-offs of each before returning to Figma to finalize the visual identity.
 
@@ -69,7 +69,7 @@ Once the flow was refined, I asked Claude Code for three visual-direction variat
 
 I liked the calm colour tones in the first direction, but didn't find its pie chart particularly helpful for understanding inventory at a glance. The second direction's playful typography gave the app a fresh feel. The third's more restrained palette ultimately informed the final design.
 
-### Development Implementation
+### Development implementation
 
 Claude Code produced reasonably well-matched designs, though I still had to fix small bugs one by one and check that design updates propagated consistently throughout the app. Around this point I started building out `design.md`, adding rules to the document as I iterated with Claude Code — once it was in place, generated designs landed much closer to intent, though still needed adjustment.
 

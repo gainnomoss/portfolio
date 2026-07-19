@@ -269,7 +269,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 | `{typography.display-xl}` | 44–64px (clamp) | 600 | 1.05 | Homepage hero headline only |
 | `{typography.display-lg}` | 36–44px (clamp) | 600 | 1.1 | Page titles (case study, About, Work) |
 | `{typography.display-md}` | 31px | 600 | 1 | Case-study section headings ("Overview", "The Problem", "Design Process"), rendered in `{colors.body}` with +1% tracking |
-| `{typography.display-sm}` | 20px | 500 | 1.3 | Case-study subsection headings ("Design Principles", "Key Design Decisions"), rendered in `{colors.body}` with +1% tracking |
+| `{typography.display-sm}` | 20px | 500 | 1.3 | Case-study subsection headings, always sentence case ("Design principles", "Key design decisions"), rendered in `{colors.body}` with +1% tracking |
 | `{typography.title-lg}` | 22px | 500 | 1.3 | Project-card titles, subsection headers |
 | `{typography.title-md}` | 18px | 500 | 1.4 | Timeline entry titles, button label size |
 | `{typography.body-lg}` | 18px | 400 | 1.6 | Case-study lead paragraphs |
@@ -316,7 +316,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`section-heading`** — Large `{typography.display-md}` label in `{colors.body}`, used to open each case-study section ("Overview," "Problem," "Process," "Outcome").
 
-**`case-study-subheading`** — `{typography.display-sm}` in `{colors.body}`, used for subsection headings inside a case-study section ("Design Principles," "Key Design Decisions").
+**`case-study-subheading`** — `{typography.display-sm}` in `{colors.body}`, used for subsection headings inside a case-study section. Always sentence case ("Design principles," "Key design decisions").
 
 **`numbered-callout`** — A small structural marker inside case-study body copy that calls out a research insight or design decision before its supporting paragraph: an uppercase-free `{colors.accent-weak}` label ("Research insight" / "Design decision"), a numbered circle in the same color, and a bold `{colors.body}` statement, sitting above a `{colors.border}` rule. Distinct from `numbered-list` — this marks a narrative beat, not a summary list.
 
