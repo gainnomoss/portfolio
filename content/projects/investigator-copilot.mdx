@@ -56,9 +56,17 @@ Investigator Copilot is an AI-powered platform built for the Singapore Police Fo
 
 ## Problem
 
-Video Recorded Interviews (VRIs) are a critical part of police investigations, but accessing interview records was slow and labour-intensive. Interview recordings were sent to a third-party vendor for manual transcription, delaying internal review and time-sensitive consultations with the Attorney-General's Chambers (AGC). Meanwhile, assistant Investigation Officers were required to take interview notes while simultaneously monitoring the recording process and supporting the interviewer.
+### Manual transcription delays investigations
 
-Investigator Copilot was introduced to generate interview transcripts using AI, providing investigators with immediate access to searchable interview records. My work focused on redesigning the transcript review experience so investigators could efficiently verify, edit, and navigate AI-generated transcripts before using them in downstream investigative work.
+Interview recordings are typically sent to third-party vendors or specialist officers for manual transcription. Officers often wait 3–10 days before receiving a transcript, delaying internal reviews, time-sensitive consultations, and downstream investigative work.
+
+### Assistant officers are overloaded during interviews
+
+Assistant officers simultaneously take interview notes, monitor recording equipment, and support the lead investigator throughout the interview. Managing these parallel tasks increases cognitive load and divides attention during a critical stage of the investigation.
+
+### Reviewing AI-generated transcripts remains challenging
+
+While AI significantly reduced transcription turnaround time, investigators still needed to review, verify, and extract key information from lengthy interview records before they could confidently progress the investigation.
 
 ## My Role
 
@@ -68,12 +76,22 @@ I was the sole product designer responsible for the Speech-to-Text experience af
 
 ### Understanding the existing investigation interview workflow
 
+I worked with the PM to understand the current workflow the users had.
+
+<Screenshot
+  src="/projects/investigator-copilot/current-process.png"
+  alt="Six-step diagram of the existing interview workflow: officers set up the interview, recording begins, the interviewer asks questions, an assistant interviewer takes notes, footage is saved to a drive when the interview ends, and vendors or officers transcribe the recording"
+  caption=""
+/>
+
+### Usability testing with MVP
+
 I conducted usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
 
 <StatementHeading
   label="Research insight"
   number={1}
-  title="Officers couldn't confidently distinguish transcript states"
+  title="Officers couldn't clearly distinguish transcript states"
 />
 
 Users clicked twice because they couldn't tell whether a transcript had already been marked. The hover state would still be applied if the user's cursor was still hovering over the transcript row, causing the transcript row to be unmarked instead if the user clicked again.
@@ -86,7 +104,7 @@ Users clicked twice because they couldn't tell whether a transcript had already 
 <StatementHeading
   label="Research insight"
   number={2}
-  title="Live transcription made interaction difficult"
+  title="Moving transcription content made interaction difficult"
 />
 
 The transcript continuously shifted during interviews, forcing users to chase moving content whenever they wanted to bookmark an important statement.
@@ -94,10 +112,10 @@ The transcript continuously shifted during interviews, forcing users to chase mo
 <StatementHeading
   label="Research insight"
   number={3}
-  title="Investigation isn't just transcription"
+  title="Officers need to make notes during interviews"
 />
 
-Officers needed to capture observations, identify admissions, rename speakers, and summarize interviews. The transcript alone wasn't enough.
+Officers needed to capture important observations during interviews, making notes throughout the course of the interview, which the current workspace could not allow for.
 
 ## Design Process
 
@@ -121,7 +139,7 @@ I also studied transcription apps, such as Otter, Dovetail, and Transcribe, to i
   title="Clear transcript states"
 />
 
-To make the hover and marked states more visually distinct, I explored a few options, including changing the colours used to indicate hover/marked states, and changing the interaction of how a transcript can get marked. One consideration was to make the clickable area of marking a transcript larger, as the current area was determined by the length of the transcript text.
+To make the hover and marked states more visually distinct, I explored a few options, including changing the colours used to indicate hover/marked states, and changing the interaction of how a transcript can get marked. One other consideration was also to make the clickable area of marking a transcript larger, as the current area was determined by the length of the transcript text.
 
 <Screenshot
   src="/projects/investigator-copilot/hover-marked-exploration-before.png"
@@ -138,7 +156,7 @@ To make the hover and marked states more visually distinct, I explored a few opt
 <Screenshot
   src="/projects/investigator-copilot/hover-marked-exploration-2.png"
   alt="Iteration 2 of the default, hover, and marked states — a floating mark button appears beside the row on hover, and a persistent bookmark icon shows on marked rows"
-  caption="Usability testing revealed that users couldn't confidently distinguish transcript states. Hence, I made the visual differentiation between hover and marked states more clear, by placing the background fill for hover states over the entire transcript row. I also opted for a persistent bookmark icon once a row was marked, as it was more clearly identifiable. A clickable button element to mark the transcript row instead of text (which varies in length) also enlarges the clickable area, and makes the marking interaction more consistent, improves usability."
+  caption="Usability testing revealed that users couldn't confidently distinguish transcript states. Hence, I made the visual differentiation between hover and marked states more clear, by placing the background fill for hover states over the entire transcript row. I also opted for a persistent bookmark icon once a row was marked, as it was more clearly identifiable. A clickable button element to mark the transcript row instead of text (which varies in length) also enlarges the clickable area, and makes the marking interaction more consistent, improving usability."
 />
 
 <Screenshot
@@ -153,12 +171,12 @@ To make the hover and marked states more visually distinct, I explored a few opt
   title="Side panel instead of modal"
 />
 
-Investigators constantly reference transcripts through the course of the interview, and a modal would block investigators from referring to the current transcript if they wanted to view any of the segments they bookmarked during the interview.
+Investigators need to reference transcripts through the course of the interview, and a modal would block investigators from referring to the current transcript if they wanted to view any of the segments they bookmarked during the interview.
 
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-modal-before.png"
   alt="Viewing marked segments required opening a modal on the original design"
-  caption="Clicking on a button opens a modal to viewing marked segments."
+  caption="Clicking on a button opens a modal to viewing marked segments, blocking the view of the current transcript."
 />
 
 <Screenshot
@@ -187,9 +205,35 @@ To allow officers to record key observations noted during interviews, a note-tak
   caption="Marked segment cards in the new side panel allow users to create, edit and delete notes, to note down observations they have during interviews conducted."
 />
 
+<StatementHeading
+  label="Design decision"
+  number={4}
+  title="Define behaviour for autoscroll"
+/>
+
+Usability testing revealed that the moving transcripts made it hard for users to interact with a transcription row. Hence, I added a behaviour for autoscrolling transcripts to be turned off if the users scrolls. A button to allow the user to track back to the current transcription timing will appear, which will re-enable autoscroll behaviour during recording and playback.
+
+<Screenshot
+  src="/projects/investigator-copilot/autoscroll-logic.png"
+  alt="Flow diagram of the autoscroll behaviour — autoscroll is enabled by default, becomes disabled when the user manually scrolls, and is re-enabled when the user clicks Jump to Playback"
+  caption=" "
+/>
+
+<Screenshot
+  src="/projects/investigator-copilot/autoscroll-screen.png"
+  alt="Live transcription screen with autoscroll paused after a manual scroll — a Jump to Latest button appears over the transcript, next to the marked segments panel"
+  caption="Example of a button which appears if autoscroll is disabled. Clicking it returns the user to the current transcription timing and re-enables autoscroll."
+/>
+
 ## Usability Testing
 
 During a usability testing session conducted with the new designs with 11 participants, it achieved a SUS score of 75. Users did not report further issues with bookmarking transcripts, and gave feedback that the improved interface was easier to use.
+
+<Screenshot
+  src="/projects/investigator-copilot/sus-score.png"
+  alt="SUS score scale from 10 to 100 with a marker at 75, which falls in the B (Good) grade band within the Acceptable range"
+  caption=""
+/>
 
 ## Outcome
 
