@@ -21,6 +21,9 @@ export function FramedVideo({
       <video
         src={src}
         controls
+        autoPlay
+        muted
+        loop
         playsInline
         preload="metadata"
         width={width}
