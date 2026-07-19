@@ -51,7 +51,7 @@ I was the sole product designer responsible for the Speech-to-Text experience af
 
 ## Research & Discovery
 
-I conducted moderated usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
+I conducted usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
 
 <StatementHeading
   label="Research insight"
@@ -59,7 +59,7 @@ I conducted moderated usability testing with investigation officers using the ex
   title="Officers couldn't confidently distinguish transcript states"
 />
 
-Hover and selection shared similar visual treatments. Users frequently clicked twice because they couldn't tell whether a transcript had already been marked.
+Users clicked twice because they couldn't tell whether a transcript had already been marked. The hover state would still be applied if the user's cursor was still hovering over the transcript row, causing the transcript row to be unmarked instead if the user clicked again.
 
 <Screenshot
   src="/projects/investigator-copilot/mvp-before-mark.png"
@@ -84,31 +84,16 @@ Officers needed to capture observations, identify admissions, rename speakers, a
 
 ## Design Process
 
-I then studied transcription apps, such as Otter, Dovetail, and Transcribe, to identify common design patterns and layouts to learn from what was already out there.
+### Design objectives
 
-### Design principles
+The redesign aimed to address the usability gaps identified through usability tests.
 
-Every design decision was guided by three principles:
+<Screenshot
+  src="/projects/investigator-copilot/design-objectives.png"
+  alt="Three design objective cards: reduce cognitive load, support live investigations, and keep investigators focused"
+/>
 
-<Principles>
-  <PrincipleCard
-    title="Reduce cognitive load"
-    description="Important states should be immediately distinguishable without requiring users to remember interaction history."
-    icon="/projects/investigator-copilot/principle-icon-1.svg"
-  />
-  <PrincipleCard
-    title="Support live investigations"
-    description="Interactions should remain reliable even while transcripts continue updating in real time."
-    icon="/projects/investigator-copilot/principle-icon-2.svg"
-  />
-  <PrincipleCard
-    title="Keep investigators focused"
-    description="The interface should reduce context switching by bringing summaries, notes, and marked evidence into a single workspace."
-    icon="/projects/investigator-copilot/principle-icon-3.svg"
-  />
-</Principles>
-
-I explored different variations of how the transcript row could be designed — whether the bookmark icon should always be displayed, how speaker avatars should be shown, in what order the speaker names, timestamps, and text should appear, and how the different states affect the layout.
+I also studied transcription apps, such as Otter, Dovetail, and Transcribe, to identify common design patterns and layouts to learn from what was already out there.
 
 ### Key design decisions
 
@@ -161,16 +146,14 @@ Investigators constantly reference transcripts through the course of the intervi
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-modal-exploration-1.png"
   alt="Iteration 1 of the marked segments side panel — clicking on transcript text bookmarks it, and it appears in a persistent Marked Segments panel as a table row beside the transcript"
-  caption="I replaced the modal with a persistent side panel, so officers could view marked segments alongside the live transcript. Clicking on a transcript row bookmarks it, and it appears in the panel as a table row mirroring the transcript layout."
+  caption="I replaced the modal with a persistent side panel, so officers could view marked segments alongside the live transcript. Clicking on a transcript row bookmarks it, and it appears in the panel as a table row mirroring the transcript layout. This layout also shortens the length of transcription texts, which enhances its readability by reducing the distance traveled by a user's eye before tracking to the next line."
 />
 
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-modal-exploration-2.png"
   alt="Iteration 2 of the marked segments side panel — marked segments appear under a Marked tab as cards with an inline comment field beside the live transcript"
-  caption="The panel was refined to sit under the Summary and Marked tabs, aligning it with the redesigned transcript rows. Marked segments now appear as cards with an inline comment field, allowing officers to attach notes to evidence without leaving the live transcript."
+  caption="Through further discussion with users, our team discovered that notes would be a helpful feature for officers who need to work on a case with other officers. The marked panel was refined to share the side panel with the summary generated, viewed by clicking on different tabs on the side panel."
 />
-
-I considered using an overlay modal because it required minimal layout changes. However, officers frequently referenced transcripts while reviewing marked evidence, forcing them to repeatedly open and close the modal. I instead explored a persistent side panel, by reducing the length of the transcription text containers, which also improves readability through make the length of texts shorter.
 
 <StatementHeading
   label="Design decision"
@@ -183,8 +166,7 @@ To allow officers to record key observations noted during interviews, a note-tak
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-card-states.png"
   alt="Marked segment cards in the new side panel, shown alongside live note-taking"
-  captionLead="A new feature implemented:"
-  caption="marked segment cards in the new side panel, shown alongside live note-taking."
+  caption="Marked segment cards in the new side panel allow users to create, edit and delete notes, to note down observations they have during interviews conducted."
 />
 
 ## Usability Testing
@@ -193,7 +175,7 @@ During a usability testing session conducted with the new designs with 11 partic
 
 ## Outcome
 
-The product was launched in April 2026, with officers adopting it for their workflows.
+The product was successfully launched in April 2026, with officers adopting it for their workflows.
 
 The redesign introduced:
 
@@ -214,7 +196,7 @@ The team is still gathering feedback as the product goes live, and working on fu
   title="Designing begins at the component level"
 />
 
-One thing I underestimated was how many interaction states a transcript could have simultaneously. What initially appeared to be a list became a system where playback, editing, marking, and scrolling all influenced one another. Designing at the component level before designing screens ultimately reduced complexity and made the interface more scalable.
+One thing I underestimated was how many interaction states a transcript could have simultaneously. What initially appeared to be a list became a system where playback, editing, marking, and scrolling all influenced one another. Designing at the component level before designing screens ultimately reduced complexity and made the interface more manageable.
 
 <Screenshot
   src="/projects/investigator-copilot/transcript-row-component.png"
@@ -224,7 +206,9 @@ One thing I underestimated was how many interaction states a transcript could ha
 <StatementHeading
   label="Reflection"
   number={2}
-  title="Balancing user needs, technical limitations, and stakeholder priorities"
+  title="Designing beyond the happy path"
 />
 
-Designing for investigators reinforced that productivity tools are rarely about adding more features — they're about reducing cognitive effort during high-pressure work. Working within government constraints also taught me the importance of balancing user needs, technical limitations, and stakeholder priorities while still advocating for better user experiences.
+One of my biggest takeaways from this project was that a polished happy path isn't enough for a successful implementation. As engineers began building the product, many discussions centred on scenarios that hadn't been explicitly designed—empty states, unexpected data lengths, disabled actions, and other edge cases that inevitably occur in production.
+
+That experience changed the way I approach design handoffs. I now work through a structured checklist before every handoff, reviewing not only the primary workflow but also loading, empty, error, and disabled states, atypical data, and interaction edge cases. While not every scenario is implemented immediately, considering them early helps uncover product decisions sooner, reduces ambiguity for engineers, and results in more robust designs.
