@@ -4,7 +4,6 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/projects/investigator-copilot/mvp-before-mark.png": { width: 2984, height: 768 },
   "/projects/investigator-copilot/edm.png": { width: 1050, height: 4436 },
   "/projects/investigator-copilot/complete-error.png": { width: 1973, height: 882 },
-  "/projects/investigator-copilot/autoscroll-logic.png": { width: 1973, height: 257 },
   "/projects/investigator-copilot/design-iteration-before.png": { width: 1192, height: 90 },
   "/projects/investigator-copilot/design-iteration-1.png": { width: 960, height: 57 },
   "/projects/investigator-copilot/design-iteration-2.png": { width: 1289, height: 96 },

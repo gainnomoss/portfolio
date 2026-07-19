@@ -46,34 +46,27 @@ Investigator Copilot is an AI-powered platform built for the Singapore Police Fo
       alt: "Launch EDM announcing AI Speech-to-Text for video recorded interviews, outlining current challenges, key features and the future of VRI operations",
       caption: "EDM I designed for the launch of this project",
     },
-    [
-      {
-        src: "/projects/investigator-copilot/complete-error.png",
-        alt: "The Complete screen after a live transcript is saved, showing an inline validation error when a timestamp exceeds the recorded audio length",
-        caption:
-          "The review screen after a live transcript is saved, with inline validation for edge cases such as timestamps exceeding the recorded audio length",
-      },
-      {
-        src: "/projects/investigator-copilot/autoscroll-logic.png",
-        alt: "State diagram of the autoscroll logic: autoscroll is enabled by default, disabled when the user manually scrolls, and re-enabled when the user clicks Jump to Playback",
-        caption:
-          "The autoscroll logic defined for live transcription, letting officers scroll freely without losing their place",
-      },
-    ],
+    {
+      src: "/projects/investigator-copilot/complete-error.png",
+      alt: "The Complete screen after a live transcript is saved, showing an inline validation error when a timestamp exceeds the recorded audio length",
+      caption: "Inline validation for timestamps during editing",
+    },
   ]}
 />
 
 ## Problem
 
-Every investigative interview generates hours of audio that must be reviewed and documented accurately. Traditionally, officers either waited several days for outsourced transcription or attempted to take notes manually during interviews, often dividing their attention between listening and documenting.
+Video Recorded Interviews (VRIs) are a critical part of police investigations, but accessing interview records was slow and labour-intensive. Interview recordings were sent to a third-party vendor for manual transcription, delaying internal review and time-sensitive consultations with the Attorney-General's Chambers (AGC). Meanwhile, assistant Investigation Officers were required to take interview notes while simultaneously monitoring the recording process and supporting the interviewer.
 
-An MVP transcription tool had already been developed by an external vendor, but usability testing revealed that it introduced new friction rather than reducing it. Officers struggled to keep up with live transcripts, important interactions were difficult to discover, and the interface lacked support for the way investigations are actually conducted.
+Investigator Copilot was introduced to generate interview transcripts using AI, providing investigators with immediate access to searchable interview records. My work focused on redesigning the transcript review experience so investigators could efficiently verify, edit, and navigate AI-generated transcripts before using them in downstream investigative work.
 
 ## My Role
 
 I was the sole product designer responsible for the Speech-to-Text experience after taking over an MVP delivered by an external vendor. I conducted usability testing, redesigned key workflows, created reusable UI components, and partnered closely with one product manager and five engineers through implementation.
 
 ## Research & Discovery
+
+### Understanding the existing investigation interview workflow
 
 I conducted usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
 
