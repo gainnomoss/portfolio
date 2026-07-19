@@ -112,28 +112,36 @@ I explored different variations of how the transcript row could be designed — 
 
 ### Key design decisions
 
-<StatementHeading label="Design decision" number={1} title="Clear transcript states" />
+<StatementHeading
+  label="Design decision"
+  number={1}
+  title="Clear transcript states"
+/>
 
 To make the hover and marked states more visually distinct, I explored a few options, including changing the colours used to indicate hover/marked states, and changing the interaction of how a transcript can get marked. One consideration was to make the clickable area of marking a transcript larger, as the current area was determined by the length of the transcript text.
 
 <Screenshot
   src="/projects/investigator-copilot/hover-marked-exploration-before.png"
   alt="Default, hover, and marked states before the redesign — hovering highlights only the transcript text with a mark tooltip, and marked rows use a yellow text highlight"
+  caption=""
 />
 
 <Screenshot
   src="/projects/investigator-copilot/hover-marked-exploration-1.png"
   alt="Iteration 1 of the default, hover, and marked states — a red speaker avatar is added and the text highlight treatments are kept from the original design"
+  caption="Users feedbacked about wanting more visual differentiation between different speakers, hence I added an avatar componenent for each speaker, and defined the rules for how they would appear with the developers. Given that there are only a maximum of 5 speakers, we hardcoded each speaker to a certain colour so that they would all have sufficient colour contrast."
 />
 
 <Screenshot
   src="/projects/investigator-copilot/hover-marked-exploration-2.png"
   alt="Iteration 2 of the default, hover, and marked states — a floating mark button appears beside the row on hover, and a persistent bookmark icon shows on marked rows"
+  caption="Usability testing revealed that users couldn't confidently distinguish transcript states. Hence, I made the visual differentiation between hover and marked states more clear, by placing the background fill for hover states over the entire transcript row. I also opted for a persistent bookmark icon once a row was marked, as it was more clearly identifiable. A clickable button element to mark the transcript row instead of text (which varies in length) also enlarges the clickable area, and makes the marking interaction more consistent, improves usability."
 />
 
 <Screenshot
   src="/projects/investigator-copilot/hover-marked-exploration-3.png"
   alt="Iteration 3 of the default, hover, and marked states — the bookmark button sits within the highlighted row on hover, and marked rows keep the highlight with a filled bookmark icon"
+  caption="The bookmark button was shifted to be inline with the transcription row, to reduce the vertical padding required, considering the small screen sizes some officers may be working with."
 />
 
 <StatementHeading
@@ -147,18 +155,22 @@ Investigators constantly reference transcripts through the course of the intervi
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-modal-before.png"
   alt="Viewing marked segments required opening a modal on the original design"
-  captionLead="Before:"
-  caption="Viewing marked segments required opening a modal on the original design."
+  caption="Clicking on a button opens a modal to viewing marked segments."
 />
 
 <Screenshot
-  src="/projects/investigator-copilot/marked-segments-panel-after.png"
-  alt="A side panel allowing officers to view marked segments alongside a live interview"
-  captionLead="After:"
-  caption="I added a side panel which would allow officers to view any marked segments alongside a live interview."
+  src="/projects/investigator-copilot/marked-segments-modal-exploration-1.png"
+  alt="Iteration 1 of the marked segments side panel — clicking on transcript text bookmarks it, and it appears in a persistent Marked Segments panel as a table row beside the transcript"
+  caption="I replaced the modal with a persistent side panel, so officers could view marked segments alongside the live transcript. Clicking on a transcript row bookmarks it, and it appears in the panel as a table row mirroring the transcript layout."
 />
 
-I considered using an overlay modal because it required minimal layout changes. However, officers frequently referenced transcripts while reviewing marked evidence, forcing them to repeatedly open and close the modal. I instead explored a persistent side panel, accepting slightly narrower transcript columns in exchange for continuous access to both views.
+<Screenshot
+  src="/projects/investigator-copilot/marked-segments-modal-exploration-2.png"
+  alt="Iteration 2 of the marked segments side panel — marked segments appear under a Marked tab as cards with an inline comment field beside the live transcript"
+  caption="The panel was refined to sit under the Summary and Marked tabs, aligning it with the redesigned transcript rows. Marked segments now appear as cards with an inline comment field, allowing officers to attach notes to evidence without leaving the live transcript."
+/>
+
+I considered using an overlay modal because it required minimal layout changes. However, officers frequently referenced transcripts while reviewing marked evidence, forcing them to repeatedly open and close the modal. I instead explored a persistent side panel, by reducing the length of the transcription text containers, which also improves readability through make the length of texts shorter.
 
 <StatementHeading
   label="Design decision"
@@ -166,7 +178,7 @@ I considered using an overlay modal because it required minimal layout changes. 
   title="Supporting live note-taking"
 />
 
-To allow officers to record key observations noted during interviews, a note-taking feature was implemented alongside marked transcript text. This allowed officers to remain on the platform throughout the course of the interview without having to switch between manual note-taking and transcription review.
+To allow officers to record key observations noted during interviews, a note-taking feature was implemented alongside marked transcript text. This allowed officers to remain on the platform throughout the course of the interview without having to switch between manual note-taking and transcription review. I designed a note-taking features for each marked segment, so that officers can add, edit, and delete any notes they had through the course of the interivew.
 
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-card-states.png"
