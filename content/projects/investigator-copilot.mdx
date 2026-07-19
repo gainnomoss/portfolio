@@ -3,7 +3,7 @@ title: "Investigator Copilot (Transcription Use Case)"
 company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
 summary: "Redesigning the Speech-to-Text experience of an AI investigation platform, turning an inherited MVP into a workflow built for live interviews — achieving a SUS score of 75."
 type: "Product Design"
-tags: ["Speech-to-Text", "Government Digital Services", "Usability Testing"]
+tags: ["Speech-to-Text", "Government Digital Services"]
 thumbnail: "/projects/investigator-copilot/cover.png"
 thumbnailFit: contain
 protected: false
@@ -23,13 +23,47 @@ Investigator Copilot is an AI-powered platform built for the Singapore Police Fo
 
 <HeroVideo src="/projects/investigator-copilot/live-stt-demo.mp4" />
 
-<Screenshot
-  src="/projects/investigator-copilot/overview-before-comparison.png"
-  alt="Side-by-side comparison of the MVP's transcript view, where hover and marked states were visually near-identical"
-  caption=""
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/investigator-copilot/transcription-row-states.png",
+      alt: "The redesigned transcript row in its five states: default, hover, highlight, marked and playback",
+      caption:
+        "I redesigned the transcription row component and its various states",
+    },
+    {
+      src: "/projects/investigator-copilot/transcription-row-anatomy.png",
+      alt: "Anatomy of the redesigned transcript row: speaker avatar, speaker name, speaker role, timestamp and transcript text",
+      caption: "Anatomy of a transcription row",
+    },
+  ]}
 />
 
-## The Problem
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/investigator-copilot/edm.png",
+      alt: "Launch EDM announcing AI Speech-to-Text for video recorded interviews, outlining current challenges, key features and the future of VRI operations",
+      caption: "EDM I designed for the launch of this project",
+    },
+    [
+      {
+        src: "/projects/investigator-copilot/complete-error.png",
+        alt: "The Complete screen after a live transcript is saved, showing an inline validation error when a timestamp exceeds the recorded audio length",
+        caption:
+          "The review screen after a live transcript is saved, with inline validation for edge cases such as timestamps exceeding the recorded audio length",
+      },
+      {
+        src: "/projects/investigator-copilot/autoscroll-logic.png",
+        alt: "State diagram of the autoscroll logic: autoscroll is enabled by default, disabled when the user manually scrolls, and re-enabled when the user clicks Jump to Playback",
+        caption:
+          "The autoscroll logic defined for live transcription, letting officers scroll freely without losing their place",
+      },
+    ],
+  ]}
+/>
+
+## Problem
 
 Every investigative interview generates hours of audio that must be reviewed and documented accurately. Traditionally, officers either waited several days for outsourced transcription or attempted to take notes manually during interviews, often dividing their attention between listening and documenting.
 
@@ -41,136 +75,123 @@ I was the sole product designer responsible for the Speech-to-Text experience af
 
 ## Research & Discovery
 
-I conducted moderated usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
+I conducted usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
 
-<Callout label="Research insight" number="1" title="Officers couldn't confidently distinguish transcript states" />
+<StatementHeading
+  label="Research insight"
+  number={1}
+  title="Officers couldn't confidently distinguish transcript states"
+/>
 
-Hover and selection shared similar visual treatments. Users frequently clicked twice because they couldn't tell whether a transcript had already been marked.
+Users clicked twice because they couldn't tell whether a transcript had already been marked. The hover state would still be applied if the user's cursor was still hovering over the transcript row, causing the transcript row to be unmarked instead if the user clicked again.
 
-<Screenshot src="/projects/investigator-copilot/mvp-before-mark.png" alt="Before: the MVP's transcript view, where hover and marked states were visually near-identical" />
+<Screenshot
+  src="/projects/investigator-copilot/mvp-before-mark.png"
+  alt="The MVP's hover and marked states were visually identical"
+/>
 
-<Callout label="Research insight" number="2" title="Live transcription made interaction difficult" />
+<StatementHeading
+  label="Research insight"
+  number={2}
+  title="Live transcription made interaction difficult"
+/>
 
 The transcript continuously shifted during interviews, forcing users to chase moving content whenever they wanted to bookmark an important statement.
 
-<Callout label="Research insight" number="3" title="Investigation isn't just transcription" />
+<StatementHeading
+  label="Research insight"
+  number={3}
+  title="Investigation isn't just transcription"
+/>
 
 Officers needed to capture observations, identify admissions, rename speakers, and summarize interviews. The transcript alone wasn't enough.
 
 ## Design Process
 
-I then studied transcription apps, such as Otter, Dovetail, and Transcribe, to identify common design patterns and layouts to learn from what was already out there.
+### Design objectives
 
-### Design Principles
-
-Every design decision was guided by three principles:
-
-<Principles>
-  <PrincipleCard
-    title="Reduce cognitive load"
-    description="Important states should be immediately distinguishable without requiring users to remember interaction history."
-    icon="/projects/investigator-copilot/principle-icon-1.svg"
-  />
-  <PrincipleCard
-    title="Support live investigations"
-    description="Interactions should remain reliable even while transcripts continue updating in real time."
-    icon="/projects/investigator-copilot/principle-icon-2.svg"
-  />
-  <PrincipleCard
-    title="Keep investigators focused"
-    description="The interface should reduce context switching by bringing summaries, notes, and marked evidence into a single workspace."
-    icon="/projects/investigator-copilot/principle-icon-3.svg"
-  />
-</Principles>
-
-I explored different variations of how the transcript row could be designed — whether the bookmark icon should always be displayed, how speaker avatars should be shown, in what order the speaker names, timestamps, and text should appear, and how the different states affect the layout.
-
-### Design Iterations
+The redesign aimed to address the usability gaps identified through usability tests.
 
 <Screenshot
-  src="/projects/investigator-copilot/design-iteration-before.png"
-  alt="The original design did not differentiate between speakers visually"
-  captionLead="Before:"
-  caption="The original design did not differentiate between speakers visually, and could be rearranged to better represent the information hierarchy."
+  src="/projects/investigator-copilot/design-objectives.png"
+  alt="Three design objective cards: reduce cognitive load, support live investigations, and keep investigators focused"
+  caption=""
 />
 
-<Screenshot
-  src="/projects/investigator-copilot/design-iteration-1.png"
-  alt="Iteration 1 of the transcript row design"
-  captionLead="Iteration 1"
-  caption="had too much visual weight taken by the speaker avatar, and the colour contrast of the speaker avatar was insufficient."
+I also studied transcription apps, such as Otter, Dovetail, and Transcribe, to identify common design patterns and layouts to learn from what was already out there.
+
+### Key design decisions
+
+<StatementHeading
+  label="Design decision"
+  number={1}
+  title="Clear transcript states"
 />
-
-<Screenshot
-  src="/projects/investigator-copilot/design-iteration-2.png"
-  alt="Iteration 2 of the transcript row design"
-  captionLead="Iteration 2"
-  caption="had better colour contrast for speaker avatars, and made the bookmarking feature more obvious."
-/>
-
-<Screenshot
-  src="/projects/investigator-copilot/design-iteration-3.png"
-  alt="Iteration 3 of the transcript row design"
-  captionLead="Iteration 3"
-  caption="added link styling to the timestamp, making it obvious it could be clicked to navigate to that point in the recording. There is also better visual hierarchy of information, with a darker text colour used for transcript text."
-/>
-
-### Key Design Decisions
-
-<Callout label="Design decision" number="1" title="Clear transcript states" />
 
 To make the hover and marked states more visually distinct, I explored a few options, including changing the colours used to indicate hover/marked states, and changing the interaction of how a transcript can get marked. One consideration was to make the clickable area of marking a transcript larger, as the current area was determined by the length of the transcript text.
 
 <Screenshot
-  src="/projects/investigator-copilot/transcript-states-before.png"
-  alt="Default, hover, and marked states for a transcript row before the redesign"
+  src="/projects/investigator-copilot/hover-marked-exploration-before.png"
+  alt="Default, hover, and marked states before the redesign — hovering highlights only the transcript text with a mark tooltip, and marked rows use a yellow text highlight"
+  caption=""
 />
 
 <Screenshot
-  src="/projects/investigator-copilot/hover-marked-exploration.png"
-  alt="Exploring higher-contrast hover and marked treatments, including a persistent bookmark icon on marked rows"
-  captionLead="Iterations in-between:"
-  caption="I increased the visual contrast between text and hover/highlight colours between iterations, and added visual cues to guide marking actions."
+  src="/projects/investigator-copilot/hover-marked-exploration-1.png"
+  alt="Iteration 1 of the default, hover, and marked states — a red speaker avatar is added and the text highlight treatments are kept from the original design"
+  caption="Users feedbacked about wanting more visual differentiation between different speakers, hence I added an avatar componenent for each speaker, and defined the rules for how they would appear with the developers. Given that there are only a maximum of 5 speakers, we hardcoded each speaker to a certain colour so that they would all have sufficient colour contrast."
 />
-
-I eventually decided on a mark button that would appear whenever the user hovered over a transcript row, informing users that they can click on it to mark the text. A persistent bookmark icon in sufficient colour contrast would show if the text was marked, so that it is easily identifiable.
 
 <Screenshot
-  src="/projects/investigator-copilot/transcript-states-final.png"
-  alt="Final default, hover, and marked states — a mark button appears on hover, and a persistent bookmark icon marks saved rows"
-  captionLead="Final default, hover, and marked states:"
-  caption="a mark button appears on hover, and a persistent bookmark icon marks saved rows."
+  src="/projects/investigator-copilot/hover-marked-exploration-2.png"
+  alt="Iteration 2 of the default, hover, and marked states — a floating mark button appears beside the row on hover, and a persistent bookmark icon shows on marked rows"
+  caption="Usability testing revealed that users couldn't confidently distinguish transcript states. Hence, I made the visual differentiation between hover and marked states more clear, by placing the background fill for hover states over the entire transcript row. I also opted for a persistent bookmark icon once a row was marked, as it was more clearly identifiable. A clickable button element to mark the transcript row instead of text (which varies in length) also enlarges the clickable area, and makes the marking interaction more consistent, improves usability."
 />
 
-<Callout label="Design decision" number="2" title="Side panel instead of modal" />
+<Screenshot
+  src="/projects/investigator-copilot/hover-marked-exploration-3.png"
+  alt="Iteration 3 of the default, hover, and marked states — the bookmark button sits within the highlighted row on hover, and marked rows keep the highlight with a filled bookmark icon"
+  caption="The bookmark button was shifted to be inline with the transcription row, to reduce the vertical padding required, considering the small screen sizes some officers may be working with."
+/>
+
+<StatementHeading
+  label="Design decision"
+  number={2}
+  title="Side panel instead of modal"
+/>
 
 Investigators constantly reference transcripts through the course of the interview, and a modal would block investigators from referring to the current transcript if they wanted to view any of the segments they bookmarked during the interview.
 
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-modal-before.png"
   alt="Viewing marked segments required opening a modal on the original design"
-  captionLead="Before:"
-  caption="Viewing marked segments required opening a modal on the original design."
+  caption="Clicking on a button opens a modal to viewing marked segments."
 />
 
 <Screenshot
-  src="/projects/investigator-copilot/marked-segments-panel-after.png"
-  alt="A side panel allowing officers to view marked segments alongside a live interview"
-  captionLead="After:"
-  caption="I added a side panel which would allow officers to view any marked segments alongside a live interview."
+  src="/projects/investigator-copilot/marked-segments-modal-exploration-1.png"
+  alt="Iteration 1 of the marked segments side panel — clicking on transcript text bookmarks it, and it appears in a persistent Marked Segments panel as a table row beside the transcript"
+  caption="I replaced the modal with a persistent side panel, so officers could view marked segments alongside the live transcript. Clicking on a transcript row bookmarks it, and it appears in the panel as a table row mirroring the transcript layout. This layout also shortens the length of transcription texts, which enhances its readability by reducing the distance traveled by a user's eye before tracking to the next line."
 />
 
-I considered using an overlay modal because it required minimal layout changes. However, officers frequently referenced transcripts while reviewing marked evidence, forcing them to repeatedly open and close the modal. I instead explored a persistent side panel, accepting slightly narrower transcript columns in exchange for continuous access to both views.
+<Screenshot
+  src="/projects/investigator-copilot/marked-segments-modal-exploration-2.png"
+  alt="Iteration 2 of the marked segments side panel — marked segments appear under a Marked tab as cards with an inline comment field beside the live transcript"
+  caption="Through further discussion with users, our team discovered that notes would be a helpful feature for officers who need to work on a case with other officers. The marked panel was refined to share the side panel with the summary generated, viewed by clicking on different tabs on the side panel."
+/>
 
-<Callout label="Design decision" number="3" title="Supporting live note-taking" />
+<StatementHeading
+  label="Design decision"
+  number={3}
+  title="Supporting live note-taking"
+/>
 
-To allow officers to record key observations noted during interviews, a note-taking feature was implemented alongside marked transcript text. This allowed officers to remain on the platform throughout the course of the interview without having to switch between manual note-taking and transcription review.
+To allow officers to record key observations noted during interviews, a note-taking feature was implemented alongside marked transcript text. This allowed officers to remain on the platform throughout the course of the interview without having to switch between manual note-taking and transcription review. I designed a note-taking features for each marked segment, so that officers can add, edit, and delete any notes they had through the course of the interivew.
 
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-card-states.png"
   alt="Marked segment cards in the new side panel, shown alongside live note-taking"
-  captionLead="A new feature implemented:"
-  caption="marked segment cards in the new side panel, shown alongside live note-taking."
+  caption="Marked segment cards in the new side panel allow users to create, edit and delete notes, to note down observations they have during interviews conducted."
 />
 
 ## Usability Testing
@@ -179,7 +200,7 @@ During a usability testing session conducted with the new designs with 11 partic
 
 ## Outcome
 
-The product was launched in April 2026, with officers adopting it for their workflows.
+The product was successfully launched in April 2026, with officers adopting it for their workflows.
 
 The redesign introduced:
 
@@ -194,12 +215,25 @@ The team is still gathering feedback as the product goes live, and working on fu
 
 ## Reflections
 
-<Callout label="Reflection" number="1" title="Designing begins at the component level" />
+<StatementHeading
+  label="Reflection"
+  number={1}
+  title="Designing begins at the component level"
+/>
 
-One thing I underestimated was how many interaction states a transcript could have simultaneously. What initially appeared to be a list became a system where playback, editing, marking, and scrolling all influenced one another. Designing at the component level before designing screens ultimately reduced complexity and made the interface more scalable.
+One thing I underestimated was how many interaction states a transcript could have simultaneously. What initially appeared to be a list became a system where playback, editing, marking, and scrolling all influenced one another. Designing at the component level before designing screens ultimately reduced complexity and made the interface more manageable.
 
-<Screenshot src="/projects/investigator-copilot/transcript-row-component.png" alt="The transcript row component, broken down into its interaction states" />
+<Screenshot
+  src="/projects/investigator-copilot/transcript-row-component.png"
+  alt="The transcript row component, broken down into its interaction states"
+/>
 
-<Callout label="Reflection" number="2" title="Balancing user needs, technical limitations, and stakeholder priorities" />
+<StatementHeading
+  label="Reflection"
+  number={2}
+  title="Designing beyond the happy path"
+/>
 
-Designing for investigators reinforced that productivity tools are rarely about adding more features — they're about reducing cognitive effort during high-pressure work. Working within government constraints also taught me the importance of balancing user needs, technical limitations, and stakeholder priorities while still advocating for better user experiences.
+One of my biggest takeaways from this project was that a polished happy path isn't enough for a successful implementation. As engineers began building the product, many discussions centred on scenarios that hadn't been explicitly designed—empty states, unexpected data lengths, disabled actions, and other edge cases that inevitably occur in production.
+
+That experience changed the way I approach design handoffs. I now work through a structured checklist before every handoff, reviewing not only the primary workflow but also loading, empty, error, and disabled states, atypical data, and interaction edge cases. While not every scenario is implemented immediately, considering them early helps uncover product decisions sooner, reduces ambiguity for engineers, and results in more robust designs.

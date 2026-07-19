@@ -2,7 +2,6 @@ import type { MDXComponents } from "mdx/types";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Meta } from "@/components/mdx/meta";
 import { Screenshot } from "@/components/mdx/screenshot";
-import { Callout } from "@/components/mdx/callout";
 import { Principles, PrincipleCard } from "@/components/mdx/principle-card";
 import { OutcomeList, OutcomeItem } from "@/components/mdx/outcome-list";
 import { HeroVideo } from "@/components/mdx/hero-video";
@@ -54,7 +53,6 @@ export const mdxComponents: MDXComponents = {
   Screenshot,
   Principles,
   PrincipleCard,
-  Callout,
   OutcomeList,
   OutcomeItem,
   HeroVideo,

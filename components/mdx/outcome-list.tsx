@@ -1,5 +1,5 @@
 export function OutcomeList({ children }: { children: React.ReactNode }) {
-  return <div className="mx-auto mt-8 flex w-full max-w-reading flex-col gap-4">{children}</div>;
+  return <div className="mx-auto my-8 flex w-full max-w-reading flex-col gap-4">{children}</div>;
 }
 
 export function OutcomeItem({
