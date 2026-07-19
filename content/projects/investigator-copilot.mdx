@@ -39,7 +39,32 @@ Investigator Copilot is an AI-powered platform built for the Singapore Police Fo
   ]}
 />
 
-## The Problem
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/investigator-copilot/edm.png",
+      alt: "Launch EDM announcing AI Speech-to-Text for video recorded interviews, outlining current challenges, key features and the future of VRI operations",
+      caption:
+        "The launch EDM sent to investigation officers, introducing AI-STT and its key features",
+    },
+    [
+      {
+        src: "/projects/investigator-copilot/complete-error.png",
+        alt: "The Complete screen after a live transcript is saved, showing an inline validation error when a timestamp exceeds the recorded audio length",
+        caption:
+          "The review screen after a live transcript is saved, with inline validation for edge cases such as timestamps exceeding the recorded audio length",
+      },
+      {
+        src: "/projects/investigator-copilot/autoscroll-logic.png",
+        alt: "State diagram of the autoscroll logic: autoscroll is enabled by default, disabled when the user manually scrolls, and re-enabled when the user clicks Jump to Playback",
+        caption:
+          "The autoscroll logic defined for live transcription, letting officers scroll freely without losing their place",
+      },
+    ],
+  ]}
+/>
+
+## Problem
 
 Every investigative interview generates hours of audio that must be reviewed and documented accurately. Traditionally, officers either waited several days for outsourced transcription or attempted to take notes manually during interviews, often dividing their attention between listening and documenting.
 
@@ -91,6 +116,7 @@ The redesign aimed to address the usability gaps identified through usability te
 <Screenshot
   src="/projects/investigator-copilot/design-objectives.png"
   alt="Three design objective cards: reduce cognitive load, support live investigations, and keep investigators focused"
+  caption=""
 />
 
 I also studied transcription apps, such as Otter, Dovetail, and Transcribe, to identify common design patterns and layouts to learn from what was already out there.
