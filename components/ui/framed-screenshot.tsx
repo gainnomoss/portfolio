@@ -1,6 +1,7 @@
 import Image from "next/image";
 import clsx from "clsx";
 import { imageDimensions } from "@/lib/image-dimensions";
+import { Lightbox } from "@/components/ui/lightbox";
 
 export function FramedScreenshot({
   src,
@@ -18,7 +19,7 @@ export function FramedScreenshot({
   const { width, height } = imageDimensions[src] ?? { width: 1600, height: 1000 };
 
   return (
-    <div className={clsx("overflow-hidden rounded-md bg-canvas", className)}>
+    <Lightbox src={src} alt={alt} width={width} height={height} className={className}>
       <Image
         src={src}
         alt={alt}
@@ -29,6 +30,6 @@ export function FramedScreenshot({
         className={clsx("h-auto w-full", imageClassName)}
         sizes="(min-width: 1024px) 960px, 100vw"
       />
-    </div>
+    </Lightbox>
   );
 }

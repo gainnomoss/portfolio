@@ -193,6 +193,11 @@ components:
     size: 44px
     rounded: "{rounded.pill}"
     backgroundColor: "{colors.canvas-subtle}"
+  lightbox:
+    trigger: "cursor-zoom-in, focus-visible ring, wraps every case-study screenshot"
+    scrimColor: "{colors.canvas}/95 with backdrop-blur-sm"
+    controlStyle: "{component.back-to-top} pill pattern"
+    zIndex: 60
   numbered-callout:
     labelColor: "{colors.accent-weak}"
     numberColor: "{colors.accent-weak}"
@@ -297,6 +302,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - **The one deliberate hero moment:** on the homepage hero, right side, desktop only (`lg+`) — a faint dot field (`{component.hero-dot-field}`) that brightens near the cursor via a masked spotlight, fading into the canvas on its inner edge. Never present on mobile/tablet; no autoplay/looping — it only reacts to real pointer input, so it fully disables (not just collapses) under `prefers-reduced-motion`.
 - **Hero entrance:** on first paint the headline reveals with a typed-in effect (real text is present in the DOM throughout for SEO/screen readers; the animation is a decorative overlay), then the greeting line, subtitle, and buttons fade up in sequence. Reduced motion shows the final state immediately, no delay.
 - **`prefers-reduced-motion`:** every transition and scroll-reveal above collapses to an instant state change (opacity-only fade at most) when the user has this preference set. Non-negotiable per product.md.
+- **Lightbox open/close:** scrim fade + image fade/scale `0.96 → 1`, `{motion.duration-base}` (200ms), `{motion.easing-standard}`; close reverses the same transition on unmount. Zoom/pan transitions triggered by buttons, keyboard, and double-click/tap use the same duration and easing; continuous gestures (wheel, drag-pan, pinch) update transform values directly, uneased, for 1:1 tracking. Under `prefers-reduced-motion`, open/close and all discrete zoom transitions collapse to `duration: 0`.
 
 ## Components
 
@@ -335,6 +341,18 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 **`footer`** — Plain `{colors.canvas}`, contact links (email, LinkedIn, résumé download) plus a single small colophon-style line in `{typography.mono-detail}` (a Billy Sweeney-style craft signal, e.g. noting the stack or a build detail) — one quiet credibility moment, not a marketing footer.
 
 **`back-to-top`** — 44px circular button, `{colors.canvas-subtle}`, appears after scrolling past the hero on long case-study pages — preserved from the current site.
+
+**`lightbox`** — Every case-study screenshot (`FramedScreenshot`, used by `Screenshot` and `ScreenshotPair`) is a `cursor-zoom-in` trigger button that opens a full-screen, single-image, zoomable overlay: `{colors.canvas}/95` scrim with a `backdrop-blur-sm`, image at natural resolution (`quality={95}`), fit to the viewport with generous padding. Interaction is hand-rolled (no dependency): wheel/pinch/double-click/double-tap zoom anchored at the pointer, drag-to-pan once zoomed, `+`/`−`/arrow-key/`Escape` keyboard support, and a 3-control focus trap (zoom out, zoom in, close) styled as `{component.back-to-top}` pills. No prev/next gallery and no thumbnail→overlay morph in v1 — the overlay is image-only, `alt` doubles as the dialog's accessible name.
+
+## Z-index scale
+
+A flat, documented stacking order — every `fixed`/`sticky` element on the site sits at one of these three layers, low to high:
+
+| Layer | Value | Element |
+|---|---|---|
+| `back-to-top` | `z-40` | Scroll-triggered pill button |
+| `nav-bar` | `z-50` | Sticky header |
+| `lightbox` overlay | `z-[60]` | Full-screen image dialog — must sit above the nav it's portaled past |
 
 ## Do's and Don'ts
 
