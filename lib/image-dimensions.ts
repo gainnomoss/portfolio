@@ -55,4 +55,6 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/projects/ai-assisted-police-report-lodging/ux-heuristics-1.png": { width: 1172, height: 659 },
   "/projects/ai-assisted-police-report-lodging/ux-heuristics-2.png": { width: 1473, height: 582 },
   "/projects/ai-assisted-police-report-lodging/ux-heuristics-3.png": { width: 1177, height: 544 },
+  "/projects/grocerypal/home-screen-mockup.png": { width: 848, height: 1756 },
+  "/projects/grocerypal/item-card-component-states.png": { width: 913, height: 1362 },
 };

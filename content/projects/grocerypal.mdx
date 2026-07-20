@@ -3,10 +3,10 @@ title: "GroceryPal"
 company: "Personal Project"
 summary: "A grocery inventory app that tracks expiry dates to cut food waste — designed and shipped as a working MVP in one week, co-built with Claude Code."
 type: "Product Design"
-tags: ["Mobile App", "AI-Assisted Design", "0-to-1", "Personal Project"]
+tags: ["Mobile App", "AI", "Vibe Coding"]
 thumbnail: "/projects/grocerypal/home-final.jpg"
 protected: false
-order: 4
+order: 3
 ---
 
 ## Overview
@@ -14,9 +14,24 @@ order: 4
 GroceryPal is a mobile app that helps individual shoppers track their grocery buys by expiry date, so they waste less food. I regularly forgot what groceries I already had, overbought items, and discovered expired food too late — existing pantry apps either created too much administrative work or hid key features behind subscriptions. I wanted to build an app I could actually use myself.
 
 <Meta
-  role="Sole Product Designer, working with Claude Code as an implementation partner"
-  collaborators="Solo project"
-  date="Early–mid July 2026 (~1 week, scoped as MVP)"
+  role="Sole Product Designer"
+  collaborators="Claude Code"
+  date="Early–mid July 2026 (~ 2 weeks)"
+/>
+
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/grocerypal/home-screen-mockup.png",
+      alt: "GroceryPal home screen showing stock grouped into Smell check, Use soon, and Good to go sections",
+      caption: "",
+    },
+    {
+      src: "/projects/grocerypal/item-card-component-states.png",
+      alt: "Item card component in its default, deleting, review, disabled, and editing states",
+      caption: "",
+    },
+  ]}
 />
 
 ## Opportunity
@@ -49,23 +64,44 @@ Three principles guided the design: minimize friction for stock upload or deleti
 
 I used Claude to produce first-draft designs for the flows I wanted to tackle first — the home screen and adding-items flow — which gave me a working prototype to interact with on my device almost immediately and start thinking concretely about the interactions. Once a flow was validated in code, I moved back into Figma to refine colour, spacing, and hierarchy; matching design tokens between Figma and code wasn't a priority at this stage.
 
-<Screenshot src="/projects/grocerypal/home-first-pass.png" alt="First-pass home screen exploration" />
-<Screenshot src="/projects/grocerypal/home-v2.jpg" alt="Second iteration of the home screen" />
+<Screenshot
+  src="/projects/grocerypal/home-first-pass.png"
+  alt="First-pass home screen exploration"
+/>
+<Screenshot
+  src="/projects/grocerypal/home-v2.jpg"
+  alt="Second iteration of the home screen"
+/>
 
 ### Interaction refinement
 
 Working with AI-built prototypes let me feel out the editing flow directly. I decided to switch from a bottom sheet to an in-place editing card, so users stay in context of how far along their item list they are, and refined the motion until it felt smooth and tactile.
 
-<Screenshot src="/projects/grocerypal/edit-item-iteration-1.jpg" alt="Early edit-item interaction" />
-<Screenshot src="/projects/grocerypal/editing-iteration-2.jpg" alt="Refined in-place editing card" />
+<Screenshot
+  src="/projects/grocerypal/edit-item-iteration-1.jpg"
+  alt="Early edit-item interaction"
+/>
+<Screenshot
+  src="/projects/grocerypal/editing-iteration-2.jpg"
+  alt="Refined in-place editing card"
+/>
 
 ### Visual polish
 
 Once the flow was refined, I asked Claude Code for three visual-direction variations and weighed the trade-offs of each before returning to Figma to finalize the visual identity.
 
-<Screenshot src="/projects/grocerypal/visual-exploration-1.png" alt="Visual direction exploring calm colour tones" />
-<Screenshot src="/projects/grocerypal/visual-exploration-2.png" alt="Visual direction exploring playful typography" />
-<Screenshot src="/projects/grocerypal/visual-exploration-3.png" alt="Visual direction exploring a restrained colour palette" />
+<Screenshot
+  src="/projects/grocerypal/visual-exploration-1.png"
+  alt="Visual direction exploring calm colour tones"
+/>
+<Screenshot
+  src="/projects/grocerypal/visual-exploration-2.png"
+  alt="Visual direction exploring playful typography"
+/>
+<Screenshot
+  src="/projects/grocerypal/visual-exploration-3.png"
+  alt="Visual direction exploring a restrained colour palette"
+/>
 
 I liked the calm colour tones in the first direction, but didn't find its pie chart particularly helpful for understanding inventory at a glance. The second direction's playful typography gave the app a fresh feel. The third's more restrained palette ultimately informed the final design.
 
@@ -73,8 +109,15 @@ I liked the calm colour tones in the first direction, but didn't find its pie ch
 
 Claude Code produced reasonably well-matched designs, though I still had to fix small bugs one by one and check that design updates propagated consistently throughout the app. Around this point I started building out `design.md`, adding rules to the document as I iterated with Claude Code — once it was in place, generated designs landed much closer to intent, though still needed adjustment.
 
-<Screenshot src="/projects/grocerypal/home-final.jpg" alt="Final home screen design" priority />
-<Screenshot src="/projects/grocerypal/item-detail-final.jpg" alt="Final single-item detail page" />
+<Screenshot
+  src="/projects/grocerypal/home-final.jpg"
+  alt="Final home screen design"
+  priority
+/>
+<Screenshot
+  src="/projects/grocerypal/item-detail-final.jpg"
+  alt="Final single-item detail page"
+/>
 
 ## Challenges
 
