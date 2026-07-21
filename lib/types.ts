@@ -13,6 +13,7 @@ export interface Project {
   tags: string[];
   thumbnail: string | null;
   thumbnailFit: "cover" | "contain";
+  thumbnailBg: "peach" | null;
   protected: boolean;
   comingSoon: boolean;
   order: number;
@@ -27,6 +28,7 @@ export interface ProjectFrontmatter {
   tags: string[];
   thumbnail?: string;
   thumbnailFit?: "cover" | "contain";
+  thumbnailBg?: "peach";
   protected?: boolean;
   comingSoon?: boolean;
   order?: number;

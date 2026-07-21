@@ -20,6 +20,7 @@ function readProject(slug: string): Project {
     tags: fm.tags ?? [],
     thumbnail: fm.thumbnail ?? null,
     thumbnailFit: fm.thumbnailFit ?? "cover",
+    thumbnailBg: fm.thumbnailBg ?? null,
     protected: fm.protected ?? false,
     comingSoon: fm.comingSoon ?? false,
     order: fm.order ?? 999,
