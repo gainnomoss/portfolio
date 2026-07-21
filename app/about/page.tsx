@@ -23,7 +23,7 @@ export default function AboutPage() {
           </div>
           <div className="mt-4 flex flex-wrap gap-4">
             <Button href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-              Download résumé
+              Download resume
             </Button>
             <Button href="/contact" variant="secondary">
               Get in touch

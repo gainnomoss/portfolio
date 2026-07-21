@@ -18,7 +18,7 @@ The website should:
 - Showcase my strongest UX and product design case studies.
 - Demonstrate my design process, decision making, and problem-solving skills.
 - Reflect my attention to detail through thoughtful interaction design and visual polish.
-- Make it easy for visitors to contact me or view my résumé.
+- Make it easy for visitors to contact me or view my resume.
 - Scale easily as I add future projects.
 
 ---
