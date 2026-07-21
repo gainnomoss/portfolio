@@ -6,7 +6,7 @@ import { MAINTENANCE_PATH } from "@/lib/maintenance";
 const links = [
   { href: "mailto:keer.zhang@hotmail.com", label: "Email" },
   { href: "https://www.linkedin.com/in/keerzhang/", label: "LinkedIn" },
-  { href: "/resume.pdf", label: "Résumé" },
+  { href: "/resume.pdf", label: "Resume" },
 ];
 
 export function Footer() {
@@ -33,7 +33,7 @@ export function Footer() {
           ))}
         </ul>
         <p className="font-mono text-mono-detail text-muted">
-          Designed and built by Ke Er Zhang · Next.js, Tailwind CSS · {new Date().getFullYear()}
+          Designed and built by Zhang Ke Er
         </p>
       </div>
     </footer>
