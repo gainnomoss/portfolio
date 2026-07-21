@@ -7,15 +7,6 @@ import { ProjectCard } from "@/components/ui/project-card";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
 
-const skills = [
-  "Product Design",
-  "UX Research",
-  "Interaction Design",
-  "Service Design",
-  "Usability Testing",
-  "Heuristic Analysis",
-];
-
 export default function Home() {
   const featured = getFeaturedProjects();
   const about = getAbout();
@@ -33,7 +24,7 @@ export default function Home() {
 
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-content px-6">
-          <SectionHeading>Work</SectionHeading>
+          <SectionHeading>Selected Work</SectionHeading>
           <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
             {featured.map((project, index) => (
               <Reveal key={project.slug} delay={index * 0.05}>
@@ -60,25 +51,20 @@ export default function Home() {
               ) : null}
               <div>
                 <p className="max-w-reading text-body-lg text-body">
-                  Product Designer based in Singapore with a background in architecture — I bring
-                  systems thinking and spatial logic to digital products, from mapping end-to-end
-                  service journeys to designing for users who aren&apos;t tech-savvy.
+                  Whether I&apos;m designing AI-powered tools for investigators or building
+                  personal projects from scratch, I&apos;m motivated by understanding users,
+                  solving meaningful problems, and crafting experiences that feel intuitive and
+                  reliable.
+                </p>
+                <p className="mt-4 max-w-reading text-body-lg text-body">
+                  Outside of design, you&apos;ll usually find me at aerial classes, hiking,
+                  reading, or working on my next side project.
                 </p>
                 <Button href="/about" variant="secondary" className="mt-6">
                   More about me
                 </Button>
               </div>
             </div>
-            <ul className="mt-10 flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <li
-                  key={skill}
-                  className="rounded-full bg-canvas-subtle px-3 py-1 font-mono text-label text-muted"
-                >
-                  {skill}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </section>

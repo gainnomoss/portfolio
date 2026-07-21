@@ -4,7 +4,7 @@ import { ProjectCard } from "@/components/ui/project-card";
 import { Reveal } from "@/components/ui/reveal";
 
 export const metadata: Metadata = {
-  title: "Work",
+  title: "Selected Works",
   description: "Selected product design case studies by Ke Er Zhang.",
 };
 
@@ -13,7 +13,7 @@ export default function WorkPage() {
 
   return (
     <div className="mx-auto max-w-content px-6 py-16 sm:py-24">
-      <h1 className="text-display-lg text-ink">Work</h1>
+      <h1 className="text-display-lg text-ink">Selected Works</h1>
       <p className="mt-4 max-w-reading text-body-lg text-body">
         Selected product design case studies
       </p>
