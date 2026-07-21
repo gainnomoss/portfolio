@@ -29,9 +29,12 @@ export default function ContactPage() {
     <div className="mx-auto max-w-content px-6 py-16 sm:py-24">
       <h1 className="text-display-lg text-ink">Let&apos;s talk</h1>
       <p className="mt-4 max-w-reading text-body-lg text-body">
-        Open to product design roles working on meaningful, complex problems — especially in
-        public sector, government-adjacent, or AI-native products. The fastest way to reach me
-        is email.
+        I&apos;m currently open to Product Designer opportunities. If you&apos;re looking for
+        someone who enjoys untangling complex problems and designing intuitive experiences,
+        I&apos;d love to chat.
+      </p>
+      <p className="mt-4 max-w-reading text-body-lg text-body">
+        The fastest way to reach me is by email.
       </p>
 
       <div className="mt-12 flex flex-wrap gap-4">

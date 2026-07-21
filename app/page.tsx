@@ -87,7 +87,8 @@ export default function Home() {
         <div className="mx-auto max-w-content px-6 text-center">
           <SectionHeading>Let&apos;s work together.</SectionHeading>
           <p className="mx-auto mt-4 max-w-reading text-body-lg text-body">
-            Open to product design roles on meaningful, complex problems
+            Open to Product Designer opportunities — I enjoy untangling complex problems and
+            designing intuitive experiences.
           </p>
           <Button href="/contact" className="mt-8">
             Get in touch
