@@ -60,7 +60,7 @@ export default async function CaseStudyPage({
     );
   }
 
-  if (project.protected && !(await isProjectUnlocked(slug))) {
+  if (project.protected && !(await isProjectUnlocked())) {
     return (
       <PasswordGate
         action={unlockProjectAction.bind(null, slug)}
