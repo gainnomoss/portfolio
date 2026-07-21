@@ -267,6 +267,9 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - **Warning** (`{colors.warning-light}` #a8710a / `{colors.warning-dark}` #e6b34d) — advisory notices.
 - **Success** (`{colors.success-light}` #1f7a4d / `{colors.success-dark}` #4ade95) — confirmation states (e.g. unlocked case study).
 
+### Decorative
+- **Thumbnail Peach** (`{colors.thumbnail-peach}` #f7e7d9) — a single fixed value, not a light/dark pair: it fills the empty space behind a `contain`-fit `project-card` thumbnail when the source screenshot doesn't already fill the frame (e.g. Investigator Copilot's browser screenshot). Same pale, ~50%-saturation formula as the lavender baked into GroceryPal's own hero image, hue-rotated to a warm peach so the two cards read as siblings rather than duplicates. Stays constant across themes because it's standing in for artwork, not a UI surface — matching how GroceryPal's baked-in lavender doesn't shift in dark mode either. Opt in per project via `thumbnailBg: peach` in frontmatter; omit for thumbnails that already fill their frame.
+
 ## Typography
 
 **Font family:** Geist (variable, self-hosted via `next/font/google`) for everything — display, body, UI. Geist Mono for the label/mono-detail roles only. No third typeface, no serif — a single confident grotesk voice is the point.

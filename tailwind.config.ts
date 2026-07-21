@@ -21,6 +21,7 @@ const config: Config = {
         "danger-subtle": "var(--danger-subtle)",
         warning: "var(--warning)",
         success: "var(--success)",
+        "thumbnail-peach": "var(--thumbnail-peach)",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],

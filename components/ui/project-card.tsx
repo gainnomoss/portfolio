@@ -13,7 +13,12 @@ export function ProjectCard({ project }: { project: Project }) {
       )}
     >
       <div className="relative shrink-0 overflow-hidden px-6 py-4">
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md">
+        <div
+          className={clsx(
+            "relative aspect-[4/3] w-full overflow-hidden rounded-md",
+            project.thumbnailBg === "peach" && "bg-thumbnail-peach"
+          )}
+        >
           {project.thumbnail ? (
             <Image
               src={project.thumbnail}
