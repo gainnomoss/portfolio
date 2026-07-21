@@ -4,6 +4,7 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/projects/grocerypal/bottom-sheet.png": { width: 1099, height: 1132 },
   "/projects/grocerypal/import-with-ai.png": { width: 913, height: 1124 },
   "/projects/grocerypal/delete-item.png": { width: 913, height: 1124 },
+  "/projects/investigator-copilot/user-testing-note-taking.png": { width: 1059, height: 713 },
   "/projects/investigator-copilot/transcription-row-states.png": { width: 1220, height: 1271 },
   "/projects/investigator-copilot/transcription-row-anatomy.png": { width: 1275, height: 1328 },
   "/projects/investigator-copilot/mvp-before-mark.png": { width: 2984, height: 768 },

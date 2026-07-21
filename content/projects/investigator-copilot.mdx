@@ -1,9 +1,10 @@
 ---
-title: "Investigator Copilot (Transcription Use Case)"
+title: "Redesigning AI Transcription for Live Police Interviews"
 company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
 summary: "Redesigning the Speech-to-Text experience of an AI investigation platform, turning an inherited MVP into a workflow built for live interviews — achieving a SUS score of 75."
 type: "Product Design"
-tags: ["Speech-to-Text", "Government Digital Services"]
+tags:
+  ["Government Digital Services", "AI-Assisted Workflows", "Usability Testing"]
 thumbnail: "/projects/investigator-copilot/cover.png"
 thumbnailFit: contain
 protected: true
@@ -68,6 +69,7 @@ Assistant officers simultaneously take interview notes, monitor recording equipm
   src="/projects/investigator-copilot/user-testing-note-taking.png"
   alt="Two sticky notes from a usability testing session reading 'I might capture key observations during the interview and make notes' and 'If I need to take notes & ask back (Note-taking feature will be useful)'"
   caption="Notes taken from user testing session"
+  maxHeight={323}
 />
 
 ### Vendor MVP had usability issues
@@ -78,7 +80,7 @@ During usability testing sessions, I observed users having difficulty marking tr
 
 ### Understanding the existing investigation interview workflow
 
-I worked with the PM to understand the current workflow the users had.
+I worked with the PM to understand and map out the current workflow the users had.
 
 <Screenshot
   src="/projects/investigator-copilot/current-process.png"
@@ -130,8 +132,6 @@ The redesign aimed to address the usability gaps identified through usability te
   alt="Three design objective cards: reduce cognitive load, support live investigations, and keep investigators focused"
   caption=""
 />
-
-I also studied transcription apps, such as Otter, Dovetail, and Transcribe, to identify common design patterns and layouts to learn from what was already out there.
 
 ### Key design decisions
 
@@ -223,8 +223,28 @@ Usability testing revealed that the moving transcripts made it hard for users to
 
 <Screenshot
   src="/projects/investigator-copilot/autoscroll-screen.png"
-  alt="Live transcription screen with autoscroll paused after a manual scroll — a Jump to Latest button appears over the transcript, next to the marked segments panel"
+  alt="Live transcription screen with a marked transcript row highlighted and a Jump to Latest button overlaying the transcript, beside a Marked panel listing bookmarked segments with comment fields"
   caption="Example of a button which appears if autoscroll is disabled. Clicking it returns the user to the current transcription timing and re-enables autoscroll."
+/>
+
+<StatementHeading
+  label="Design decision"
+  number={5}
+  title="Turning AI output into meaningful participant roles"
+/>
+
+The AI could only identify unique voices as Speaker 1, Speaker 2, and Speaker
+3 etc. It couldn't determine whether a speaker was the interviewer, witness, or
+suspect. To bridge this gap, I designed a post-transcription workflow that
+allowed investigators to assign meaningful roles to each speaker. Since speaker
+diarisation wasn't always accurate, I also made it easy to reassign speakers
+through a dropdown during editing, allowing users to correct AI mistakes before
+using the transcript downstream.
+
+<Screenshot
+  src="/projects/investigator-copilot/speaker-assigning-flow.png"
+  alt="Speaker assigning flow — the edit transcript screen with a Speaker dropdown listing Speaker 1, 2 and 3 as unassigned, leading to an Assign Speaker modal where the user selects a role and enters a name for the speaker"
+  caption="Officers can assign a role and name to each detected speaker directly from the transcript"
 />
 
 ## Usability Testing
