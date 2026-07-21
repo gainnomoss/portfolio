@@ -14,9 +14,8 @@ function readProject(slug: string): Project {
   return {
     slug,
     title: fm.title,
-    subtitle: fm.subtitle ?? null,
+    subtitle: fm.subtitle,
     company: fm.company,
-    summary: fm.summary,
     type: fm.type,
     tags: fm.tags ?? [],
     thumbnail: fm.thumbnail ?? null,

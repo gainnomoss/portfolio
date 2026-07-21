@@ -7,9 +7,8 @@ export interface TimelineEntry {
 export interface Project {
   slug: string;
   title: string;
-  subtitle: string | null;
+  subtitle: string;
   company: string;
-  summary: string;
   type: string;
   tags: string[];
   thumbnail: string | null;
@@ -22,9 +21,8 @@ export interface Project {
 
 export interface ProjectFrontmatter {
   title: string;
-  subtitle?: string;
+  subtitle: string;
   company: string;
-  summary: string;
   type: string;
   tags: string[];
   thumbnail?: string;

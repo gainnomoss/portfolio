@@ -37,7 +37,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <h3 className="text-title-lg text-ink">{project.title}</h3>
           <p className="text-body-sm text-muted">{project.company}</p>
         </div>
-        <p className="text-body-sm text-body">{project.summary}</p>
+        <p className="text-body-sm text-body">{project.subtitle}</p>
         {project.protected ? (
           <div className="mt-auto flex flex-wrap gap-2">
             <Tag locked>Password protected</Tag>

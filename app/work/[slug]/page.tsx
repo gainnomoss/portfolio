@@ -24,12 +24,12 @@ export async function generateMetadata({
 
   return {
     title: project.title,
-    description: project.summary,
+    description: project.subtitle,
     robots:
       project.protected || project.comingSoon ? { index: false, follow: false } : undefined,
     openGraph: {
       title: project.title,
-      description: project.summary,
+      description: project.subtitle,
       images: project.thumbnail ? [project.thumbnail] : undefined,
     },
   };
