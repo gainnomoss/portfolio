@@ -43,8 +43,8 @@ export function HeroCopy({ avatarSrc }: { avatarSrc: string }) {
       </h1>
 
       <motion.p className="mt-6 max-w-reading text-body-lg text-body" {...fadeUp(0.1)}>
-        Product Designer creating intuitive experiences through research, interaction design, and
-        thoughtful execution.
+        Product Designer simplifying complex workflows and designing AI-assisted products through
+        research, interaction design, and systems thinking.
       </motion.p>
 
       <motion.div className="mt-8 flex flex-wrap gap-4" {...fadeUp(0.2)}>
