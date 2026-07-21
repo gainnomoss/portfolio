@@ -21,7 +21,7 @@ export default function AboutPage() {
           <div className="mt-8 max-w-reading">
             <MDXRemote source={about.content} components={mdxComponents} />
           </div>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-12 flex flex-wrap gap-4">
             <Button href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               Download resume
             </Button>
