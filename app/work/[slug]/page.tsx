@@ -24,12 +24,12 @@ export async function generateMetadata({
 
   return {
     title: project.title,
-    description: project.summary,
+    description: project.subtitle,
     robots:
       project.protected || project.comingSoon ? { index: false, follow: false } : undefined,
     openGraph: {
       title: project.title,
-      description: project.summary,
+      description: project.subtitle,
       images: project.thumbnail ? [project.thumbnail] : undefined,
     },
   };
@@ -53,6 +53,11 @@ export default async function CaseStudyPage({
       <div className="mx-auto max-w-content px-6 py-32 text-center">
         <p className="font-mono text-label text-muted">Coming soon</p>
         <h1 className="mt-4 text-display-lg text-ink">{project.title}</h1>
+        {project.subtitle && (
+          <p className="mx-auto mt-3 max-w-reading text-body-lg text-body">
+            {project.subtitle}
+          </p>
+        )}
         <p className="mx-auto mt-4 max-w-reading text-body-md text-body">
           This case study is being written up. Check back soon.
         </p>
@@ -76,6 +81,9 @@ export default async function CaseStudyPage({
         <div className="mx-auto max-w-content px-6 py-16 sm:py-24">
           <p className="font-mono text-label text-muted">{project.company}</p>
           <h1 className="mt-4 max-w-reading text-display-lg text-ink">{project.title}</h1>
+          {project.subtitle && (
+            <p className="mt-3 max-w-reading text-body-lg text-body">{project.subtitle}</p>
+          )}
           <div className="mt-6 flex flex-wrap gap-2">
             {project.tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>

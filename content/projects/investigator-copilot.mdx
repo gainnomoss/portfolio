@@ -1,7 +1,7 @@
 ---
-title: "Redesigning AI Transcription for Live Police Interviews"
+title: "Investigator Copilot (Transcription)"
+subtitle: "Redesigning the Speech-to-Text component of an AI investigation platform to cut transcript wait times from days to minutes"
 company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
-summary: "Redesigning the Speech-to-Text experience of an AI investigation platform, turning an inherited MVP into a workflow built for live interviews — achieving a SUS score of 75."
 type: "Product Design"
 tags:
   ["Government Digital Services", "AI-Assisted Workflows", "Usability Testing"]
@@ -17,7 +17,7 @@ order: 1
 Investigator Copilot is an AI-powered platform built for the Singapore Police Force. I led the redesign of its Speech-to-Text component after inheriting an MVP from an external vendor, transforming it into a workflow that better supports live investigations through clearer interactions, real-time note-taking, and AI-generated summaries.
 
 <Meta
-  role="UIUX Design, User Research"
+  role="Product designer"
   collaborators="1 Product Manager, 1 Scrum Master, 2 Engineers"
   date="Nov 2024 – Present"
 />
@@ -152,7 +152,7 @@ To make the hover and marked states more visually distinct, I explored a few opt
 <Screenshot
   src="/projects/investigator-copilot/hover-marked-exploration-1.png"
   alt="Iteration 1 of the default, hover, and marked states — a red speaker avatar is added and the text highlight treatments are kept from the original design"
-  caption="Users feedbacked about wanting more visual differentiation between different speakers, hence I added an avatar componenent for each speaker, and defined the rules for how they would appear with the developers. Given that there are only a maximum of 5 speakers, we hardcoded each speaker to a certain colour so that they would all have sufficient colour contrast."
+  caption="Users gave feedback about wanting more visual differentiation between different speakers, hence I added an avatar component for each speaker, and defined the rules for how they would appear with the developers. Given that there are only a maximum of 5 speakers, we hardcoded each speaker to a certain colour so that they would all have sufficient colour contrast."
 />
 
 <Screenshot
@@ -190,7 +190,7 @@ Investigators need to reference transcripts through the course of the interview,
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-modal-exploration-2.png"
   alt="Iteration 2 of the marked segments side panel — marked segments appear under a Marked tab as cards with an inline comment field beside the live transcript"
-  caption="Through further discussion with users, our team discovered that notes would be a helpful feature for officers who need to work on a case with other officers. The marked panel was refined to share the side panel with the summary generated, viewed by clicking on different tabs on the side panel."
+  caption="Through further discussion with users, our team discovered that notes would be a helpful feature for officers who need to work on a case with other officers. The marked panel was refined to share the side panel with the AI-generated summary, accessible by switching between tabs."
 />
 
 <StatementHeading
@@ -199,7 +199,7 @@ Investigators need to reference transcripts through the course of the interview,
   title="Supporting live note-taking"
 />
 
-To allow officers to record key observations noted during interviews, a note-taking feature was implemented alongside marked transcript text. This allowed officers to remain on the platform throughout the course of the interview without having to switch between manual note-taking and transcription review. I designed a note-taking features for each marked segment, so that officers can add, edit, and delete any notes they had through the course of the interivew.
+To allow officers to record key observations noted during interviews, a note-taking feature was implemented alongside marked transcript text. This allowed officers to remain on the platform throughout the course of the interview without having to switch between manual note-taking and transcription review. I designed a note-taking feature for each marked segment, so that officers can add, edit, and delete any notes they had through the course of the interview.
 
 <Screenshot
   src="/projects/investigator-copilot/marked-segments-card-states.png"
@@ -213,7 +213,7 @@ To allow officers to record key observations noted during interviews, a note-tak
   title="Define behaviour for autoscroll"
 />
 
-Usability testing revealed that the moving transcripts made it hard for users to interact with a transcription row. Hence, I added a behaviour for autoscrolling transcripts to be turned off if the users scrolls. A button to allow the user to track back to the current transcription timing will appear, which will re-enable autoscroll behaviour during recording and playback.
+Usability testing revealed that the moving transcripts made it hard for users to interact with a transcription row. Hence, I added a behaviour for autoscrolling transcripts to be turned off if the user scrolls. A button to allow the user to jump back to the current transcription timing will appear, which will re-enable autoscroll behaviour during recording and playback.
 
 <Screenshot
   src="/projects/investigator-copilot/autoscroll-logic.png"

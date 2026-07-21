@@ -1,7 +1,7 @@
 ---
-title: "AI-Assisted Police Report Lodging"
+title: "Report Lodging Copilot"
+subtitle: "Redesigning the kiosk report lodging form into a chatbot that asks case-specific questions, reducing back-and-forth between citizens and officers"
 company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
-summary: "An AI chatbot that guides citizens through police report lodging conversationally, cutting submission time from ~15 minutes to ~4."
 type: "Product Design, UX Research"
 tags: ["AI Chatbot", "Government Digital Services"]
 thumbnail: "/projects/ai-assisted-police-report-lodging/cover.png"
@@ -13,10 +13,10 @@ order: 2
 
 SPF's existing online report lodging system required citizens to fill in a standardised form regardless of the type of incident they were reporting. While the system captured basic information, it provided no guidance on what level of detail was needed, resulting in reports that were frequently incomplete or ambiguous. Investigation officers routinely had to follow up with complainants to clarify missing information, reducing their capacity for higher-priority work.
 
-I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatbot that guides citizens through the report lodging process conversationally, using a curated question set adapted from existing SPF investigation workflows. R-COP surfaces case type-specific follow-up questions based on what the citizen has described, prompting for the details officers need for their case investigation, and reducing back and forth between officers and citizens.
+I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatbot that guides citizens through the report lodging process conversationally, using a curated question set adapted from existing SPF investigation workflows. R-COP surfaces case-type-specific follow-up questions based on what the citizen has described, prompting for the details officers need for their case investigation, and reducing back and forth between officers and citizens.
 
 <Meta
-  role="UIUX Design, User Research"
+  role="Product Designer"
   collaborators="1 Product Manager, 1 Scrum Master, 6 Engineers (incl. DevOps, AI Engineers)"
   date="Nov 2024 – Jan 2026"
 />
@@ -39,7 +39,7 @@ I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatb
       src: "/projects/ai-assisted-police-report-lodging/after-case-specific.png",
       mobileSrc:
         "/projects/ai-assisted-police-report-lodging/after-case-specific-mobile.png",
-      alt: "Case type specific questions",
+      alt: "Case-type-specific questions",
     },
   ]}
 />
@@ -77,7 +77,7 @@ I was brought in to design R-COP (Report Lodging Co-Pilot): an AI-assisted chatb
       imageAlt:
         "Illustration of a member of the public lodging a police report online",
       title: "For members of the public lodging reports",
-      body: "Citizens lodging reports online often are not aware of the case specific information police officers require for investigation. This results in a lot of back and forth between the complainant and the police officer.",
+      body: "Citizens lodging reports online are often not aware of the case-specific information police officers require for investigation. This results in a lot of back and forth between the complainant and the police officer.",
     },
     {
       image: "/projects/ai-assisted-police-report-lodging/problem-officers.png",
@@ -161,7 +161,7 @@ Mapping the end-to-end flow revealed a six-stage journey from kiosk landing to s
   caption={null}
 />
 
-The critical gap was concentrated in Sections 4 and 5: despite the structured flow, the free-text "What happened?" field consistently produced reports that were either too vague or missing case type-specific details that investigation officers (IOs) needed to assess and process the case.
+The critical gap was concentrated in Sections 4 and 5: despite the structured flow, the free-text "What happened?" field consistently produced reports that were either too vague or missing case-type-specific details that investigation officers (IOs) needed to assess and process the case.
 
 ## Design
 
@@ -230,8 +230,7 @@ Some questions required open-ended responses (such as incident descriptions), wh
   caption={null}
 />
 
-Checkboxes were used for acknowledgements and questions allowing multiple selections. Radio buttons were used for mutually exclusive options. Free-text input supported open-ended incident descriptions, dropdowns were used for choosing an option for a response,
-while structured form fields captured precise data like dates, times, and item values.
+Checkboxes were used for acknowledgements and questions allowing multiple selections. Radio buttons were used for mutually exclusive options. Free-text input supported open-ended incident descriptions, dropdowns were used for selecting a single option from a list, and structured form fields captured precise data like dates, times, and item values.
 
 <ScreenshotPair
   items={[
@@ -264,34 +263,22 @@ The sessions also uncovered several usability issues and opportunities for refin
 
 ## Outcome
 
-R-COP was launched on 9 kiosks across 7 divisional HQ Electronic Police Centres in Oct 2025, with a roadmap to expand to 50% of all kiosks in Singapore by April 2026 and full nationwide rollout by end of 2026. Following deployment, users consistently rated the experience above 4/5 for overall satisfaction.
+R-COP was launched on 9 kiosks across 7 divisional HQ Electronic Police Centres in Oct 2025, with a roadmap to expand to 50% of all kiosks in Singapore by April 2026 and full nationwide rollout by end of 2026. Following deployment, users consistently rated the experience above 4/5 for overall satisfaction, based on feedback collected at the end of each report lodged.
+
+Post-launch, the team's focus shifted to improving the AI model's case classification accuracy. This helps sharpen how well an incident description maps to the right question set, since accurate classification of case types ensures the right question sets are asked. That work was ongoing when I left the project.
 
 ## Reflections
 
 <StatementHeading
-  label="Reflection"
+  label="Reflections"
   number={1}
-  title="Designing with AI means designing human oversight"
+  title="Designing for uncertainty instead of certainty"
 />
 
-This project changed how I think about AI products. The goal isn't to replace human judgment, but to help users work more efficiently while keeping them firmly in control of the outcome.
+Working on R-COP was my first experience designing for an output I couldn't
+fully predict or control. Unlike traditional forms where users populate
+predefined fields, the incident report was generated by an LLM. The same
+conversation could produce slightly different summaries, and there was always a
+possibility that the model might misstate or omit details.
 
-Instead of asking, "How can AI do this task?", I now find myself asking, "How can the interface help users understand, verify, and confidently take ownership of AI-generated content?" That shift in perspective has influenced how I approach every AI-assisted experience I design.
-
-<StatementHeading
-  label="Reflection"
-  number={2}
-  title="Making AI output feel transparent, not opaque"
-/>
-
-Traditional UX often focuses on preventing user errors, but AI introduces an entirely different set of failure modes — hallucinated content, incorrect interpretations, redundant follow-up questions, and responses that don't match a user's intent.
-
-Rather than treating these as edge cases, I learned to design for them from the outset. Features such as highlighting AI-generated content, providing side-by-side comparisons during editing, and allowing users to restore the original generated content were trust mechanisms that helped users stay in control of the final report.
-
-<StatementHeading
-  label="Reflection"
-  number={3}
-  title="Trust is designed, not assumed"
-/>
-
-Throughout the project, I worked to balance stakeholder requirements for legal accountability (such as declarations and acknowledgement checkboxes) with a user experience that encouraged meaningful review rather than checkbox compliance. This reinforced my belief that trust is built through thoughtful interaction design, not simply through warnings or disclaimers.
+This changed how I approached the design. Rather than treating AI errors as edge cases, I had to assume uncertainty was an inherent part of the experience and make review and editing a core part of the workflow. It also introduced new design questions that don't exist in traditional software, such as how users should verify AI-generated content, when confidence or uncertainty should be surfaced, and how to help users quickly spot potential hallucinations. It reinforced that designing AI products isn't just about the generation itself—it's about helping users build enough trust to confidently use and validate the output.
