@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Hotjar } from "@/components/analytics/hotjar";
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { BackToTop } from "@/components/ui/back-to-top";
@@ -26,6 +28,10 @@ export const metadata: Metadata = {
     "Product Designer based in Singapore, focused on end-to-end journeys, accessibility, and clarity in complex systems.",
 };
 
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
+const hotjarSiteId = process.env.NEXT_PUBLIC_HOTJAR_ID;
+const hotjarVersion = process.env.NEXT_PUBLIC_HOTJAR_SV;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -47,6 +53,10 @@ export default function RootLayout({
           <Footer />
           <BackToTop />
         </ThemeProvider>
+        {gaId && <GoogleAnalytics gaId={gaId} />}
+        {hotjarSiteId && hotjarVersion && (
+          <Hotjar siteId={hotjarSiteId} version={hotjarVersion} />
+        )}
       </body>
     </html>
   );
