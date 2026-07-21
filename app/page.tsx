@@ -51,12 +51,14 @@ export default function Home() {
               ) : null}
               <div>
                 <p className="max-w-reading text-body-lg text-body">
-                  Product Designer based in Singapore, turning complex workflows into experiences
-                  that feel intuitive and approachable. My recent focus has been AI-powered
-                  products for the Singapore Police Force — designing for the uncertainty AI
-                  introduces, so users can review, verify, and stay in control. Beyond client
-                  work, I build side projects like GroceryPal to explore AI, visual design, and
-                  front-end development.
+                  Whether I&apos;m designing AI-powered tools for investigators or building
+                  personal projects from scratch, I&apos;m motivated by understanding users,
+                  solving meaningful problems, and crafting experiences that feel intuitive and
+                  reliable.
+                </p>
+                <p className="mt-4 max-w-reading text-body-lg text-body">
+                  Outside of design, you&apos;ll usually find me at aerial classes, hiking,
+                  reading, or working on my next side project.
                 </p>
                 <Button href="/about" variant="secondary" className="mt-6">
                   More about me
