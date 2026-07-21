@@ -47,8 +47,12 @@ export function getFeaturedProjects(): Project[] {
   return getAllProjects().filter((project) => !project.comingSoon);
 }
 
-export function getAbout(): { photo: string; content: string } {
+export function getAbout(): { photo: string; photoDark: string; content: string } {
   const raw = fs.readFileSync(ABOUT_PATH, "utf8");
   const { data, content } = matter(raw);
-  return { photo: (data.photo as string) ?? "", content };
+  return {
+    photo: (data.photo as string) ?? "",
+    photoDark: (data.photoDark as string) ?? "",
+    content,
+  };
 }

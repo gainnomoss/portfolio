@@ -41,13 +41,24 @@ export default function Home() {
           <div>
             <div className="flex flex-col gap-8 sm:flex-row sm:items-start">
               {about.photo ? (
-                <Image
-                  src={about.photo}
-                  alt="Ke Er Zhang"
-                  width={160}
-                  height={163}
-                  className="h-40 w-40 shrink-0 rounded-lg object-cover"
-                />
+                <>
+                  <Image
+                    src={about.photo}
+                    alt="Ke Er Zhang"
+                    width={160}
+                    height={163}
+                    className="h-40 w-40 shrink-0 rounded-lg object-cover dark:hidden"
+                  />
+                  {about.photoDark ? (
+                    <Image
+                      src={about.photoDark}
+                      alt="Ke Er Zhang"
+                      width={160}
+                      height={163}
+                      className="hidden h-40 w-40 shrink-0 rounded-lg object-cover dark:block"
+                    />
+                  ) : null}
+                </>
               ) : null}
               <div>
                 <p className="max-w-reading text-body-lg text-body">
