@@ -37,9 +37,19 @@ export default function AboutPage() {
               alt="Ke Er Zhang"
               width={640}
               height={651}
-              className="h-auto w-full object-cover"
+              className="h-auto w-full object-cover dark:hidden"
               priority
             />
+            {about.photoDark ? (
+              <Image
+                src={about.photoDark}
+                alt="Ke Er Zhang"
+                width={640}
+                height={651}
+                className="hidden h-auto w-full object-cover dark:block"
+                priority
+              />
+            ) : null}
           </div>
         ) : null}
       </div>
