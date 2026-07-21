@@ -1,4 +1,9 @@
 export const imageDimensions: Record<string, { width: number; height: number }> = {
+  "/projects/grocerypal/survey-results.png": { width: 1292, height: 636 },
+  "/projects/grocerypal/causes-of-food-waste.png": { width: 1070, height: 398 },
+  "/projects/grocerypal/bottom-sheet.png": { width: 1099, height: 1132 },
+  "/projects/grocerypal/import-with-ai.png": { width: 913, height: 1124 },
+  "/projects/grocerypal/delete-item.png": { width: 913, height: 1124 },
   "/projects/investigator-copilot/transcription-row-states.png": { width: 1220, height: 1271 },
   "/projects/investigator-copilot/transcription-row-anatomy.png": { width: 1275, height: 1328 },
   "/projects/investigator-copilot/mvp-before-mark.png": { width: 2984, height: 768 },
@@ -55,6 +60,6 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/projects/ai-assisted-police-report-lodging/ux-heuristics-1.png": { width: 1172, height: 659 },
   "/projects/ai-assisted-police-report-lodging/ux-heuristics-2.png": { width: 1473, height: 582 },
   "/projects/ai-assisted-police-report-lodging/ux-heuristics-3.png": { width: 1177, height: 544 },
-  "/projects/grocerypal/home-screen-mockup.png": { width: 848, height: 1756 },
-  "/projects/grocerypal/item-card-component-states.png": { width: 913, height: 1362 },
+  "/projects/grocerypal/design-principles.png": { width: 1070, height: 535 },
+  "/projects/grocerypal/hero-image.png": { width: 1804, height: 1118 },
 };

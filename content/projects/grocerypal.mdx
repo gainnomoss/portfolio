@@ -11,7 +11,8 @@ order: 3
 
 ## Overview
 
-GroceryPal is a mobile app that helps individual shoppers track their grocery buys by expiry date, so they waste less food. I regularly forgot what groceries I already had, overbought items, and discovered expired food too late — existing pantry apps either created too much administrative work or hid key features behind subscriptions. I wanted to build an app I could actually use myself.
+GroceryPal is a mobile app that helps individual shoppers track their grocery buys by expiry date, so they waste less food. Using AI-powered receipt scanning and food recognition, users can maintain an inventory record, track expiry dates, and make better decisions when grocery shopping.
+I first worked on this app during the Build For Good Hackathon in 2024 with my team, and decided to revisit the app as a personal project in 2026.
 
 <Meta
   role="Sole Product Designer"
@@ -19,118 +20,202 @@ GroceryPal is a mobile app that helps individual shoppers track their grocery bu
   date="Early–mid July 2026 (~ 2 weeks)"
 />
 
+<Screenshot
+  src="/projects/grocerypal/hero-image.png"
+  alt="GroceryPal home screen showing stock grouped into Smell check, Use soon, and Good to go sections"
+  caption=""
+/>
+
+<HeroVideo
+  src="/projects/grocerypal/generate-with-ai.mp4"
+  width={640}
+  height={1308}
+  qrUrl="https://grocery-management-app-rose.vercel.app/"
+/>
+
+## Problem
+
+Based on a survey conducted with 128 respondents, food waste is a common problem in Singapore, with a few common reasons.
+
+<Screenshot
+  src="/projects/grocerypal/causes-of-food-waste.png"
+  alt="Chart of the most common causes of food waste reported by respondents"
+  caption={
+    <>
+      Source:{" "}
+      <a
+        href="https://docs.google.com/spreadsheets/d/1ghD7h-9pl2Y8PHYTO-YOnN9ykpXDwVxA1yk4SvOW6Hs/edit?gid=1131103552#gid=1131103552"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Survey results
+      </a>{" "}
+    </>
+  }
+/>
+
+## Research Insights
+
+Two findings shaped this project:
+
+<StatementHeading
+  label="Insight"
+  number={1}
+  title="Users find it tedious to add or update their inventory"
+/>
+
+Respondents were more interested in using photos than receipts to add new photos. They wanted to be able to add or update inventory with as little friction as possible, preferring to be able to "no typing just scan".
+
+<StatementHeading
+  label="Insight"
+  number={2}
+  title="Items that are out of sight, are out of mind"
+/>
+
+Across dozens of survey responses, "sauces," "condiments," "frozen food," and "dried goods" are the most repeated answer to what's left in the fridge for a long time. Respondents were more likely to forget about items that were not visible, kept in long-term storage areas that were out of sight.
+
+## Design Principles
+
+Three principles guided the design:
+
+<Screenshot
+  src="/projects/grocerypal/design-principles.png"
+  alt="Three design principles: minimize friction for stock upload or deletion, maximize visibility into current stock, and maximize joy"
+  caption=""
+/>
+
+## Design
+
+### Key design decisions
+
+<StatementHeading
+  label="Design Decision"
+  number={1}
+  title="Easy upload and delete"
+/>
+
+Research showed people wanted "no typing, just scan", and were more drawn to snapping photos of items than to receipts. I designed the primary add item flow around photo upload, with receipt scanning as a secondary path.
+
+Deleting of items from the inventory is also designed to be completed easily, through a swiping gesture most users would be already familiar with.
+
 <ScreenshotPair
   items={[
     {
-      src: "/projects/grocerypal/home-screen-mockup.png",
-      alt: "GroceryPal home screen showing stock grouped into Smell check, Use soon, and Good to go sections",
+      src: "/projects/grocerypal/import-with-ai.png",
+      alt: "Adding an item to inventory by photo upload, processed with AI",
       caption: "",
     },
     {
-      src: "/projects/grocerypal/item-card-component-states.png",
-      alt: "Item card component in its default, deleting, review, disabled, and editing states",
+      src: "/projects/grocerypal/delete-item.png",
+      alt: "Deleting an item from the inventory with a swipe gesture",
       caption: "",
     },
   ]}
 />
 
-## Opportunity
-
-I looked at existing grocery management apps — KitchenPal, Pantry Pal, Stock Pal — and found they didn't meet my needs. Some had UIs that weren't clean or minimal and required a learning curve; some lacked AI receipt-scanning or gated it behind a paywall. Having done preliminary research into this problem space at a Build For Good hackathon in 2024, I knew it was a rich problem worth designing for properly, and wanted to ship an MVP quickly — which is where Claude Code came in.
-
-**Project goals:** ship a working, interactive MVP; explore an AI-assisted design-and-implementation workflow.
-
-**User goals:** add or remove items with minimal friction; make the administrative work of managing food inventory enjoyable; make calm, informed decisions about groceries.
-
-## Research Insights
-
-Drawing on prior research with 25 participants from a previous iteration of a grocery app (KiasuKitchen), three findings shaped this project:
-
-- **Manual logging/editing is the top friction point and adoption risk.** Participants found scanning receipts and updating the app constantly tiring.
-- **Users don't know or want to type exact expiry dates.** They're unsure of exact dates and want the app to auto-populate them.
-- **Cooked food and leftovers are a bigger waste source than groceries** for several households.
-
-## Design Principles
-
-Three principles guided the design: minimize friction for stock upload or deletion (the single biggest reason users would abandon the app), maximize visibility into current stock (not seeing what was bought is a major cause of forgetting and wasting it), and maximize joy (a tedious task done well can still feel satisfying).
-
-**Visual direction:** muted, calm tones with pops of colour at key moments, to feel organised and enjoyable rather than anxiety-inducing. Green as the primary brand colour signals the freshness regular stock management delivers. WCAG 2 contrast throughout keeps the interface accessible as well as clean.
-
-**Motion:** calm, purposeful, and mostly invisible. An editable card that expands in place and scrolls to the top of the screen, for example, anchors users in their current flow without losing context of where they were in their list.
-
-## AI-Assisted Design Workflow
-
-### Rapid concept generation
-
-I used Claude to produce first-draft designs for the flows I wanted to tackle first — the home screen and adding-items flow — which gave me a working prototype to interact with on my device almost immediately and start thinking concretely about the interactions. Once a flow was validated in code, I moved back into Figma to refine colour, spacing, and hierarchy; matching design tokens between Figma and code wasn't a priority at this stage.
-
-<Screenshot
-  src="/projects/grocerypal/home-first-pass.png"
-  alt="First-pass home screen exploration"
-/>
-<Screenshot
-  src="/projects/grocerypal/home-v2.jpg"
-  alt="Second iteration of the home screen"
+<StatementHeading
+  label="Design Decision"
+  number={2}
+  title="Grouping foods by larger bands of expiry dates"
 />
 
-### Interaction refinement
-
-Working with AI-built prototypes let me feel out the editing flow directly. I decided to switch from a bottom sheet to an in-place editing card, so users stay in context of how far along their item list they are, and refined the motion until it felt smooth and tactile.
-
-<Screenshot
-  src="/projects/grocerypal/edit-item-iteration-1.jpg"
-  alt="Early edit-item interaction"
-/>
-<Screenshot
-  src="/projects/grocerypal/editing-iteration-2.jpg"
-  alt="Refined in-place editing card"
-/>
-
-### Visual polish
-
-Once the flow was refined, I asked Claude Code for three visual-direction variations and weighed the trade-offs of each before returning to Figma to finalize the visual identity.
+Grouping by urgency of expiry dates allows users to see food items that are expiring soon at a glance. Research insights revealed that visibility was important for foods to not be forgotten, which was a primary reason for food wastage.
+However, as most users preferred not to input expiry dates manually, and expiry dates generated by AI tends to vary in accuracy, a larger band for expiry dates would more accurately reflect food items that need attention.
 
 <Screenshot
-  src="/projects/grocerypal/visual-exploration-1.png"
-  alt="Visual direction exploring calm colour tones"
-/>
-<Screenshot
-  src="/projects/grocerypal/visual-exploration-2.png"
-  alt="Visual direction exploring playful typography"
-/>
-<Screenshot
-  src="/projects/grocerypal/visual-exploration-3.png"
-  alt="Visual direction exploring a restrained colour palette"
+  src="/projects/grocerypal/expiry-dates-buckets.png"
+  alt="Home screen with food items grouped into broad expiry bands instead of exact countdown dates"
+  caption=""
 />
 
-I liked the calm colour tones in the first direction, but didn't find its pie chart particularly helpful for understanding inventory at a glance. The second direction's playful typography gave the app a fresh feel. The third's more restrained palette ultimately informed the final design.
+<StatementHeading
+  label="Design Decision"
+  number={3}
+  title="Indicating expiry in more subtle ways"
+/>
 
-### Development implementation
-
-Claude Code produced reasonably well-matched designs, though I still had to fix small bugs one by one and check that design updates propagated consistently throughout the app. Around this point I started building out `design.md`, adding rules to the document as I iterated with Claude Code — once it was in place, generated designs landed much closer to intent, though still needed adjustment.
+I decided to remove the urgency chip after iterations, as the ‘Smell check’ category was sufficient to identify food items that were expiring/expired. As the dates of expiry were AI generated, and not necessarily accurate, the chips also added a false sense of urgency.
 
 <Screenshot
-  src="/projects/grocerypal/home-final.jpg"
-  alt="Final home screen design"
-  priority
+  src="/projects/grocerypal/urgency-chips-interations.png"
+  alt="Iterations of the urgency chip design before it was removed from item cards"
+  caption=""
 />
+
+<StatementHeading
+  label="Design Decision"
+  number={4}
+  title="In-place editing card instead of a bottom sheet"
+/>
+
+Editing in a bottom sheet disrupts a users' sense of where they were in a long item list while reviewing scanned items. Switching to an in-place expanding card keeps people anchored to their scroll position, so editing feels like a continuation of scanning the list. An animated expansion, and scrolling of the card to the top of the screen helps make the transition feel more smooth as well.
+
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/grocerypal/bottom-sheet.png",
+      alt: "Previous pattern: editing an item in a bottom sheet",
+      caption: "",
+    },
+    {
+      src: "/projects/grocerypal/in-place-editing.mp4",
+      alt: "In-place editing card expanding within the item list",
+      type: "video",
+      width: 1100,
+      height: 1132,
+      caption: "",
+    },
+  ]}
+/>
+
+### Working with AI as a design tool
+
+I found working with Claude Code to be particularly useful at certain parts of the design process.
+
+Early on, I used Claude to generate first-draft screens for the home and add-item flows. The aim was not to get polished designs, but to get a working prototype on my phone within hours instead of days, so I could have something tangible to react and iterate upon.
+
 <Screenshot
-  src="/projects/grocerypal/item-detail-final.jpg"
-  alt="Final single-item detail page"
+  src="/projects/grocerypal/ai-tool-initial.png"
+  alt="Home screen progressing from a wireframe to an AI-generated first draft to a refined iteration"
+  caption=""
 />
 
-## Challenges
+Mid-way, once flows were validated, I asked Claude Design for more visual directions I could explore, to test colour and type choice against each other, before I honed in on one direction I preferred.
 
-**Product challenges:** balancing how much to highlight elements with brighter colours or chips was a recurring tension — too much felt cluttered, too little defeated the point. I removed expiry-notification chips from every card and reserved them for items needing immediate attention only. I also had to decide how much control to give users over AI-generated values (item name, category, quantity, expiry date). A date picker would have allowed an exact expiry date, but research and personal experience both suggested people rarely know one — so I used a stepper for both expiry dates and quantities instead.
+<Screenshot
+  src="/projects/grocerypal/ai-generated-visuals.png"
+  alt="Three AI-generated visual directions for the review-items screen: an editorial terracotta style, a calm glassy style, and a playful coral-and-leaf style"
+  caption=""
+/>
 
-**AI workflow challenges:** I had to learn better prompting techniques to manage tokens — choosing the right model, starting new sessions for new tasks, and compacting sessions. Wanting to get Claude Code to generate designs consistent with my existing work is what led me to learn about `design.md` and how to structure it properly.
+<Screenshot
+  src="/projects/grocerypal/ai-tool-mid.png"
+  alt="Successive iterations refining how the item list groups food into smell-check, use-soon, and good-to-go categories"
+  caption=""
+/>
 
-## Final Product
+Later, as the number of screens grew, I built out a design.md as a spec which documents spacing, colour, and component rules. The intent is to help future generated screens be aligned with design decisions made thus far.
+
+<Screenshot
+  src="/projects/grocerypal/design-md-screenshot.png"
+  alt="DESIGN.md file documenting colour tokens and design rules used to keep AI-generated screens consistent"
+  caption=""
+/>
+
+## Outcome
 
 GroceryPal is a working MVP deployed on Vercel, connected to the Claude API, able to scan receipts and log them into a grocery management system — designed and shipped in one week. Current features include receipt scanning, AI categorisation, expiry tracking, editing, and inventory management, with a backlog of further features awaiting development.
 
 ## Reflections
 
-**As a product designer:** working directly in code with AI changed how I evaluate my own decisions. The trade-off between build complexity and "nice to have" features became tangible because I had to manage its cost directly — which made me more honest about which ideas were actually worth the complexity, and more focused on refining the parts of the app that mattered most.
+<StatementHeading label="Reflections" number={1} title="Prioritising the MVP" />
 
-**Working with AI tools:** incorporating AI at specific points in my design flow — exploring initial directions quickly, drafting a first pass of a screen or flow for further refinement, and prototyping — is a fast way past the blank canvas and into iteration, letting designers take over once the shape of an idea is ready to be refined into something dev-ready.
+As this was a personal project, I had complete ownership over deciding what to design and build first. It was refreshing to work without competing stakeholder priorities and instead focus on defining the smallest version of the product that could deliver meaningful value. Rather than trying to solve every grocery management problem at once, I chose to prioritise the core experience of helping individual shoppers maintain an accurate inventory with minimal effort. Building the MVP reinforced the importance of validating the simplest solution first before expanding into more ambitious features, such as shared household inventories and recipe recommendations.
+
+<StatementHeading
+  label="Reflections"
+  number={2}
+  title="Working with AI as a Design Partner"
+/>
+
+This project also changed the way I think about AI in the design process. While AI can quickly generate ideas, flows, and interface concepts, it doesn't replace the judgement required to create a thoughtful user experience. I found the greatest value in treating AI as a design partner rather than a designer—using it to accelerate exploration, overcome blank-page moments, and produce first drafts that I could refine. The responsibility of evaluating trade-offs, simplifying interactions, and deciding what ultimately serves the user still rests with the designer. AI made me faster, but it didn't make the design decisions for me.
