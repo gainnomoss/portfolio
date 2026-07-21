@@ -33,7 +33,7 @@ export function Footer() {
           ))}
         </ul>
         <p className="font-mono text-mono-detail text-muted">
-          Designed and built by Ke Er Zhang · Next.js, Tailwind CSS · {new Date().getFullYear()}
+          Designed and built by Zhang Ke Er
         </p>
       </div>
     </footer>
