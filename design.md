@@ -153,6 +153,8 @@ components:
     backgroundColor: "{colors.canvas-subtle}"
     rounded: "{rounded.lg}"
     padding: "{spacing.lg}"
+    titleTypography: "{typography.title-xl}"
+    hoverMotion: "card lifts (-translate-y-1.5) while the thumbnail scales (1.05), both {motion.duration-base} {motion.easing-standard}"
   principle-card:
     backgroundColor: "{colors.canvas}"
     border: "1px solid {colors.accent-weak}"
@@ -275,7 +277,8 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 | `{typography.display-lg}` | 36–44px (clamp) | 600 | 1.1 | Page titles (case study, About, Work) |
 | `{typography.display-md}` | 31px | 600 | 1 | Case-study section headings ("Overview", "The Problem", "Design Process"), rendered in `{colors.body}` with +1% tracking |
 | `{typography.display-sm}` | 20px | 500 | 1.3 | Case-study subsection headings, always sentence case ("Design principles", "Key design decisions"), rendered in `{colors.body}` with +1% tracking |
-| `{typography.title-lg}` | 22px | 500 | 1.3 | Project-card titles, subsection headers |
+| `{typography.title-xl}` | 28px | 600 | 1.2 | Project-card titles only — sits a step above title-lg so the project name is the first thing read in the card |
+| `{typography.title-lg}` | 22px | 500 | 1.3 | Subsection headers, timeline entry headers, password-gate heading |
 | `{typography.title-md}` | 18px | 500 | 1.4 | Timeline entry titles, button label size |
 | `{typography.body-lg}` | 18px | 400 | 1.6 | Case-study lead paragraphs |
 | `{typography.body-md}` | 16px | 400 | 1.65 | Standard body copy |
@@ -314,7 +317,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`button-secondary`** — Transparent fill, `{colors.border-strong}` outline, `{colors.ink}` text, same shape as primary. Pairs with primary the way the current site's buttons already do.
 
-**`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, contains a framed screenshot (see below), title in `{typography.title-lg}`, company/type in `{typography.body-sm}` muted, tags as `{component.tag}` row. A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern and disables the click-through.
+**`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, contains a framed screenshot (see below), title in `{typography.title-xl}` so it reads first, company/type in `{typography.body-sm}` muted, tags as `{component.tag}` row. On hover the whole card lifts (`-translate-y-1.5`) while the thumbnail scales up slightly (`scale-105`) — both on `{motion.duration-base}` / `{motion.easing-standard}`, no shadow added (stays inside the system's one elevation step). A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern, disables the click-through, and skips the hover motion entirely. Thumbnail source images should be high enough resolution, and close enough in aspect ratio to the card's `aspect-[4/3]` frame, that neither `cover` nor `contain` fit crops out meaningful UI or forces visible upscaling — prefer a wide/landscape source (a composited hero shot, a browser screenshot) over a raw tall mobile-app capture.
 
 **Case-study screenshot** — Product/UI images and video embeds sit flat on `{colors.canvas}` with `{rounded.md}` corners — no border, no shadow. This is a site-wide rule for every media embed, not a per-case-study choice. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge and spanning the image's full width. This caption-matches-media-width rule applies to every captioned embed (single screenshots, pairs, videos).
 

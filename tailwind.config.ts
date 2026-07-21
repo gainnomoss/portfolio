@@ -31,6 +31,7 @@ const config: Config = {
         "display-lg": ["clamp(2.25rem, 4.5vw, 2.75rem)", { lineHeight: "1.1", letterSpacing: "-0.01em", fontWeight: "600" }],
         "display-md": ["1.9375rem", { lineHeight: "1", letterSpacing: "0.01em", fontWeight: "600" }],
         "display-sm": ["1.25rem", { lineHeight: "1.3", letterSpacing: "0.01em", fontWeight: "500" }],
+        "title-xl": ["1.75rem", { lineHeight: "1.2", letterSpacing: "-0.01em", fontWeight: "600" }],
         "title-lg": ["1.375rem", { lineHeight: "1.3", fontWeight: "500" }],
         "title-md": ["1.125rem", { lineHeight: "1.4", fontWeight: "500" }],
         "body-lg": ["1.125rem", { lineHeight: "1.6", fontWeight: "400" }],

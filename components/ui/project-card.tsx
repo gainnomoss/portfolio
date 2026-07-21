@@ -8,20 +8,22 @@ export function ProjectCard({ project }: { project: Project }) {
   const content = (
     <div
       className={clsx(
-        "group flex h-full flex-col overflow-hidden rounded-lg bg-canvas-subtle transition-transform duration-base",
-        !project.comingSoon && "hover:-translate-y-1"
+        "group flex h-full flex-col overflow-hidden rounded-lg bg-canvas-subtle transition-transform duration-base ease-standard",
+        !project.comingSoon && "hover:-translate-y-1.5"
       )}
     >
       <div className="relative shrink-0 overflow-hidden px-6 py-4">
-        <div className="relative aspect-[4/3] w-full overflow-hidden">
+        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md">
           {project.thumbnail ? (
             <Image
               src={project.thumbnail}
               alt=""
               width={800}
               height={600}
+              quality={95}
+              sizes="(min-width: 640px) 50vw, 100vw"
               className={clsx(
-                "h-full w-full transition-transform duration-slow group-hover:scale-[1.02]",
+                "h-full w-full transition-transform duration-base ease-standard group-hover:scale-[1.05]",
                 project.thumbnailFit === "contain" ? "object-contain" : "object-cover"
               )}
             />
@@ -34,7 +36,7 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
       <div className="flex flex-1 flex-col gap-3 px-6 pb-6 pt-4">
         <div className="flex flex-col gap-1">
-          <h3 className="text-title-lg text-ink">{project.title}</h3>
+          <h3 className="text-title-xl text-ink">{project.title}</h3>
           <p className="text-body-sm text-muted">{project.company}</p>
         </div>
         <p className="text-body-sm text-body">{project.subtitle}</p>
