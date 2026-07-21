@@ -310,7 +310,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`theme-toggle`** — 44px circular icon button, sun/moon glyph, positioned consistently top-right (desktop) or in the mobile menu sheet. `{motion.duration-base}` crossfade on click; the whole page's CSS variables swap simultaneously via the `.dark` class.
 
-**`button-primary`** — `{colors.ink}` fill (inverts per theme), `{colors.on-accent}`-equivalent text (canvas color, not literal white, so it still works in dark mode), `{rounded.pill}`, `{typography.title-md}`. One per viewport, reserved for the primary action (e.g. "See my work," "Download résumé").
+**`button-primary`** — `{colors.ink}` fill (inverts per theme), `{colors.on-accent}`-equivalent text (canvas color, not literal white, so it still works in dark mode), `{rounded.pill}`, `{typography.title-md}`. One per viewport, reserved for the primary action (e.g. "See my work," "Download resume").
 
 **`button-secondary`** — Transparent fill, `{colors.border-strong}` outline, `{colors.ink}` text, same shape as primary. Pairs with primary the way the current site's buttons already do.
 
@@ -338,7 +338,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`password-gate`** — Centered `{colors.canvas-subtle}` card, `{rounded.lg}`, generous `{spacing.2xl}` padding. Single password input (`{colors.border-strong}` outline, focus ring in `{colors.accent}`), primary button, inline `{colors.danger}` error text on failure. No modal — a real page at `/work/[slug]` so the URL stays stable.
 
-**`footer`** — Plain `{colors.canvas}`, contact links (email, LinkedIn, résumé download) plus a single small colophon-style line in `{typography.mono-detail}` (a Billy Sweeney-style craft signal, e.g. noting the stack or a build detail) — one quiet credibility moment, not a marketing footer.
+**`footer`** — Plain `{colors.canvas}`, contact links (email, LinkedIn, resume download) plus a single small colophon-style line in `{typography.mono-detail}` (a Billy Sweeney-style craft signal, e.g. noting the stack or a build detail) — one quiet credibility moment, not a marketing footer.
 
 **`back-to-top`** — 44px circular button, `{colors.canvas-subtle}`, appears after scrolling past the hero on long case-study pages — preserved from the current site.
 

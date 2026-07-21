@@ -18,7 +18,7 @@ const links = [
     href: "https://www.linkedin.com/in/keerzhang/",
   },
   {
-    label: "Résumé",
+    label: "Resume",
     value: "Download PDF",
     href: "/resume.pdf",
   },

@@ -6,7 +6,7 @@ import { MAINTENANCE_PATH } from "@/lib/maintenance";
 const links = [
   { href: "mailto:keer.zhang@hotmail.com", label: "Email" },
   { href: "https://www.linkedin.com/in/keerzhang/", label: "LinkedIn" },
-  { href: "/resume.pdf", label: "Résumé" },
+  { href: "/resume.pdf", label: "Resume" },
 ];
 
 export function Footer() {
