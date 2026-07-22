@@ -63,4 +63,9 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/projects/ai-assisted-police-report-lodging/ux-heuristics-3.png": { width: 1177, height: 544 },
   "/projects/grocerypal/design-principles.png": { width: 1070, height: 535 },
   "/projects/grocerypal/hero-image.png": { width: 1804, height: 1118 },
+  "/projects/design-system/ui-hero-1.png": { width: 1639, height: 755 },
+  "/projects/design-system/ui-brand-colour.png": { width: 993, height: 367 },
+  "/projects/design-system/colours.png": { width: 1061, height: 1518 },
+  "/projects/design-system/typography.png": { width: 872, height: 2277 },
+  "/projects/design-system/tokens-naming.png": { width: 999, height: 525 },
 };

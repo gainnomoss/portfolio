@@ -1,0 +1,78 @@
+---
+title: "Investigator Copilot Design System"
+subtitle: "Building a shared component library and design token system to bring UI consistency across an AI investigation platform"
+company: "Home Team Science & Technology Agency (HTX) × Singapore Police Force"
+type: "Product Design, Design Systems"
+tags: ["Design Systems", "Component Library", "Government Digital Services"]
+thumbnail: "/projects/design-system/ui-hero-1.png"
+thumbnailFit: contain
+thumbnailBg: peach
+protected: false
+comingSoon: false
+order: 4
+---
+
+## Overview
+
+There was a gap in our workflow as a team: no existing design system or UI library was in place. The team had to spend time making decisions on UI components or patterns frequently, and developers also implemented components differently. I worked on a set of reusable components that improved consistency across the different use cases in Investigator Copilot.
+
+<Meta
+  role="Product Designer"
+  collaborators="1 Product Manager, 1 Scrum Master, 2 Engineers"
+  date="Nov 2024 – Present"
+/>
+
+<Screenshot
+  src="/projects/design-system/ui-hero-1.png"
+  alt="Overview of the Investigator Copilot component library, showing a set of shared UI components styled to SPF branding"
+  caption=""
+/>
+
+## Problem
+
+### No shared components or token system
+
+There was no existing design system or UI library in place for the team. Without one, decisions on UI components and patterns had to be made repeatedly, and developers implemented components differently across the product — creating visual and behavioural inconsistency between different Investigator Copilot use cases.
+
+## Process
+
+### Choosing a base to build from
+
+I worked together with developers to agree on a set of components we would deliver first. Based on the developers' preference, I took shadcn/ui as the base set, adjusting styling and colour further from there to fit SPF branding.
+
+<Screenshot
+  src="/projects/design-system/ui-brand-colour.png"
+  alt="shadcn/ui components restyled with SPF's brand colours"
+  caption="Adapting shadcn/ui's default styling to SPF's brand colours"
+/>
+
+### Defining colour and typography
+
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/design-system/colours.png",
+      alt: "Colour palette defined for the design system",
+      caption: "",
+    },
+    {
+      src: "/projects/design-system/typography.png",
+      alt: "Typography scale defined for the design system",
+      caption: "",
+    },
+  ]}
+/>
+
+### Naming design tokens
+
+We also discussed how we could name our design tokens. Due to time constraints, and not needing to cater for dark mode or other brand colours, we decided on a two-layer token naming system.
+
+<Screenshot
+  src="/projects/design-system/tokens-naming.png"
+  alt="Two-layer design token naming system"
+  caption="The two-layer naming system we agreed on for design tokens"
+/>
+
+## Outcome
+
+The component set has been adopted as the default set of components used across all Investigator Copilot use cases. As a team, this helped us make decisions more quickly, and freed us up to discuss issues beyond UI.
