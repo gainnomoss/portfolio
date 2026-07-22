@@ -7,18 +7,22 @@ tags: ["Design Systems", "Component Library", "Government Digital Services"]
 thumbnail: "/projects/design-system/ui-hero-1.png"
 thumbnailFit: contain
 thumbnailBg: peach
-protected: false
+protected: true
 comingSoon: false
 order: 4
 ---
 
 ## Overview
 
-There was a gap in our workflow as a team: no existing design system or UI library was in place. The team had to spend time making decisions on UI components or patterns frequently, and developers also implemented components differently. I worked on a set of reusable components that improved consistency across the different use cases in Investigator Copilot.
+As Investigator Copilot expanded into multiple AI-powered workflows, the team needed a consistent interface that could scale across new features while reducing repetitive design work.
+
+To address this, I created a reusable UI kit that established shared design foundations, standardized commonly used components, and provided documentation for designers and developers to build new experiences more consistently.
+
+Although this project is referred to as a design system throughout the case study, it is more accurately described as a product-specific UI kit. It serves as the design foundation for Investigator Copilot and has not yet evolved into an organization-wide design system with governance and cross-product adoption.
 
 <Meta
   role="Product Designer"
-  collaborators="1 Product Manager, 1 Scrum Master, 2 Engineers"
+  collaborators="1 Product Manager, 5 Engineers"
   date="Nov 2024 – Present"
 />
 
@@ -34,19 +38,42 @@ There was a gap in our workflow as a team: no existing design system or UI libra
 
 There was no existing design system or UI library in place for the team. Without one, decisions on UI components and patterns had to be made repeatedly, and developers implemented components differently across the product — creating visual and behavioural inconsistency between different Investigator Copilot use cases.
 
+<Screenshot
+  src="/projects/design-system/design-system-problem.png"
+  alt="A developer message asking whether a header colour matches a specific design token, alongside a Figma inspect panel showing the component's CSS and colour values"
+  caption="Developers had trouble identifying the colours used in the design initially"
+  maxHeight="50vh"
+/>
+
 ## Process
 
-### Choosing a base to build from
+### Auditing Existing Interfaces
 
-I worked together with developers to agree on a set of components we would deliver first. Based on the developers' preference, I took shadcn/ui as the base set, adjusting styling and colour further from there to fit SPF branding.
+I began by reviewing existing Investigator Copilot screens to identify recurring UI patterns and duplicated components. I identified frequently used interface elements, opportunities to standardise spacing, typography and colours, as well as components that could be reused across current and future features. As a team, we ran through the component list together and settled on a list that would form the basis of the UI kit.
+
+<Screenshot
+  src="/projects/design-system/list-of-components-chosen.png"
+  alt="A Discord message listing UI components with columns for prioritisation, design status, coding status and time estimates"
+  caption="A message on discord posted by developers showing the list of components we decided on."
+  maxHeight="50vh"
+/>
+
+### Establishing Design Foundations
+
+Based on the developers' preference, I took shadcn/ui as the base set, adjusting styling and colour further from there to fit SPF branding. A set of primitive values formed the foundations of our design system, including:
+
+- Colour tokens
+- Typography
+- Spacing
+- Corner radius
+- Shadows
+- Grid and layout principles
 
 <Screenshot
   src="/projects/design-system/ui-brand-colour.png"
   alt="shadcn/ui components restyled with SPF's brand colours"
   caption="Adapting shadcn/ui's default styling to SPF's brand colours"
 />
-
-### Defining colour and typography
 
 <ScreenshotPair
   items={[
@@ -65,7 +92,9 @@ I worked together with developers to agree on a set of components we would deliv
 
 ### Naming design tokens
 
-We also discussed how we could name our design tokens. Due to time constraints, and not needing to cater for dark mode or other brand colours, we decided on a two-layer token naming system.
+To balance implementation speed with project timelines, the colour system was intentionally simplified to two token tiers instead of the more common three-tier token architecture.
+
+This trade-off was discussed and agreed upon with developers, prioritizing faster adoption while still providing sufficient flexibility for the product's current needs.
 
 <Screenshot
   src="/projects/design-system/tokens-naming.png"
@@ -73,6 +102,45 @@ We also discussed how we could name our design tokens. Due to time constraints, 
   caption="The two-layer naming system we agreed on for design tokens"
 />
 
+<Screenshot
+  src="/projects/design-system/colour-tokens-applied.png"
+  alt="A feedback dialog component annotated with the colour tokens applied to each element, including utility/foreground, background/background-secondary, brand/primary, and utility/primary-foreground"
+  caption="Colour tokens applied to a real component, showing how each token maps to an element"
+/>
+
+### Building Reusable Components
+
+Using these foundations, I created reusable components covering the most common patterns across Investigator Copilot.
+
+<Screenshot
+  src="/projects/design-system/button-component-documentation.png"
+  alt="Button component documentation page showing type variants, interaction states, usage guidance, and sizing notes"
+  caption="An example of a page on the button component"
+/>
+
+To improve consistency beyond the Figma library, I also documented component variants, usage guidelines, and recommended interaction patterns. This documentation acts as a source of reference and reduces ambiguity when designing new screens.
+
+<Screenshot
+  src="/projects/design-system/recommended-interaction-pattern-documentation.png"
+  alt="Input component documentation showing the recommended interaction pattern for the error state, including message placement and styling"
+  caption="An example of interaction pattern for error state on the input component"
+  maxHeight="50vh"
+/>
+
+### Supporting Adoption
+
+Beyond creating the library itself, I migrated the existing ULTRA interface to use the new UI kit, to demonstrate how it can be applied across use cases.
+
 ## Outcome
 
-The component set has been adopted as the default set of components used across all Investigator Copilot use cases. As a team, this helped us make decisions more quickly, and freed us up to discuss issues beyond UI.
+The UI kit is now used across 4 Investigator Copilot use cases, and 1 upcoming feature currently in development.
+
+It supports collaboration between 2 designers and 5 developers.
+
+<Screenshot
+  src="/projects/design-system/4-use-cases.png"
+  alt="Four Investigator Copilot interfaces built with the shared UI kit: Live Transcription, Project ULTRA's report preview, File Transcript upload, and the Briefing Note Generator"
+  caption="The UI kit applied across the 4 Investigator Copilot use cases it currently supports"
+/>
+
+Although still early in its lifecycle, the UI kit has established a shared visual language for Investigator Copilot. It has helped standardise designs across Investigator Copilot use cases, reduce repeated component creation, improve consistency across designers and developers, and help the team move discussions to more productive issues.
