@@ -16,6 +16,7 @@ export interface Project {
   thumbnailAnimation: string | null;
   thumbnailAnimationLoop: boolean;
   thumbnailFloat: boolean;
+  thumbnailShadow: boolean;
   protected: boolean;
   comingSoon: boolean;
   order: number;
@@ -33,6 +34,7 @@ export interface ProjectFrontmatter {
   thumbnailAnimation?: string;
   thumbnailAnimationLoop?: boolean;
   thumbnailFloat?: boolean;
+  thumbnailShadow?: boolean;
   protected?: boolean;
   comingSoon?: boolean;
   order?: number;

@@ -33,6 +33,7 @@ export function ProjectCard({ project }: { project: Project }) {
               animationSrc={project.thumbnailAnimation}
               animationLoop={project.thumbnailAnimationLoop}
               floating={project.thumbnailFloat}
+              shadow={project.thumbnailShadow}
               isHovered={isHovered}
             />
           ) : (
@@ -42,19 +43,19 @@ export function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
       </div>
-      <div className="flex flex-col gap-3 px-6 pb-6 pt-4 md:w-1/2">
+      <div className="flex flex-col gap-6 px-6 pb-6 pt-4 md:w-1/2">
         {project.protected ? (
           <Tag locked className="self-start">
             Password protected
           </Tag>
         ) : null}
         <div className="flex flex-col gap-1">
-          <h3 className="text-title-lg text-ink">{project.title}</h3>
+          <h3 className="text-display-md text-ink">{project.title}</h3>
           <p className="text-body-sm text-muted">{project.company}</p>
         </div>
         <p className="text-body-sm text-body">{project.subtitle}</p>
         {project.tags.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 pt-2">
             {project.tags.map((tag) => (
               <Tag key={tag}>{tag}</Tag>
             ))}

@@ -154,7 +154,7 @@ components:
     rounded: "{rounded.lg}"
     padding: "{spacing.lg}"
     layout: "single-column list, thumbnail left / body right from 768px up, stacked (thumbnail on top) below it"
-    titleTypography: "{typography.title-lg}"
+    titleTypography: "{typography.display-md}"
     hoverMotion: "card lifts (-translate-y-1.5) while the thumbnail scales (1.05), both {motion.duration-base} {motion.easing-standard}"
     thumbnailAnimation: "optional per-project Lottie/video overlay that plays on hover, desktop pointer-hover only, no autoplay, disabled under prefers-reduced-motion"
     thumbnailFloat: "opt-in static variant of the animated-thumbnail frame (centered, max-width 500px, drop-shadow-md) for projects without a hover animation asset, so the thumbnail still floats and enlarges on hover consistently with animated cards"
@@ -176,11 +176,12 @@ components:
     cardBackground: "{colors.canvas-subtle}"
     rounded: "{rounded.md}"
   tag:
-    backgroundColor: "{colors.canvas-subtle}"
+    backgroundColor: "{colors.canvas}"
     textColor: "{colors.muted}"
+    border: "1px solid {colors.border}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
-    padding: "4px 12px"
+    rounded: "{rounded.sm}"
+    padding: "8px 12px"
   hero-dot-field:
     dotColor: "{colors.border-strong}"
     spotlightColor: "{colors.accent}"
@@ -338,7 +339,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`timeline`** — A vertical rail (`{colors.border}`) with dot markers (`{colors.accent}`) at each entry; entry content sits in a `{component.project-card}`-style block to its right. Used on the About page (experience) and inside case studies (multi-stage journeys, iteration history).
 
-**`tag`** — Small pill, `{colors.canvas-subtle}` background, `{colors.muted}` text, `{typography.label}` (mono, uppercase). Used for project tags. The "Password protected" variant (per product.md's requirement that protected projects are clearly marked before opening) swaps to `{colors.danger-subtle}` fill with `{colors.danger}` text and lock glyph, so the locked state reads as a semantic warning rather than a neutral tag.
+**`tag`** — Small bordered chip, `{rounded.sm}`, `{colors.canvas}` background, 1px `{colors.border}` stroke, `{colors.muted}` text, `{typography.label}` (mono, uppercase). Used for project tags. The "Password protected" variant (per product.md's requirement that protected projects are clearly marked before opening) keeps the `{rounded.pill}` shape and swaps to `{colors.danger-subtle}` fill with `{colors.danger}` text and lock glyph — no border — so the locked state reads as a distinct semantic warning rather than a neutral tag.
 
 **`hero-dot-field`** — A faint grid of `{colors.border-strong}` dots anchored to the right edge of the homepage hero, visible desktop-only (`lg+`). A second dot layer in `{colors.accent}` is revealed only inside a small radius around the cursor (a CSS mask, no canvas/JS drawing) and fades into the canvas color on its inner edge. Never repeated elsewhere on the site.
 

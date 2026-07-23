@@ -23,6 +23,7 @@ function readProject(slug: string): Project {
     thumbnailAnimation: fm.thumbnailAnimation ?? null,
     thumbnailAnimationLoop: fm.thumbnailAnimationLoop ?? true,
     thumbnailFloat: fm.thumbnailFloat ?? false,
+    thumbnailShadow: fm.thumbnailShadow ?? true,
     protected: fm.protected ?? false,
     comingSoon: fm.comingSoon ?? false,
     order: fm.order ?? 999,

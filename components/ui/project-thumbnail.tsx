@@ -20,6 +20,7 @@ export function ProjectThumbnail({
   animationSrc,
   animationLoop,
   floating,
+  shadow = true,
   isHovered,
 }: {
   src: string;
@@ -27,6 +28,7 @@ export function ProjectThumbnail({
   animationSrc: string | null;
   animationLoop: boolean;
   floating: boolean;
+  shadow?: boolean;
   isHovered: boolean;
 }) {
   const [canAnimate, setCanAnimate] = useState(false);
@@ -78,7 +80,8 @@ export function ProjectThumbnail({
           quality={95}
           sizes="500px"
           className={clsx(
-            "object-contain drop-shadow-md transition-opacity duration-base ease-standard",
+            "object-contain transition-opacity duration-base ease-standard",
+            shadow && "drop-shadow-md",
             isAnimationReady && "pointer-events-none opacity-0"
           )}
         />
@@ -91,7 +94,7 @@ export function ProjectThumbnail({
             playsInline
             preload="auto"
             onLoadedData={() => setIsAnimationReady(true)}
-            className="absolute inset-0 h-full w-full object-contain drop-shadow-md"
+            className={clsx("absolute inset-0 h-full w-full object-contain", shadow && "drop-shadow-md")}
           />
         ) : null}
         {animationSrc && canAnimate && !isVideoAnimation ? (
@@ -111,7 +114,7 @@ export function ProjectThumbnail({
                 setIsAnimationReady(true);
               });
             }}
-            className="absolute inset-0 h-full w-full drop-shadow-md"
+            className={clsx("absolute inset-0 h-full w-full", shadow && "drop-shadow-md")}
           />
         ) : null}
       </div>
