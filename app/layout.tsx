@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Hotjar } from "@/components/analytics/hotjar";
+import { AnalyticsGate } from "@/components/analytics/analytics-gate";
 import { Nav } from "@/components/layout/nav";
 import { Footer } from "@/components/layout/footer";
 import { BackToTop } from "@/components/ui/back-to-top";
@@ -53,10 +54,12 @@ export default function RootLayout({
           <Footer />
           <BackToTop />
         </ThemeProvider>
-        {gaId && <GoogleAnalytics gaId={gaId} />}
-        {hotjarSiteId && hotjarVersion && (
-          <Hotjar siteId={hotjarSiteId} version={hotjarVersion} />
-        )}
+        <AnalyticsGate isProductionDeployment={process.env.VERCEL_ENV === "production"}>
+          {gaId && <GoogleAnalytics gaId={gaId} />}
+          {hotjarSiteId && hotjarVersion && (
+            <Hotjar siteId={hotjarSiteId} version={hotjarVersion} />
+          )}
+        </AnalyticsGate>
       </body>
     </html>
   );
