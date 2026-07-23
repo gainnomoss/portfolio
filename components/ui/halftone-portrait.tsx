@@ -1,14 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import { useRef } from "react";
 import { useHalftonePortrait } from "@/lib/halftone/use-halftone-portrait";
+import { PORTRAIT_HALFTONE_FALLBACK } from "@/lib/halftone/portrait-fallback-dots";
 
 interface HalftonePortraitProps {
   src: string;
   alt: string;
   /** Intrinsic photo dimensions — used only to reserve the correct aspect
-   * ratio (zero layout shift) and for the underlying `next/image` fallback. */
+   * ratio (zero layout shift). */
   naturalWidth: number;
   naturalHeight: number;
   className?: string;
@@ -20,9 +20,13 @@ interface HalftonePortraitProps {
 
 /**
  * Renders a photo as an interactive grid of monochrome halftone dots on
- * canvas, with the real photo kept in the DOM underneath as the accessible
- * fallback (and the only thing shown when canvas is unsupported, JS is
- * disabled, or `prefers-reduced-motion` is set — see `useHalftonePortrait`).
+ * canvas, with a pre-rendered static halftone (same dot grid, no
+ * interaction/breathing) kept in the DOM underneath — the accessible
+ * fallback, and the only thing shown when canvas is unsupported, JS is
+ * disabled, or `prefers-reduced-motion` is set (see `useHalftonePortrait`).
+ * `PORTRAIT_HALFTONE_FALLBACK` is pre-computed from the source photo by
+ * `scripts/generate-halftone-fallback.mjs` using the same ink formula as the
+ * live canvas, so the two renderings match.
  */
 export function HalftonePortrait({
   src,
@@ -36,30 +40,34 @@ export function HalftonePortrait({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { isActive, isReady } = useHalftonePortrait(src, containerRef, canvasRef, spacingScale);
 
-  // Hide the full-color fallback photo the moment we know the halftone will
+  // Hide the static fallback the moment we know the interactive halftone will
   // take over (before it has even loaded), not once it's actually ready —
-  // otherwise the real photo flashes in during the load/sample delay. The
-  // wrapper's bg-canvas shows through as a plain placeholder in that gap
-  // (matching the page floor, since this sits directly on it with no card
-  // wrapper), then the canvas fades in over it once the first frame is drawn.
-  const imageVisible = !isActive;
+  // otherwise it flashes during the load/sample delay. The wrapper's
+  // bg-canvas shows through as a plain placeholder in that gap (matching the
+  // page floor, since this sits directly on it with no card wrapper), then
+  // the canvas fades in over it once the first frame is drawn.
+  const fallbackVisible = !isActive;
   const canvasVisible = isReady;
 
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-lg bg-canvas ${className ?? ""}`}
+      role="img"
+      aria-label={alt}
+      className={`relative overflow-hidden rounded-lg bg-canvas text-ink ${className ?? ""}`}
       style={{ aspectRatio: `${naturalWidth} / ${naturalHeight}` }}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="(min-width: 640px) 320px, 100vw"
-        className="object-cover transition-opacity duration-base ease-standard"
-        style={{ opacity: imageVisible ? 1 : 0 }}
-        priority
-      />
+      <svg
+        aria-hidden="true"
+        viewBox={`0 0 ${PORTRAIT_HALFTONE_FALLBACK.viewBoxWidth} ${PORTRAIT_HALFTONE_FALLBACK.viewBoxHeight}`}
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 h-full w-full transition-opacity duration-base ease-standard"
+        style={{ opacity: fallbackVisible ? 1 : 0 }}
+      >
+        {PORTRAIT_HALFTONE_FALLBACK.dots.map(([cx, cy, r], index) => (
+          <circle key={index} cx={cx} cy={cy} r={r} fill="currentColor" />
+        ))}
+      </svg>
       <canvas
         ref={canvasRef}
         aria-hidden="true"
