@@ -153,8 +153,10 @@ components:
     backgroundColor: "{colors.canvas-subtle}"
     rounded: "{rounded.lg}"
     padding: "{spacing.lg}"
-    titleTypography: "{typography.title-xl}"
+    layout: "single-column list, thumbnail left / body right from 768px up, stacked (thumbnail on top) below it"
+    titleTypography: "{typography.title-lg}"
     hoverMotion: "card lifts (-translate-y-1.5) while the thumbnail scales (1.05), both {motion.duration-base} {motion.easing-standard}"
+    thumbnailAnimation: "optional per-project Lottie overlay that plays on hover, desktop pointer-hover only, no autoplay, disabled under prefers-reduced-motion"
   principle-card:
     backgroundColor: "{colors.canvas}"
     border: "1px solid {colors.accent-weak}"
@@ -320,7 +322,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`button-secondary`** — Transparent fill, `{colors.border-strong}` outline, `{colors.ink}` text, same shape as primary. Pairs with primary the way the current site's buttons already do.
 
-**`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, contains a framed screenshot (see below), title in `{typography.title-xl}` so it reads first, company/type in `{typography.body-sm}` muted, tags as `{component.tag}` row. On hover the whole card lifts (`-translate-y-1.5`) while the thumbnail scales up slightly (`scale-105`) — both on `{motion.duration-base}` / `{motion.easing-standard}`, no shadow added (stays inside the system's one elevation step). A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern, disables the click-through, and skips the hover motion entirely. Thumbnail source images should be high enough resolution, and close enough in aspect ratio to the card's `aspect-[4/3]` frame, that neither `cover` nor `contain` fit crops out meaningful UI or forces visible upscaling — prefer a wide/landscape source (a composited hero shot, a browser screenshot) over a raw tall mobile-app capture.
+**`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, full-width row in a single-column list (Home "Selected Work" and the Work page both use one card per row, not a grid). Below `768px` the thumbnail stacks on top of the body, full width; from `768px` up the card splits into two equal columns — thumbnail left, body right, vertically centered against each other. Body content, top to bottom: password tag (if protected) → title in `{typography.title-lg}` + company in `{typography.body-sm}` muted → description in `{typography.body-sm}` → tag row (`{component.tag}`). On hover the whole card lifts (`-translate-y-1.5`) while the thumbnail scales up slightly (`scale-105`) — both on `{motion.duration-base}` / `{motion.easing-standard}`, no shadow added (stays inside the system's one elevation step). A project may optionally opt into a hover-triggered Lottie animation layered over its static thumbnail (frontmatter `thumbnailAnimation`): it only mounts for pointer-hover-capable desktop viewports (`(hover: hover) and (pointer: fine)`), never autoplays, plays on hover and resets on mouse-leave, and is skipped entirely under `prefers-reduced-motion` — the static screenshot underneath is what mobile/touch and reduced-motion visitors always see. A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern, disables the click-through, and skips the hover motion entirely. Thumbnail source images should be high enough resolution, and close enough in aspect ratio to the card's `aspect-[4/3]` frame, that neither `cover` nor `contain` fit crops out meaningful UI or forces visible upscaling — prefer a wide/landscape source (a composited hero shot, a browser screenshot) over a raw tall mobile-app capture.
 
 **Case-study screenshot** — Product/UI images and video embeds sit flat on `{colors.canvas}` with `{rounded.md}` corners — no border, no shadow. This is a site-wide rule for every media embed, not a per-case-study choice. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge and spanning the image's full width. This caption-matches-media-width rule applies to every captioned embed (single screenshots, pairs, videos).
 
@@ -380,9 +382,9 @@ A flat, documented stacking order — every `fixed`/`sticky` element on the site
 
 | Breakpoint | Width | Key Changes |
 |---|---|---|
-| Mobile | 320–767px | Single column; nav collapses to hamburger sheet; `{spacing.section-mobile}` (56px) section padding; timeline rail moves flush-left; project grid is 1-up |
-| Tablet | 768–1023px | Nav stays horizontal; project grid is 2-up; reading column unchanged |
-| Desktop | 1024–1439px | Full nav; project grid 2–3-up depending on card content; `{spacing.section-desktop}` (96px) section padding |
+| Mobile | 320–767px | Single column; nav collapses to hamburger sheet; `{spacing.section-mobile}` (56px) section padding; timeline rail moves flush-left; project-card thumbnail stacks above body |
+| Tablet | 768–1023px | Nav stays horizontal; project-card splits into thumbnail/body columns; reading column unchanged |
+| Desktop | 1024–1439px | Full nav; project list stays single-column (one full-width card per row); `{spacing.section-desktop}` (96px) section padding |
 | Wide | ≥1440px | Same as Desktop; max content width caps at 1200px, extra space becomes outer margin |
 
 No horizontal scrolling at any width. Touch targets ≥44px everywhere (nav links, tags are the exception as non-interactive, buttons/toggle/back-to-top all meet this).

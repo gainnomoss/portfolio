@@ -13,7 +13,7 @@ export function Tag({
     <span
       className={clsx(
         "inline-flex items-center rounded-full px-3 py-1 font-mono text-label",
-        locked ? "gap-2 bg-danger-subtle text-danger" : "gap-1.5 bg-canvas-subtle text-muted",
+        locked ? "gap-2 bg-danger-subtle text-danger" : "gap-1.5 bg-canvas text-muted",
         className
       )}
     >

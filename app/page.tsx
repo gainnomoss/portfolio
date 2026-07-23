@@ -25,7 +25,7 @@ export default function Home() {
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-content px-6">
           <SectionHeading>Selected Work</SectionHeading>
-          <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="mt-10 flex flex-col gap-8">
             {featured.map((project, index) => (
               <Reveal key={project.slug} delay={index * 0.05}>
                 <ProjectCard project={project} />

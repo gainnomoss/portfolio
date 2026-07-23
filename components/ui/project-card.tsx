@@ -1,18 +1,25 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import clsx from "clsx";
 import type { Project } from "@/lib/types";
 import { Tag } from "@/components/ui/tag";
+import { ProjectThumbnail } from "@/components/ui/project-thumbnail";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   const content = (
     <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       className={clsx(
-        "group flex h-full flex-col overflow-hidden rounded-lg bg-canvas-subtle transition-transform duration-base ease-standard",
+        "group flex flex-col overflow-hidden rounded-lg bg-canvas-subtle transition-transform duration-base ease-standard md:flex-row md:items-center",
         !project.comingSoon && "hover:-translate-y-1.5"
       )}
     >
-      <div className="relative shrink-0 overflow-hidden px-6 py-4">
+      <div className="relative shrink-0 overflow-hidden px-6 py-4 md:w-1/2">
         <div
           className={clsx(
             "relative aspect-[4/3] w-full overflow-hidden rounded-md",
@@ -20,17 +27,11 @@ export function ProjectCard({ project }: { project: Project }) {
           )}
         >
           {project.thumbnail ? (
-            <Image
+            <ProjectThumbnail
               src={project.thumbnail}
-              alt=""
-              width={800}
-              height={600}
-              quality={95}
-              sizes="(min-width: 640px) 50vw, 100vw"
-              className={clsx(
-                "h-full w-full transition-transform duration-base ease-standard group-hover:scale-[1.05]",
-                project.thumbnailFit === "contain" ? "object-contain" : "object-cover"
-              )}
+              fit={project.thumbnailFit}
+              animationSrc={project.thumbnailAnimation}
+              isHovered={isHovered}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-canvas-subtle">
@@ -39,15 +40,18 @@ export function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-3 px-6 pb-6 pt-4">
+      <div className="flex flex-col gap-3 px-6 pb-6 pt-4 md:w-1/2">
+        {project.protected ? <Tag locked>Password protected</Tag> : null}
         <div className="flex flex-col gap-1">
-          <h3 className="text-title-xl text-ink">{project.title}</h3>
+          <h3 className="text-title-lg text-ink">{project.title}</h3>
           <p className="text-body-sm text-muted">{project.company}</p>
         </div>
         <p className="text-body-sm text-body">{project.subtitle}</p>
-        {project.protected ? (
-          <div className="mt-auto flex flex-wrap gap-2">
-            <Tag locked>Password protected</Tag>
+        {project.tags.length > 0 ? (
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag) => (
+              <Tag key={tag}>{tag}</Tag>
+            ))}
           </div>
         ) : null}
       </div>
@@ -55,17 +59,13 @@ export function ProjectCard({ project }: { project: Project }) {
   );
 
   if (project.comingSoon) {
-    return (
-      <div aria-disabled="true" className="h-full">
-        {content}
-      </div>
-    );
+    return <div aria-disabled="true">{content}</div>;
   }
 
   return (
     <Link
       href={`/work/${project.slug}`}
-      className="block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+      className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
     >
       {content}
     </Link>
