@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { Button } from "@/components/ui/button";
@@ -11,15 +10,13 @@ const EASE = [0.4, 0, 0.2, 1] as const;
 
 export function HeroCopy({ avatarSrc }: { avatarSrc: string }) {
   const shouldReduceMotion = useReducedMotion();
-  const [titleDone, setTitleDone] = useState(false);
-  const revealed = shouldReduceMotion || titleDone;
 
   const fadeUp = (delay: number) =>
     shouldReduceMotion
       ? {}
       : {
           initial: { opacity: 0, y: 16 },
-          animate: revealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
+          animate: { opacity: 1, y: 0 },
           transition: { duration: 0.5, delay, ease: EASE },
         };
 
@@ -39,7 +36,7 @@ export function HeroCopy({ avatarSrc }: { avatarSrc: string }) {
       </motion.div>
 
       <h1 className="mt-3 text-display-xl text-ink">
-        <TypedText text={TITLE} onDone={() => setTitleDone(true)} />
+        <TypedText text={TITLE} />
       </h1>
 
       <motion.p className="mt-6 max-w-reading text-body-lg text-body" {...fadeUp(0.1)}>

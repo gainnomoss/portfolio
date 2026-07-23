@@ -27,6 +27,14 @@ export const metadata: Metadata = {
   },
   description:
     "Product Designer based in Singapore, focused on end-to-end journeys, accessibility, and clarity in complex systems.",
+  openGraph: {
+    type: "website",
+    siteName: "Ke Er Zhang",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;

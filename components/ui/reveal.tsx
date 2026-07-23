@@ -7,14 +7,17 @@ export function Reveal({
   children,
   delay = 0,
   className,
+  immediate = false,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
+  /** Skip the scroll-triggered fade-in for content that's already in the initial viewport on load. */
+  immediate?: boolean;
 }) {
   const shouldReduceMotion = useReducedMotion();
 
-  if (shouldReduceMotion) {
+  if (shouldReduceMotion || immediate) {
     return <div className={className}>{children}</div>;
   }
 

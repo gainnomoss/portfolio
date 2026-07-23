@@ -20,7 +20,7 @@ export default function WorkPage() {
 
       <div className="mt-16 flex flex-col gap-8">
         {projects.map((project, index) => (
-          <Reveal key={project.slug} delay={index * 0.05}>
+          <Reveal key={project.slug} delay={index * 0.05} immediate={index === 0}>
             <ProjectCard project={project} />
           </Reveal>
         ))}
