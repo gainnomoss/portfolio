@@ -77,7 +77,10 @@ export function ProjectThumbnail({
           fill
           quality={95}
           sizes="500px"
-          className={clsx("object-contain drop-shadow-md", isAnimationReady && "invisible")}
+          className={clsx(
+            "object-contain drop-shadow-md transition-opacity duration-base ease-standard",
+            isAnimationReady && "pointer-events-none opacity-0"
+          )}
         />
         {animationSrc && canAnimate && isVideoAnimation ? (
           <video

@@ -23,8 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div
           className={clsx(
             "relative flex aspect-[4/3] w-full items-center justify-center",
-            !project.thumbnailAnimation && !project.thumbnailFloat && "overflow-hidden rounded-md",
-            project.thumbnailBg === "peach" && "bg-thumbnail-peach"
+            !project.thumbnailAnimation && !project.thumbnailFloat && "overflow-hidden rounded-md"
           )}
         >
           {project.thumbnail ? (

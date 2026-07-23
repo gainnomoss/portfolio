@@ -13,7 +13,6 @@ export interface Project {
   tags: string[];
   thumbnail: string | null;
   thumbnailFit: "cover" | "contain";
-  thumbnailBg: "peach" | null;
   thumbnailAnimation: string | null;
   thumbnailAnimationLoop: boolean;
   thumbnailFloat: boolean;
@@ -31,7 +30,6 @@ export interface ProjectFrontmatter {
   tags: string[];
   thumbnail?: string;
   thumbnailFit?: "cover" | "contain";
-  thumbnailBg?: "peach";
   thumbnailAnimation?: string;
   thumbnailAnimationLoop?: boolean;
   thumbnailFloat?: boolean;

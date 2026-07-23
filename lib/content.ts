@@ -20,7 +20,6 @@ function readProject(slug: string): Project {
     tags: fm.tags ?? [],
     thumbnail: fm.thumbnail ?? null,
     thumbnailFit: fm.thumbnailFit ?? "cover",
-    thumbnailBg: fm.thumbnailBg ?? null,
     thumbnailAnimation: fm.thumbnailAnimation ?? null,
     thumbnailAnimationLoop: fm.thumbnailAnimationLoop ?? true,
     thumbnailFloat: fm.thumbnailFloat ?? false,
