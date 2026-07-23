@@ -1,17 +1,44 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { MAINTENANCE_BYPASS_COOKIE, MAINTENANCE_PATH } from "@/lib/maintenance";
+import { ANALYTICS_OPT_OUT_COOKIE } from "@/lib/analytics";
 
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
 
 export function middleware(request: NextRequest) {
+  const { searchParams } = request.nextUrl;
+
+  // Analytics opt-out: visiting with ?notrack=<key> sets a long-lived cookie
+  // that suppresses GA/Hotjar for this browser from then on (checked in
+  // app/layout.tsx), then redirects to the same URL with the key stripped so
+  // it never lingers in browser history or analytics.
+  const analyticsOptOutKey = process.env.ANALYTICS_OPT_OUT_KEY;
+  const providedOptOutKey = searchParams.get("notrack");
+  if (analyticsOptOutKey && providedOptOutKey === analyticsOptOutKey) {
+    const cleanUrl = request.nextUrl.clone();
+    cleanUrl.searchParams.delete("notrack");
+
+    const response = NextResponse.redirect(cleanUrl);
+    response.cookies.set(ANALYTICS_OPT_OUT_COOKIE, "1", {
+      // Not httpOnly: the client-side analytics gate (components/analytics/
+      // analytics-gate.tsx) reads this via document.cookie so the rest of
+      // the site can stay statically rendered instead of every page opting
+      // into per-request SSR just to check a cookie.
+      secure: true,
+      sameSite: "lax",
+      maxAge: ONE_YEAR_SECONDS,
+      path: "/",
+    });
+    return response;
+  }
+
   // Fast path: maintenance mode is off (or unset) — behave exactly as before,
   // no cookie/query checks, no rewrite, zero added overhead.
   if (process.env.MAINTENANCE_MODE !== "true") {
     return NextResponse.next();
   }
 
-  const { pathname, searchParams } = request.nextUrl;
+  const { pathname } = request.nextUrl;
 
   // Never gate the maintenance page itself — avoids a rewrite/redirect loop.
   if (pathname === MAINTENANCE_PATH) {
