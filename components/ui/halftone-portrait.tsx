@@ -12,6 +12,10 @@ interface HalftonePortraitProps {
   naturalWidth: number;
   naturalHeight: number;
   className?: string;
+  /** Multiplies the computed dot spacing (default 1). Use a value below 1 for
+   * small renderings (e.g. a thumbnail-sized portrait) where the size-based
+   * density curve would otherwise clamp to its sparsest, large-dot end. */
+  spacingScale?: number;
 }
 
 /**
@@ -20,10 +24,17 @@ interface HalftonePortraitProps {
  * fallback (and the only thing shown when canvas is unsupported, JS is
  * disabled, or `prefers-reduced-motion` is set — see `useHalftonePortrait`).
  */
-export function HalftonePortrait({ src, alt, naturalWidth, naturalHeight, className }: HalftonePortraitProps) {
+export function HalftonePortrait({
+  src,
+  alt,
+  naturalWidth,
+  naturalHeight,
+  className,
+  spacingScale,
+}: HalftonePortraitProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { isActive, isReady } = useHalftonePortrait(src, containerRef, canvasRef);
+  const { isActive, isReady } = useHalftonePortrait(src, containerRef, canvasRef, spacingScale);
 
   // Hide the full-color fallback photo the moment we know the halftone will
   // take over (before it has even loaded), not once it's actually ready —

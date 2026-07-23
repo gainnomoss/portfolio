@@ -24,7 +24,7 @@ export default function Home() {
 
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-content px-6">
-          <SectionHeading>Selected Work</SectionHeading>
+          <SectionHeading>Selected Works</SectionHeading>
           <div className="mt-10 flex flex-col gap-8">
             {featured.map((project, index) => (
               <Reveal key={project.slug} delay={index * 0.05}>
@@ -38,7 +38,7 @@ export default function Home() {
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-content px-6">
           <SectionHeading>About</SectionHeading>
-          <div className="mt-10 flex flex-col gap-8 sm:flex-row sm:items-start">
+          <div className="mt-10 flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-center">
             {about.photo ? (
               <HalftonePortrait
                 src={about.photo}
@@ -46,6 +46,7 @@ export default function Home() {
                 naturalWidth={160}
                 naturalHeight={160}
                 className="h-40 w-40 shrink-0"
+                spacingScale={0.6}
               />
             ) : null}
             <div>

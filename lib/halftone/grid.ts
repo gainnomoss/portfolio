@@ -23,14 +23,22 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 /** Derives dot density and size from the rendered container size, so the
- * portrait stays a comparable number of dots-per-area across viewports. */
-export function computeGridConfig(containerWidth: number, containerHeight: number): HalftoneGridConfig {
+ * portrait stays a comparable number of dots-per-area across viewports.
+ * `spacingScale` (default 1) multiplies the resulting spacing — pass a value
+ * below 1 to force a finer grid on a container smaller than
+ * `SPARSE_AT_WIDTH_PX`, where the size-based curve alone would otherwise
+ * clamp to the sparse, large-dot end and look pixelated. */
+export function computeGridConfig(
+  containerWidth: number,
+  containerHeight: number,
+  spacingScale = 1,
+): HalftoneGridConfig {
   const widthT = clamp(
     (containerWidth - SPARSE_AT_WIDTH_PX) / (DENSE_AT_WIDTH_PX - SPARSE_AT_WIDTH_PX),
     0,
     1,
   );
-  const spacing = MAX_SPACING_PX - widthT * (MAX_SPACING_PX - MIN_SPACING_PX);
+  const spacing = (MAX_SPACING_PX - widthT * (MAX_SPACING_PX - MIN_SPACING_PX)) * spacingScale;
 
   const cols = Math.max(1, Math.round(containerWidth / spacing));
   const rows = Math.max(1, Math.round(containerHeight / spacing));

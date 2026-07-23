@@ -55,6 +55,7 @@ export function useHalftonePortrait(
   src: string,
   containerRef: RefObject<HTMLDivElement | null>,
   canvasRef: RefObject<HTMLCanvasElement | null>,
+  spacingScale = 1,
 ): UseHalftonePortraitResult {
   const shouldReduceMotion = useReducedMotion();
   const { resolvedTheme } = useTheme();
@@ -127,7 +128,7 @@ export function useHalftonePortrait(
       canvas!.style.height = `${height}px`;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const grid = computeGridConfig(width, height);
+      const grid = computeGridConfig(width, height, spacingScale);
       cols = grid.cols;
       rows = grid.rows;
       maxRadius = grid.maxRadius;
@@ -237,7 +238,7 @@ export function useHalftonePortrait(
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
     };
-  }, [src, shouldReduceMotion, containerRef, canvasRef]);
+  }, [src, shouldReduceMotion, containerRef, canvasRef, spacingScale]);
 
   return { isActive, isReady };
 }
