@@ -27,7 +27,7 @@ export function Nav() {
         <Logo />
 
         <nav className="hidden items-center gap-8 md:flex">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-8">
             {links.map((link) => {
               const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
               return (
@@ -35,8 +35,8 @@ export function Nav() {
                   <Link
                     href={link.href}
                     className={clsx(
-                      "text-body-sm transition-colors duration-fast hover:text-ink",
-                      active ? "text-ink" : "text-muted"
+                      "text-body-md text-ink transition-colors duration-fast",
+                      active && "font-medium"
                     )}
                   >
                     {link.label}
