@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useLayoutEffect, useRef, useState, type RefObject } from "react";
 import { useTheme } from "next-themes";
 import { useReducedMotion } from "motion/react";
 import { computeGridConfig } from "./grid";
@@ -41,11 +41,13 @@ function inkColorForTheme(resolvedTheme: string | undefined): string {
 }
 
 interface UseHalftonePortraitResult {
-  /** True once capability/motion checks pass and the canvas is driving the
-   * portrait — the caller should hide/cover the static fallback image. */
+  /** True as soon as capability/motion checks pass — set synchronously on
+   * mount, before the source photo has even loaded. The caller should hide
+   * the accessible fallback `<img>` as soon as this flips so the full-color
+   * photo never has a chance to flash in before the halftone is ready. */
   isActive: boolean;
-  /** True once the first frame has been drawn — used to crossfade the
-   * canvas in rather than popping in over a blank frame. */
+  /** True once the first frame has been drawn — used to fade the canvas in
+   * rather than popping the dots in over the empty placeholder. */
   isReady: boolean;
 }
 
@@ -64,11 +66,14 @@ export function useHalftonePortrait(
 
   // Keep the dot color in sync with the active theme without tearing down
   // and re-sampling the whole simulation.
-  useEffect(() => {
+  useLayoutEffect(() => {
     colorRef.current = inkColorForTheme(resolvedTheme);
   }, [resolvedTheme]);
 
-  useEffect(() => {
+  // useLayoutEffect (not useEffect) so the fallback photo, when it's about
+  // to be replaced by canvas dots, gets hidden before the browser paints —
+  // otherwise it can flash visible for one frame on mount.
+  useLayoutEffect(() => {
     if (shouldReduceMotion || typeof window === "undefined" || !supportsCanvas()) {
       setIsActive(false);
       return;
@@ -80,6 +85,11 @@ export function useHalftonePortrait(
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    // Capability/motion checks are already confirmed at this point — flip
+    // immediately so the caller hides the fallback photo before the source
+    // image has even started loading, rather than only once dots are drawn.
+    setIsActive(true);
 
     let cancelled = false;
     let frameId = 0;
@@ -182,7 +192,6 @@ export function useHalftonePortrait(
     image.onload = () => {
       if (cancelled) return;
       buildDots(image);
-      setIsActive(true);
       frameId = requestAnimationFrame(tick);
     };
     image.src = src;

@@ -25,7 +25,10 @@ function clamp01(value: number): number {
 /**
  * Draws `image` into an offscreen canvas downscaled to `cols`x`rows` — the
  * browser's bilinear downscale does the area-averaging a real halftone scan
- * needs — then reads one ink value per cell, row-major.
+ * needs — then reads one ink value per cell, row-major. The source is
+ * center-cropped to the grid's aspect ratio first (matching the fallback
+ * `<Image>`'s `object-cover`), so a portrait-shaped photo sampled into a
+ * square (or otherwise mismatched) grid isn't squashed.
  */
 export function sampleImageToInk(image: HTMLImageElement, cols: number, rows: number): Float32Array {
   const offscreen = document.createElement("canvas");
@@ -36,7 +39,21 @@ export function sampleImageToInk(image: HTMLImageElement, cols: number, rows: nu
   const ink = new Float32Array(cols * rows);
   if (!ctx) return ink;
 
-  ctx.drawImage(image, 0, 0, cols, rows);
+  const targetAspect = cols / rows;
+  const imageAspect = image.naturalWidth / image.naturalHeight;
+  let sx = 0;
+  let sy = 0;
+  let sWidth = image.naturalWidth;
+  let sHeight = image.naturalHeight;
+  if (imageAspect > targetAspect) {
+    sWidth = image.naturalHeight * targetAspect;
+    sx = (image.naturalWidth - sWidth) / 2;
+  } else {
+    sHeight = image.naturalWidth / targetAspect;
+    sy = (image.naturalHeight - sHeight) / 2;
+  }
+
+  ctx.drawImage(image, sx, sy, sWidth, sHeight, 0, 0, cols, rows);
   const { data } = ctx.getImageData(0, 0, cols, rows);
 
   for (let i = 0; i < cols * rows; i++) {

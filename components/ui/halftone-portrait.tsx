@@ -25,12 +25,19 @@ export function HalftonePortrait({ src, alt, naturalWidth, naturalHeight, classN
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { isActive, isReady } = useHalftonePortrait(src, containerRef, canvasRef);
 
-  const canvasVisible = isActive && isReady;
+  // Hide the full-color fallback photo the moment we know the halftone will
+  // take over (before it has even loaded), not once it's actually ready —
+  // otherwise the real photo flashes in during the load/sample delay. The
+  // wrapper's bg-canvas shows through as a plain placeholder in that gap
+  // (matching the page floor, since this sits directly on it with no card
+  // wrapper), then the canvas fades in over it once the first frame is drawn.
+  const imageVisible = !isActive;
+  const canvasVisible = isReady;
 
   return (
     <div
       ref={containerRef}
-      className={`relative overflow-hidden rounded-lg bg-canvas-subtle ${className ?? ""}`}
+      className={`relative overflow-hidden rounded-lg bg-canvas ${className ?? ""}`}
       style={{ aspectRatio: `${naturalWidth} / ${naturalHeight}` }}
     >
       <Image
@@ -39,7 +46,7 @@ export function HalftonePortrait({ src, alt, naturalWidth, naturalHeight, classN
         fill
         sizes="(min-width: 640px) 320px, 100vw"
         className="object-cover transition-opacity duration-base ease-standard"
-        style={{ opacity: canvasVisible ? 0 : 1 }}
+        style={{ opacity: imageVisible ? 1 : 0 }}
         priority
       />
       <canvas
