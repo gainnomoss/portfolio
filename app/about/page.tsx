@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAbout } from "@/lib/content";
 import { mdxComponents } from "@/components/mdx/mdx-components";
 import { Button } from "@/components/ui/button";
+import { HalftonePortrait } from "@/components/ui/halftone-portrait";
 
 export const metadata: Metadata = {
   title: "About",
@@ -31,26 +31,7 @@ export default function AboutPage() {
           </div>
         </div>
         {about.photo ? (
-          <div className="overflow-hidden rounded-lg">
-            <Image
-              src={about.photo}
-              alt="Ke Er Zhang"
-              width={640}
-              height={651}
-              className="h-auto w-full object-cover dark:hidden"
-              priority
-            />
-            {about.photoDark ? (
-              <Image
-                src={about.photoDark}
-                alt="Ke Er Zhang"
-                width={640}
-                height={651}
-                className="hidden h-auto w-full object-cover dark:block"
-                priority
-              />
-            ) : null}
-          </div>
+          <HalftonePortrait src={about.photo} alt="Ke Er Zhang" naturalWidth={400} naturalHeight={514} />
         ) : null}
       </div>
     </div>
