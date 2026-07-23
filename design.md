@@ -153,8 +153,11 @@ components:
     backgroundColor: "{colors.canvas-subtle}"
     rounded: "{rounded.lg}"
     padding: "{spacing.lg}"
-    titleTypography: "{typography.title-xl}"
+    layout: "single-column list, thumbnail left / body right from 768px up, stacked (thumbnail on top) below it"
+    titleTypography: "{typography.display-md}"
     hoverMotion: "card lifts (-translate-y-1.5) while the thumbnail scales (1.05), both {motion.duration-base} {motion.easing-standard}"
+    thumbnailAnimation: "optional per-project Lottie/video overlay that plays on hover, desktop pointer-hover only, no autoplay, disabled under prefers-reduced-motion"
+    thumbnailFloat: "opt-in static variant of the animated-thumbnail frame (centered, max-width 500px, drop-shadow-md) for projects without a hover animation asset, so the thumbnail still floats and enlarges on hover consistently with animated cards"
   principle-card:
     backgroundColor: "{colors.canvas}"
     border: "1px solid {colors.accent-weak}"
@@ -173,11 +176,12 @@ components:
     cardBackground: "{colors.canvas-subtle}"
     rounded: "{rounded.md}"
   tag:
-    backgroundColor: "{colors.canvas-subtle}"
+    backgroundColor: "{colors.canvas}"
     textColor: "{colors.muted}"
+    border: "1px solid {colors.border}"
     typography: "{typography.label}"
-    rounded: "{rounded.pill}"
-    padding: "4px 12px"
+    rounded: "{rounded.sm}"
+    padding: "8px 12px"
   hero-dot-field:
     dotColor: "{colors.border-strong}"
     spotlightColor: "{colors.accent}"
@@ -267,9 +271,6 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - **Warning** (`{colors.warning-light}` #a8710a / `{colors.warning-dark}` #e6b34d) — advisory notices.
 - **Success** (`{colors.success-light}` #1f7a4d / `{colors.success-dark}` #4ade95) — confirmation states (e.g. unlocked case study).
 
-### Decorative
-- **Thumbnail Peach** (`{colors.thumbnail-peach}` #f7e7d9) — a single fixed value, not a light/dark pair: it fills the empty space behind a `contain`-fit `project-card` thumbnail when the source screenshot doesn't already fill the frame (e.g. Investigator Copilot's browser screenshot). Same pale, ~50%-saturation formula as the lavender baked into GroceryPal's own hero image, hue-rotated to a warm peach so the two cards read as siblings rather than duplicates. Stays constant across themes because it's standing in for artwork, not a UI surface — matching how GroceryPal's baked-in lavender doesn't shift in dark mode either. Opt in per project via `thumbnailBg: peach` in frontmatter; omit for thumbnails that already fill their frame.
-
 ## Typography
 
 **Font family:** Geist (variable, self-hosted via `next/font/google`) for everything — display, body, UI. Geist Mono for the label/mono-detail roles only. No third typeface, no serif — a single confident grotesk voice is the point.
@@ -320,7 +321,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`button-secondary`** — Transparent fill, `{colors.border-strong}` outline, `{colors.ink}` text, same shape as primary. Pairs with primary the way the current site's buttons already do.
 
-**`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, contains a framed screenshot (see below), title in `{typography.title-xl}` so it reads first, company/type in `{typography.body-sm}` muted, tags as `{component.tag}` row. On hover the whole card lifts (`-translate-y-1.5`) while the thumbnail scales up slightly (`scale-105`) — both on `{motion.duration-base}` / `{motion.easing-standard}`, no shadow added (stays inside the system's one elevation step). A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern, disables the click-through, and skips the hover motion entirely. Thumbnail source images should be high enough resolution, and close enough in aspect ratio to the card's `aspect-[4/3]` frame, that neither `cover` nor `contain` fit crops out meaningful UI or forces visible upscaling — prefer a wide/landscape source (a composited hero shot, a browser screenshot) over a raw tall mobile-app capture.
+**`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, full-width row in a single-column list (Home "Selected Work" and the Work page both use one card per row, not a grid). Below `768px` the thumbnail stacks on top of the body, full width; from `768px` up the card splits into two equal columns — thumbnail left, body right, vertically centered against each other. Body content, top to bottom: password tag (if protected) → title in `{typography.title-lg}` + company in `{typography.body-sm}` muted → description in `{typography.body-sm}` → tag row (`{component.tag}`). On hover the whole card lifts (`-translate-y-1.5`) while the thumbnail scales up slightly (`scale-105`) — both on `{motion.duration-base}` / `{motion.easing-standard}`, no shadow added (stays inside the system's one elevation step). A project may optionally opt into a hover-triggered Lottie animation layered over its static thumbnail (frontmatter `thumbnailAnimation`): it only mounts for pointer-hover-capable desktop viewports (`(hover: hover) and (pointer: fine)`), never autoplays, plays on hover and resets on mouse-leave, and is skipped entirely under `prefers-reduced-motion` — the static screenshot underneath is what mobile/touch and reduced-motion visitors always see. A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern, disables the click-through, and skips the hover motion entirely. Thumbnail source images should be high enough resolution, and close enough in aspect ratio to the card's `aspect-[4/3]` frame, that neither `cover` nor `contain` fit crops out meaningful UI or forces visible upscaling — prefer a wide/landscape source (a composited hero shot, a browser screenshot) over a raw tall mobile-app capture. Any empty space around a `contain`-fit thumbnail should come from the source asset having a transparent background (keyed/exported with alpha) rather than a solid fill color, so it sits directly on `{colors.canvas-subtle}` without a mismatched color block behind it. Where a project supplies both a static thumbnail and a hover animation, the static image should depict the same frame the animation opens on (not an unrelated screenshot), and the swap between the two on load is a `{motion.duration-base}` / `{motion.easing-standard}` opacity crossfade, never an instant cut.
 
 **Case-study screenshot** — Product/UI images and video embeds sit flat on `{colors.canvas}` with `{rounded.md}` corners — no border, no shadow. This is a site-wide rule for every media embed, not a per-case-study choice. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge and spanning the image's full width. This caption-matches-media-width rule applies to every captioned embed (single screenshots, pairs, videos).
 
@@ -338,7 +339,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`timeline`** — A vertical rail (`{colors.border}`) with dot markers (`{colors.accent}`) at each entry; entry content sits in a `{component.project-card}`-style block to its right. Used on the About page (experience) and inside case studies (multi-stage journeys, iteration history).
 
-**`tag`** — Small pill, `{colors.canvas-subtle}` background, `{colors.muted}` text, `{typography.label}` (mono, uppercase). Used for project tags. The "Password protected" variant (per product.md's requirement that protected projects are clearly marked before opening) swaps to `{colors.danger-subtle}` fill with `{colors.danger}` text and lock glyph, so the locked state reads as a semantic warning rather than a neutral tag.
+**`tag`** — Small bordered chip, `{rounded.sm}`, `{colors.canvas}` background, 1px `{colors.border}` stroke, `{colors.muted}` text, `{typography.label}` (mono, uppercase). Used for project tags. The "Password protected" variant (per product.md's requirement that protected projects are clearly marked before opening) keeps the `{rounded.pill}` shape and swaps to `{colors.danger-subtle}` fill with `{colors.danger}` text and lock glyph — no border — so the locked state reads as a distinct semantic warning rather than a neutral tag.
 
 **`hero-dot-field`** — A faint grid of `{colors.border-strong}` dots anchored to the right edge of the homepage hero, visible desktop-only (`lg+`). A second dot layer in `{colors.accent}` is revealed only inside a small radius around the cursor (a CSS mask, no canvas/JS drawing) and fades into the canvas color on its inner edge. Never repeated elsewhere on the site.
 
@@ -380,9 +381,9 @@ A flat, documented stacking order — every `fixed`/`sticky` element on the site
 
 | Breakpoint | Width | Key Changes |
 |---|---|---|
-| Mobile | 320–767px | Single column; nav collapses to hamburger sheet; `{spacing.section-mobile}` (56px) section padding; timeline rail moves flush-left; project grid is 1-up |
-| Tablet | 768–1023px | Nav stays horizontal; project grid is 2-up; reading column unchanged |
-| Desktop | 1024–1439px | Full nav; project grid 2–3-up depending on card content; `{spacing.section-desktop}` (96px) section padding |
+| Mobile | 320–767px | Single column; nav collapses to hamburger sheet; `{spacing.section-mobile}` (56px) section padding; timeline rail moves flush-left; project-card thumbnail stacks above body |
+| Tablet | 768–1023px | Nav stays horizontal; project-card splits into thumbnail/body columns; reading column unchanged |
+| Desktop | 1024–1439px | Full nav; project list stays single-column (one full-width card per row); `{spacing.section-desktop}` (96px) section padding |
 | Wide | ≥1440px | Same as Desktop; max content width caps at 1200px, extra space becomes outer margin |
 
 No horizontal scrolling at any width. Touch targets ≥44px everywhere (nav links, tags are the exception as non-interactive, buttons/toggle/back-to-top all meet this).

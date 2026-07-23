@@ -18,7 +18,7 @@ export default function WorkPage() {
         Selected product design case studies
       </p>
 
-      <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2">
+      <div className="mt-16 flex flex-col gap-8">
         {projects.map((project, index) => (
           <Reveal key={project.slug} delay={index * 0.05}>
             <ProjectCard project={project} />
