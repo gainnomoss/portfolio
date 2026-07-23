@@ -15,6 +15,8 @@ export interface Project {
   thumbnailFit: "cover" | "contain";
   thumbnailBg: "peach" | null;
   thumbnailAnimation: string | null;
+  thumbnailAnimationLoop: boolean;
+  thumbnailFloat: boolean;
   protected: boolean;
   comingSoon: boolean;
   order: number;
@@ -31,6 +33,8 @@ export interface ProjectFrontmatter {
   thumbnailFit?: "cover" | "contain";
   thumbnailBg?: "peach";
   thumbnailAnimation?: string;
+  thumbnailAnimationLoop?: boolean;
+  thumbnailFloat?: boolean;
   protected?: boolean;
   comingSoon?: boolean;
   order?: number;

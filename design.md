@@ -156,7 +156,8 @@ components:
     layout: "single-column list, thumbnail left / body right from 768px up, stacked (thumbnail on top) below it"
     titleTypography: "{typography.title-lg}"
     hoverMotion: "card lifts (-translate-y-1.5) while the thumbnail scales (1.05), both {motion.duration-base} {motion.easing-standard}"
-    thumbnailAnimation: "optional per-project Lottie overlay that plays on hover, desktop pointer-hover only, no autoplay, disabled under prefers-reduced-motion"
+    thumbnailAnimation: "optional per-project Lottie/video overlay that plays on hover, desktop pointer-hover only, no autoplay, disabled under prefers-reduced-motion"
+    thumbnailFloat: "opt-in static variant of the animated-thumbnail frame (centered, max-width 500px, drop-shadow-md) for projects without a hover animation asset, so the thumbnail still floats and enlarges on hover consistently with animated cards"
   principle-card:
     backgroundColor: "{colors.canvas}"
     border: "1px solid {colors.accent-weak}"

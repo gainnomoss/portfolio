@@ -22,6 +22,8 @@ function readProject(slug: string): Project {
     thumbnailFit: fm.thumbnailFit ?? "cover",
     thumbnailBg: fm.thumbnailBg ?? null,
     thumbnailAnimation: fm.thumbnailAnimation ?? null,
+    thumbnailAnimationLoop: fm.thumbnailAnimationLoop ?? true,
+    thumbnailFloat: fm.thumbnailFloat ?? false,
     protected: fm.protected ?? false,
     comingSoon: fm.comingSoon ?? false,
     order: fm.order ?? 999,
