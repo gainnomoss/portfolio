@@ -187,6 +187,12 @@ components:
     spotlightColor: "{colors.accent}"
     spacing: 24px
     visibility: "desktop only (lg+), right-aligned"
+  halftone-portrait:
+    dotColor: "{colors.ink}"
+    backgroundColor: "{colors.canvas}"
+    rounded: "{rounded.lg}"
+    interactionRadius: 100px
+    fallback: "next/image, shown whenever canvas is unsupported, JS is disabled, or prefers-reduced-motion is set"
   password-gate:
     backgroundColor: "{colors.canvas-subtle}"
     rounded: "{rounded.lg}"
@@ -229,7 +235,7 @@ This system exists to get a hiring manager to trust the designer's craft within 
 - One mono voice (Geist Mono) reserved for small credibility-signaling details: tags, timeline dates, the footer colophon line — a deliberate second voice used sparingly, the way Billy Sweeney's colophon or Rebecca Ling's timeline dates read as "considered," not decorative.
 - Light and dark are both first-class. The toggle lives top-right, always, and is itself a small delight moment (Aleksi Tappura) — not a system-preference afterthought.
 - One accent color (`{colors.accent}`, a confident blue evolved from the current site's brand blue), used only for links, the active nav state, the toggle icon, and primary interactive affordances. Everything else is ink/canvas grays in both themes.
-- One deliberate animated hero moment on the homepage (a quiet interactive dot field that lights up near the cursor, desktop-only, Aleksi Tappura-style restraint) — everywhere else, motion is a micro-interaction (hover/press, tab switch, scroll-reveal) gated behind `prefers-reduced-motion`.
+- Two deliberate animated moments, and no more: the homepage hero's quiet interactive dot field (desktop-only, Aleksi Tappura-style restraint) and the interactive halftone portrait (the profile photo, on both the homepage About preview and the About page itself). Everywhere else, motion is a micro-interaction (hover/press, tab switch, scroll-reveal) gated behind `prefers-reduced-motion`.
 - Real UI screenshots sit flat on the canvas with subtle rounding (`{rounded.md}`) — no border, no shadow — so the interface being shown carries the visual weight, not its container.
 - A connector-line timeline component is the one recurring structural motif (Rebecca Ling-style), used for the About page's experience section and every case study's process/journey narrative.
 
@@ -306,7 +312,8 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 - `{motion.duration-base}` (200ms) — theme toggle crossfade, tab/segment switches.
 - `{motion.duration-slow}` (400ms) — scroll-reveal of section content, timeline entries animating in.
 - Easing: `{motion.easing-standard}` everywhere — no bounce, no spring for content reveals (a subtle spring is acceptable only on the theme toggle icon itself).
-- **The one deliberate hero moment:** on the homepage hero, right side, desktop only (`lg+`) — a faint dot field (`{component.hero-dot-field}`) that brightens near the cursor via a masked spotlight, fading into the canvas on its inner edge. Never present on mobile/tablet; no autoplay/looping — it only reacts to real pointer input, so it fully disables (not just collapses) under `prefers-reduced-motion`.
+- **The homepage hero moment:** on the homepage hero, right side, desktop only (`lg+`) — a faint dot field (`{component.hero-dot-field}`) that brightens near the cursor via a masked spotlight, fading into the canvas on its inner edge. Never present on mobile/tablet; no autoplay/looping — it only reacts to real pointer input, so it fully disables (not just collapses) under `prefers-reduced-motion`.
+- **The profile photo moment:** the halftone portrait (`{component.halftone-portrait}`) — the profile photo rendered as a canvas grid of monochrome dots sized by local brightness. Used for the homepage's About preview thumbnail and the About page's larger portrait alike; present at every breakpoint, it responds to pointer proximity with a spring-based repel-and-refocus interaction and an almost-imperceptible idle breathing motion, and falls back to the plain photo whenever canvas is unsupported, JS is disabled, or `prefers-reduced-motion` is set.
 - **Hero entrance:** on first paint the headline reveals with a typed-in effect (real text is present in the DOM throughout for SEO/screen readers; the animation is a decorative overlay), then the greeting line, subtitle, and buttons fade up in sequence. Reduced motion shows the final state immediately, no delay.
 - **`prefers-reduced-motion`:** every transition and scroll-reveal above collapses to an instant state change (opacity-only fade at most) when the user has this preference set. Non-negotiable per product.md.
 - **Lightbox open/close:** scrim fade + image fade/scale `0.96 → 1`, `{motion.duration-base}` (200ms), `{motion.easing-standard}`; close reverses the same transition on unmount. Zoom/pan transitions triggered by buttons, keyboard, and double-click/tap use the same duration and easing; continuous gestures (wheel, drag-pan, pinch) update transform values directly, uneased, for 1:1 tracking. Under `prefers-reduced-motion`, open/close and all discrete zoom transitions collapse to `duration: 0`.
@@ -343,6 +350,8 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`hero-dot-field`** — A faint grid of `{colors.border-strong}` dots anchored to the right edge of the homepage hero, visible desktop-only (`lg+`). A second dot layer in `{colors.accent}` is revealed only inside a small radius around the cursor (a CSS mask, no canvas/JS drawing) and fades into the canvas color on its inner edge. Never repeated elsewhere on the site.
 
+**`halftone-portrait`** — The profile photo, sampled on a regular grid and rendered as one dot per cell: darker pixels become larger dots, near-white pixels shrink to nothing, so the photo reads as a monochrome halftone print rather than a continuous-tone image. Used both for the homepage's small About-preview thumbnail and the About page's full portrait, center-cropping the source to whichever aspect ratio the container needs. Dots are flat `{colors.ink}` fills (no gradients/glow/outlines) on a `{colors.canvas}` background inside a `{rounded.lg}` frame — matching the page floor it sits directly on, with no card surface behind it — so both are theme-correct without needing separate light/dark source images. Dot density adapts to the rendered container size (finer grid on wider layouts). On pointer proximity, nearby dots spring gently away from the cursor and their radius blends toward a uniform "in-focus" size — reading as the halftone briefly snapping into a crisp, ordered pattern — then relaxes exactly back to its resting grid position and brightness-mapped size once the pointer moves on; a barely-visible low-frequency noise field also keeps the whole grid "breathing" at rest. The real photo (`next/image`, with real `alt` text) is in the DOM underneath as the accessible fallback and is the only thing shown when canvas is unsupported, JS is disabled, or `prefers-reduced-motion` is set — otherwise it's hidden immediately (never shown mid-load) behind the `{colors.canvas}` placeholder, and the canvas fades in once dots are actually ready to draw.
+
 **`password-gate`** — Centered `{colors.canvas-subtle}` card, `{rounded.lg}`, generous `{spacing.2xl}` padding. Single password input (`{colors.border-strong}` outline, focus ring in `{colors.accent}`), primary button, inline `{colors.danger}` error text on failure. No modal — a real page at `/work/[slug]` so the URL stays stable.
 
 **`footer`** — Plain `{colors.canvas}`, contact links (email, LinkedIn, resume download) plus a single small colophon-style line in `{typography.mono-detail}` (a Billy Sweeney-style craft signal, e.g. noting the stack or a build detail) — one quiet credibility moment, not a marketing footer.
@@ -367,7 +376,7 @@ A flat, documented stacking order — every `fixed`/`sticky` element on the site
 - Keep the accent to one hue across both themes. If a second chromatic color is needed, it must be a semantic state (danger/warning/success), never decorative.
 - Let weight and size build hierarchy. Resist the urge to add a second typeface for "personality" — the mono voice already provides that contrast in small doses.
 - Treat the theme toggle as a real feature: test both themes for every component before calling it done, not just the default.
-- Reserve motion for the homepage hero visual plus small state-change micro-interactions. If a component's animation doesn't communicate a state change or an entrance, cut it.
+- Reserve sustained/interactive motion for the homepage hero visual and the halftone portrait, plus small state-change micro-interactions elsewhere. If a component's animation doesn't communicate a state change or an entrance, cut it.
 - Let case-study screenshots and videos sit flat on the canvas at content width — the interface itself is the frame. Reserve borders and shadows for the `principle-card` micro-shadow, the system's single card elevation step.
 
 ### Don't

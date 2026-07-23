@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { getFeaturedProjects, getAbout } from "@/lib/content";
 import { Button } from "@/components/ui/button";
+import { HalftonePortrait } from "@/components/ui/halftone-portrait";
 import { HeroCopy } from "@/components/ui/hero-copy";
 import { InteractiveDots } from "@/components/ui/interactive-dots";
 import { ProjectCard } from "@/components/ui/project-card";
@@ -24,7 +24,7 @@ export default function Home() {
 
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-content px-6">
-          <SectionHeading>Selected Work</SectionHeading>
+          <SectionHeading>Selected Works</SectionHeading>
           <div className="mt-10 flex flex-col gap-8">
             {featured.map((project, index) => (
               <Reveal key={project.slug} delay={index * 0.05}>
@@ -36,45 +36,33 @@ export default function Home() {
       </section>
 
       <section className="border-t border-border py-16 sm:py-24">
-        <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-6 sm:grid-cols-[240px_1fr] sm:items-start">
+        <div className="mx-auto max-w-content px-6">
           <SectionHeading>About</SectionHeading>
-          <div>
-            <div className="flex flex-col gap-8 sm:flex-row sm:items-start">
-              {about.photo ? (
-                <>
-                  <Image
-                    src={about.photo}
-                    alt="Ke Er Zhang"
-                    width={160}
-                    height={163}
-                    className="h-40 w-40 shrink-0 rounded-lg object-cover dark:hidden"
-                  />
-                  {about.photoDark ? (
-                    <Image
-                      src={about.photoDark}
-                      alt="Ke Er Zhang"
-                      width={160}
-                      height={163}
-                      className="hidden h-40 w-40 shrink-0 rounded-lg object-cover dark:block"
-                    />
-                  ) : null}
-                </>
-              ) : null}
-              <div>
-                <p className="max-w-reading text-body-lg text-body">
-                  Whether I&apos;m designing AI-powered tools for investigators or building
-                  personal projects from scratch, I&apos;m motivated by understanding users,
-                  solving meaningful problems, and crafting experiences that feel intuitive and
-                  reliable.
-                </p>
-                <p className="mt-4 max-w-reading text-body-lg text-body">
-                  Outside of design, you&apos;ll usually find me at aerial classes, hiking,
-                  reading, or working on my next side project.
-                </p>
-                <Button href="/about" variant="secondary" className="mt-6">
-                  More about me
-                </Button>
-              </div>
+          <div className="mt-10 flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-center">
+            {about.photo ? (
+              <HalftonePortrait
+                src={about.photo}
+                alt="Ke Er Zhang"
+                naturalWidth={160}
+                naturalHeight={160}
+                className="h-40 w-40 shrink-0"
+                spacingScale={0.6}
+              />
+            ) : null}
+            <div>
+              <p className="max-w-reading text-body-lg text-body">
+                Whether I&apos;m designing AI-powered tools for investigators or building
+                personal projects from scratch, I&apos;m motivated by understanding users,
+                solving meaningful problems, and crafting experiences that feel intuitive and
+                reliable.
+              </p>
+              <p className="mt-4 max-w-reading text-body-lg text-body">
+                Outside of design, you&apos;ll usually find me at aerial classes, hiking,
+                reading, or working on my next side project.
+              </p>
+              <Button href="/about" variant="secondary" className="mt-6">
+                More about me
+              </Button>
             </div>
           </div>
         </div>
