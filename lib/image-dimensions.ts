@@ -8,6 +8,7 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/projects/investigator-copilot/transcription-row-states.png": { width: 1220, height: 1271 },
   "/projects/investigator-copilot/transcription-row-anatomy.png": { width: 1275, height: 1328 },
   "/projects/investigator-copilot/mvp-before-mark.png": { width: 2984, height: 768 },
+  "/projects/investigator-copilot/mvp-before-moving-transcript.png": { width: 1574, height: 1013 },
   "/projects/investigator-copilot/edm.png": { width: 1050, height: 4436 },
   "/projects/investigator-copilot/complete-error.png": { width: 1973, height: 882 },
   "/projects/investigator-copilot/design-iteration-before.png": { width: 1192, height: 90 },
