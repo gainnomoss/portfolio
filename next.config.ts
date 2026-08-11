@@ -28,6 +28,17 @@ const nextConfig: NextConfig = {
           { key: "Content-Security-Policy", value: csp },
         ],
       },
+      {
+        // The unprocessed source photo behind the halftone portrait — only
+        // ever meant to be sampled into dots client-side, never shown or
+        // linked as an image in its own right. It's still a directly
+        // fetchable static file, so without this it gets crawled and
+        // indexed by Google Images as a raw headshot. noindex keeps it
+        // loadable (the halftone effect still works) while opting it out of
+        // image search.
+        source: "/profile-photo.png",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
     ];
   },
 };
