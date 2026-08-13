@@ -15,7 +15,6 @@ order: 4
 ## Overview
 
 Grocery Pal is a mobile app that helps individual shoppers track their grocery buys by expiry date, so they waste less food. Using AI-powered receipt scanning and food recognition, users can maintain an inventory record, track expiry dates, and make better decisions when grocery shopping.
-I first worked on this app during the Build For Good Hackathon in 2024 with my team, and decided to revisit the app as a personal project in 2026.
 
 <Meta
   role="Product designer"
@@ -34,6 +33,16 @@ I first worked on this app during the Build For Good Hackathon in 2024 with my t
   width={640}
   height={1308}
   qrUrl="https://grocery-mvp-v1.vercel.app/"
+/>
+
+## Background
+
+Grocery Pal started as a hackathon idea. I first built it with a team at the Build For Good Hackathon in 2024, then revisited it as a solo personal project in 2026 to see it through to a shipped product.
+
+<Screenshot
+  src="/projects/grocerypal/hackathon-team.png"
+  alt="Five members of the original hackathon team posing together in matching green t-shirts"
+  caption="The team behind the original 2024 hackathon idea"
 />
 
 ## Problem
@@ -67,7 +76,9 @@ Two findings shaped this project:
   title="Users find it tedious to add or update their inventory"
 />
 
-Respondents were more interested in using photos than receipts to add new items. They wanted to be able to add or update inventory with as little friction as possible, preferring to be able to "no typing just scan".
+> "No typing, just scan."
+
+Respondents were more interested in using photos than receipts to add new items, and wanted to be able to add or update inventory with as little friction as possible.
 
 <StatementHeading
   label="Insight"
@@ -81,11 +92,20 @@ Across dozens of survey responses, "sauces," "condiments," "frozen food," and "d
 
 Three principles guided the design:
 
-<Screenshot
-  src="/projects/grocerypal/design-principles.png"
-  alt="Three design principles: minimize friction for stock upload or deletion, maximize visibility into current stock, and maximize joy"
-  caption=""
-/>
+<Principles>
+  <PrincipleCard
+    title="Minimise friction"
+    description="Stock upload and deletion is the biggest reason people abandon these apps."
+  />
+  <PrincipleCard
+    title="Maximise visibility"
+    description="Forgetting non-visible items is a major driver of food waste."
+  />
+  <PrincipleCard
+    title="Maximise joy"
+    description="Administrative tasks can still spark a little joy."
+  />
+</Principles>
 
 ## Design
 
@@ -171,6 +191,20 @@ Editing in a bottom sheet disrupts a user's sense of where they were in a long i
   ]}
 />
 
+<StatementHeading
+  label="Design Decision"
+  number={5}
+  title="Quietly friendly user experience"
+/>
+
+Beyond individual flows, I wanted the whole app to feel calmer and warmer than a typical inventory tracker. A restrained colour palette, rounded components, generous spacing, gentle animation, and friendly category names (like "Smell check" and "Lasts forever") keep administrative tasks from feeling like data entry.
+
+<Screenshot
+  src="/projects/grocerypal/design-tokens-palette.png"
+  alt="Colour tokens for Grocery Pal: brand, background and surface neutrals, and four expiry-status colours from critical to none"
+  caption="The colour system underpinning the app's calmer, more restrained visual language"
+/>
+
 ### Working with AI as a design tool
 
 I found working with Claude Code to be particularly useful at certain parts of the design process.
@@ -191,11 +225,17 @@ Mid-way, once flows were validated, I asked Claude Design for more visual direct
   caption=""
 />
 
+### Remaining in control of design decisions
+
+Once I'd settled on a direction, I brought designs back into Figma, where I could control the details more precisely — refining UI and interactions — before prompting Claude Code to implement the updates. This loop between Figma and Claude Code kept me, not the AI, making the design calls, while AI handled the busywork of translating them into working screens.
+
 <Screenshot
   src="/projects/grocerypal/ai-tool-mid.png"
   alt="Successive iterations refining how the item list groups food into smell-check, use-soon, and good-to-go categories"
   caption=""
 />
+
+### Documenting decisions as a living spec
 
 Later, as the number of screens grew, I built out a design.md as a spec which documents spacing, colour, and component rules. The intent is to help future generated screens be aligned with design decisions made thus far.
 
@@ -207,7 +247,26 @@ Later, as the number of screens grew, I built out a design.md as a spec which do
 
 ## Outcome
 
-Grocery Pal is a working MVP deployed on Vercel, connected to the Claude API, able to scan receipts and log them into a grocery management system — designed and shipped in one week. Current features include receipt scanning, AI categorisation, expiry tracking, editing, and inventory management, with a backlog of further features awaiting development.
+Grocery Pal is a working MVP, designed and built by one person.
+
+<NumberedList
+  items={[
+    {
+      term: "2 weeks",
+      description: "from idea to a deployed, working MVP.",
+    },
+    {
+      term: "Live on Vercel",
+      description: "connected to the Claude API for receipt scanning and item creation.",
+    },
+    {
+      term: "End-to-end",
+      description: "research, UX, UI, and front-end, designed and built solo.",
+    },
+  ]}
+/>
+
+Current features include receipt scanning, AI categorisation, expiry tracking, editing, and inventory management, with a backlog of further features awaiting development.
 
 ## Reflections
 

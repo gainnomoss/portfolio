@@ -56,6 +56,16 @@ Investigator Copilot is an AI-powered platform built for the Singapore Police Fo
   ]}
 />
 
+## Background
+
+I inherited a working MVP from an external vendor when I joined this project. It gave officers a way to record and review interview transcripts, but the interactions hadn't been refined for how officers actually worked day-to-day.
+
+<Screenshot
+  src="/projects/investigator-copilot/background-vendor-mvp.png"
+  alt="The vendor's original Complete screen: a static transcript table with speaker labels S1, S2 and S3, and no way to mark, annotate or search through the transcript"
+  caption="The MVP I inherited from the vendor, before the redesign"
+/>
+
 ## Problem
 
 ### Manual transcription delays investigations
@@ -64,11 +74,11 @@ Interview recordings are typically sent to third-party vendors or specialist off
 
 ### Assistant officers are cognitively overloaded during interviews
 
-Assistant officers carry out multiple tasks during an interview — monitoring recording equipment, taking interview notes, and supporting the lead investigator — increasing cognitive load and dividing attention during a critical stage of the investigation. During post-test interviews, 2 of 6 participants identified the need to capture observations during interviews.
+Assistant officers carry out multiple tasks during an interview — monitoring recording equipment, taking interview notes, and supporting the lead investigator — increasing cognitive load and dividing attention during a critical stage of the investigation.
 
-### Vendor MVP had usability issues
+### The vendor MVP hadn't been validated with officers
 
-During usability testing, 2 of 6 users had difficulty marking transcript segments, prompting the need for this interaction to be redesigned.
+The MVP I inherited had not been tested with the officers who would actually use it, creating usability risks ahead of a wider rollout.
 
 ## Research & Discovery
 
@@ -82,43 +92,40 @@ I worked with the PM to understand and map out the current workflow the users ha
   caption=""
 />
 
-### Usability testing with MVP
+### Usability testing with the inherited MVP
 
-I conducted usability testing with investigation officers using the existing MVP to understand how the interface performed during realistic interview scenarios.
+I conducted usability testing with 6 officers across 2 sessions, followed by post-test interviews to better understand their workflows and pain points.
 
 <StatementHeading
   label="Research insight"
   number={1}
-  title="Officers couldn't clearly distinguish transcript states"
+  title="Officers had difficulty marking transcript segments"
 />
 
-Users clicked twice because they couldn't tell whether a transcript had already been marked. The hover state would still be applied if the user's cursor was still hovering over the transcript row, causing the transcript row to be unmarked instead if the user clicked again.
+During usability testing, 2 of 6 users had difficulty marking transcript segments — for two compounding reasons. The hover and marked states were visually near-identical, so users often clicked twice, unintentionally unmarking a segment they meant to keep. On top of that, the transcript kept shifting as new content streamed in, forcing users to chase moving content whenever they tried to bookmark a statement.
 
-<Screenshot
-  src="/projects/investigator-copilot/mvp-before-mark.png"
-  alt="The MVP's hover and marked states were visually identical"
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/investigator-copilot/mvp-before-mark.png",
+      alt: "The MVP's hover and marked states were visually identical, so users couldn't tell if a row had already been marked",
+      caption: "Cause 1: hover and marked states looked identical",
+    },
+    {
+      src: "/projects/investigator-copilot/mvp-before-moving-transcript.png",
+      alt: "The MVP's live transcription screen, labelled Before, with an arrow indicating the transcript rows shifting upward as new content streamed in",
+      caption: "Cause 2: the transcript kept shifting during live recording",
+    },
+  ]}
 />
 
 <StatementHeading
   label="Research insight"
   number={2}
-  title="Moving transcription content made interaction difficult"
-/>
-
-The transcript continuously shifted during interviews, forcing users to chase moving content whenever they wanted to bookmark an important statement.
-
-<Screenshot
-  src="/projects/investigator-copilot/mvp-before-moving-transcript.png"
-  alt="The MVP's live transcription screen, labelled Before, with an arrow indicating the transcript rows shifting upward as new content streamed in"
-/>
-
-<StatementHeading
-  label="Research insight"
-  number={3}
   title="Officers need to make notes during interviews"
 />
 
-Officers needed to capture important observations during interviews, making notes throughout the course of the interview, which the current workspace could not allow for.
+Officers needed to capture important observations throughout an interview, which the current workspace didn't support. 2 of 6 users specifically mentioned note-taking as part of their existing workflow.
 
 <Screenshot
   src="/projects/investigator-copilot/user-testing-note-taking.png"
@@ -126,6 +133,14 @@ Officers needed to capture important observations during interviews, making note
   caption="Notes taken from user testing session"
   maxHeight={323}
 />
+
+<StatementHeading
+  label="Research insight"
+  number={3}
+  title="Speaker diarisation was not always accurate"
+/>
+
+Despite engineering efforts to improve diarisation, the AI didn't always tell speakers apart correctly. In one interview, it correctly labelled an officer's opening question, but then attributed a later question from the same officer to the interviewee, collapsing two people into a single "Speaker 2" thread. This eroded officers' trust in the transcript, and became a key input for how I approached AI-generated content downstream: never treat it as ground truth.
 
 ## Design Process
 
@@ -149,11 +164,22 @@ The redesign aimed to address the usability gaps identified through usability te
 
 To make the hover and marked states more visually distinct, I explored a few options, including changing the colours used to indicate hover/marked states, and changing the interaction of how a transcript can get marked. One other consideration was also to make the clickable area of marking a transcript larger, as the current area was determined by the length of the transcript text.
 
-<Screenshot
-  src="/projects/investigator-copilot/hover-marked-exploration-before.png"
-  alt="Default, hover, and marked states before the redesign — hovering highlights only the transcript text with a mark tooltip, and marked rows use a yellow text highlight"
-  caption=""
+<ScreenshotPair
+  items={[
+    {
+      src: "/projects/investigator-copilot/marking-states-before.png",
+      alt: "Default, hover, and marked states before the redesign — hovering highlights only the transcript text with a mark tooltip, and marked rows use a yellow text highlight",
+      caption: "",
+    },
+    {
+      src: "/projects/investigator-copilot/marking-states-after.png",
+      alt: "Default, hover, and marked states after the redesign — hovering fills the entire row and shows a persistent bookmark icon, and marked rows keep a clear highlight with a filled bookmark",
+      caption: "",
+    },
+  ]}
 />
+
+Here's how I iterated toward this:
 
 <Screenshot
   src="/projects/investigator-copilot/hover-marked-exploration-1.png"
@@ -199,6 +225,12 @@ Investigators need to reference transcripts through the course of the interview,
   caption="Through further discussion with users, our team discovered that notes would be a helpful feature for officers who need to work on a case with other officers. The marked panel was refined to share the side panel with the AI-generated summary, accessible by switching between tabs."
 />
 
+<Screenshot
+  src="/projects/investigator-copilot/marked-segments-panel-final.png"
+  alt="The finished Live Transcription product, showing the marked segments panel alongside the live transcript with a Download Transcript action"
+  caption="The finished side panel, shipped alongside the live transcript"
+/>
+
 <StatementHeading
   label="Design decision"
   number={3}
@@ -211,6 +243,12 @@ To allow officers to record key observations noted during interviews, a note-tak
   src="/projects/investigator-copilot/marked-segments-card-states.png"
   alt="Marked segment cards in the new side panel, shown alongside live note-taking"
   caption="Marked segment cards in the new side panel allow users to create, edit and delete notes, to note down observations they have during interviews conducted."
+/>
+
+<Screenshot
+  src="/projects/investigator-copilot/notes-panel-refined.png"
+  alt="The marked segment notes shown in context within the finished product, alongside the live transcript"
+  caption="Notes in context within the finished product"
 />
 
 <StatementHeading
@@ -248,14 +286,28 @@ through a dropdown during editing, allowing users to correct AI mistakes before
 using the transcript downstream.
 
 <Screenshot
-  src="/projects/investigator-copilot/speaker-assigning-flow.png"
-  alt="Speaker assigning flow — the edit transcript screen with a Speaker dropdown listing Speaker 1, 2 and 3 as unassigned, leading to an Assign Speaker modal where the user selects a role and enters a name for the speaker"
-  caption="Officers can assign a role and name to each detected speaker directly from the transcript"
+  src="/projects/investigator-copilot/speaker-edit-flows.png"
+  alt="Three edit flows branching from the Complete screen: editing a speaker via an Assign Speaker modal, editing a timestamp inline, and editing transcript text inline"
+  caption="Officers can correct the assigned speaker, timestamp, or transcript text directly, fixing AI mistakes before using the transcript downstream"
+/>
+
+<StatementHeading
+  label="Design decision"
+  number={6}
+  title="Designing for failure states"
+/>
+
+Live transcription depends on a stable mic and connection throughout an interview — something officers can't always guarantee inside an interview room. I designed dedicated error states for the two most disruptive failures: a disconnected microphone, and a lost connection mid-session, each with a clear recovery path back into the transcription flow.
+
+<Screenshot
+  src="/projects/investigator-copilot/transcription-error-states.png"
+  alt="Two error states for the live transcription screen: a microphone disconnected dialog and a connection lost dialog, each offering options to resume transcription or move on to the Complete step"
+  caption="Error states for microphone disconnection and lost connection during a live session"
 />
 
 ## Usability Testing
 
-During a usability testing session conducted with the new designs with 11 participants, it achieved a SUS score of 75. Users did not report further issues with bookmarking transcripts, and gave feedback that the improved interface was easier to use.
+During a usability testing session conducted with the new designs with 11 participants, it achieved a SUS score of 75, rated "Good" on the SUS scale. Users did not report further issues with bookmarking transcripts, and gave feedback that the improved interface was easier to use.
 
 <Screenshot
   src="/projects/investigator-copilot/sus-score.png"
@@ -299,4 +351,4 @@ One thing I underestimated was how many interaction states a transcript could ha
 
 One of my biggest takeaways from this project was that a polished happy path isn't enough for a successful implementation. As engineers began building the product, many discussions centred on scenarios that hadn't been explicitly designed—empty states, unexpected data lengths, disabled actions, and other edge cases that inevitably occur in production.
 
-That experience changed the way I approach design handoffs. I now work through a structured checklist before every handoff, reviewing not only the primary workflow but also loading, empty, error, and disabled states, atypical data, and interaction edge cases. While not every scenario is implemented immediately, considering them early helps uncover product decisions sooner, reduces ambiguity for engineers, and results in more robust designs.
+That experience changed the way I approach design handoffs. I now work through a structured checklist before every handoff, reviewing not only the primary workflow but also loading, empty, error, and disabled states, atypical data, and interaction edge cases. The failure states I designed for microphone and connection loss above are one direct result of that shift. While not every scenario is implemented immediately, considering them early helps uncover product decisions sooner, reduces ambiguity for engineers, and results in more robust designs.
