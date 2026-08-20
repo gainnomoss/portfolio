@@ -23,7 +23,7 @@ export const imageDimensions: Record<string, { width: number; height: number }> 
   "/projects/investigator-copilot/marked-segments-panel-final.png": { width: 1587, height: 1010 },
   "/projects/investigator-copilot/notes-panel-refined.png": { width: 1720, height: 531 },
   "/projects/investigator-copilot/speaker-edit-flows.png": { width: 1432, height: 593 },
-  "/projects/investigator-copilot/transcription-error-states.png": { width: 738, height: 309 },
+  "/projects/investigator-copilot/transcription-error-states.png": { width: 3060, height: 1077 },
   "/projects/grocerypal/hackathon-team.png": { width: 840, height: 560 },
   "/projects/grocerypal/design-tokens-palette.png": { width: 1081, height: 533 },
   "/projects/investigator-copilot/hover-marked-exploration-before.png": { width: 1753, height: 813 },
