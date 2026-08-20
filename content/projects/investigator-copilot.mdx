@@ -142,6 +142,12 @@ Officers needed to capture important observations throughout an interview, which
 
 Despite engineering efforts to improve diarisation, the AI didn't always tell speakers apart correctly. In one interview, it correctly labelled an officer's opening question, but then attributed a later question from the same officer to the interviewee, collapsing two people into a single "Speaker 2" thread. This eroded officers' trust in the transcript, and became a key input for how I approached AI-generated content downstream: never treat it as ground truth.
 
+<Screenshot
+  src="/projects/investigator-copilot/research-speaker-diarisation.png"
+  alt="Diagram showing a diarisation error: the interviewer's first and third questions are sent to the AI model, but the transcript comes back with the third question mislabelled as Speaker 2 instead of Speaker 1, merging the interviewer and interviewee into one speaker thread"
+  caption=""
+/>
+
 ## Design Process
 
 ### Design objectives
@@ -150,7 +156,7 @@ The redesign aimed to address the usability gaps identified through usability te
 
 <Screenshot
   src="/projects/investigator-copilot/design-objectives.png"
-  alt="Three design objective cards: reduce cognitive load, support live investigations, and keep investigators focused"
+  alt="Four design objective cards: make marking and unmarking easier, better support live transcription, provide note-taking for each marked segment, and help officers verify AI-generated transcript"
   caption=""
 />
 
@@ -202,6 +208,26 @@ Here's how I iterated toward this:
 <StatementHeading
   label="Design decision"
   number={2}
+  title="Define behaviour for autoscroll"
+/>
+
+Usability testing revealed that the moving transcripts made it hard for users to interact with a transcription row. Hence, I added a behaviour for autoscrolling transcripts to be turned off if the user scrolls. A button to allow the user to jump back to the current transcription timing will appear, which will re-enable autoscroll behaviour during recording and playback.
+
+<Screenshot
+  src="/projects/investigator-copilot/autoscroll-logic.png"
+  alt="Flow diagram of the autoscroll behaviour — autoscroll is enabled by default, becomes disabled when the user manually scrolls, and is re-enabled when the user clicks Jump to Playback"
+  caption=" "
+/>
+
+<Screenshot
+  src="/projects/investigator-copilot/autoscroll-screen.png"
+  alt="Live transcription screen with a marked transcript row highlighted and a Jump to Latest button overlaying the transcript, beside a Marked panel listing bookmarked segments with comment fields"
+  caption="Example of a button which appears if autoscroll is disabled. Clicking it returns the user to the current transcription timing and re-enables autoscroll."
+/>
+
+<StatementHeading
+  label="Design decision"
+  number={3}
   title="Side panel instead of modal"
 />
 
@@ -233,7 +259,7 @@ Investigators need to reference transcripts through the course of the interview,
 
 <StatementHeading
   label="Design decision"
-  number={3}
+  number={4}
   title="Supporting live note-taking"
 />
 
@@ -249,26 +275,6 @@ To allow officers to record key observations noted during interviews, a note-tak
   src="/projects/investigator-copilot/notes-panel-refined.png"
   alt="The marked segment notes shown in context within the finished product, alongside the live transcript"
   caption="Notes in context within the finished product"
-/>
-
-<StatementHeading
-  label="Design decision"
-  number={4}
-  title="Define behaviour for autoscroll"
-/>
-
-Usability testing revealed that the moving transcripts made it hard for users to interact with a transcription row. Hence, I added a behaviour for autoscrolling transcripts to be turned off if the user scrolls. A button to allow the user to jump back to the current transcription timing will appear, which will re-enable autoscroll behaviour during recording and playback.
-
-<Screenshot
-  src="/projects/investigator-copilot/autoscroll-logic.png"
-  alt="Flow diagram of the autoscroll behaviour — autoscroll is enabled by default, becomes disabled when the user manually scrolls, and is re-enabled when the user clicks Jump to Playback"
-  caption=" "
-/>
-
-<Screenshot
-  src="/projects/investigator-copilot/autoscroll-screen.png"
-  alt="Live transcription screen with a marked transcript row highlighted and a Jump to Latest button overlaying the transcript, beside a Marked panel listing bookmarked segments with comment fields"
-  caption="Example of a button which appears if autoscroll is disabled. Clicking it returns the user to the current transcription timing and re-enables autoscroll."
 />
 
 <StatementHeading
