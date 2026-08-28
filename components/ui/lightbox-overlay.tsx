@@ -25,7 +25,7 @@ function clampValue(value: number, min: number, max: number) {
 }
 
 const controlClassName =
-  "flex h-11 w-11 items-center justify-center rounded-full border border-border bg-canvas-subtle text-ink shadow-[0_4px_16px_rgba(0,0,0,0.12)] transition-[color,border-color,scale] duration-fast ease-out hover:border-border-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:pointer-events-none disabled:opacity-40 active:not-disabled:scale-[0.96]";
+  "flex h-11 w-11 items-center justify-center rounded-full bg-canvas-subtle text-ink shadow-[var(--shadow-border)] transition-[color,box-shadow,scale] duration-fast ease-out hover:shadow-[var(--shadow-border-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent disabled:pointer-events-none disabled:opacity-40 active:not-disabled:scale-[0.96]";
 
 export function LightboxOverlay({
   src,

@@ -127,6 +127,12 @@ motion:
   duration-slow: 400ms
   easing-standard: "cubic-bezier(0.4, 0, 0.2, 1)"
 
+shadow:
+  border-light: "0px 0px 0px 1px oklch(0 0 0 / 0.06), 0px 1px 2px -1px oklch(0 0 0 / 0.06), 0px 2px 4px 0px oklch(0 0 0 / 0.04)"
+  border-light-hover: "0px 0px 0px 1px oklch(0 0 0 / 0.08), 0px 1px 2px -1px oklch(0 0 0 / 0.08), 0px 2px 4px 0px oklch(0 0 0 / 0.06)"
+  border-dark: "0 0 0 1px oklch(1 0 0 / 0.08)"
+  border-dark-hover: "0 0 0 1px oklch(1 0 0 / 0.13)"
+
 components:
   nav-bar:
     backgroundColor: "{colors.canvas}"
@@ -205,10 +211,11 @@ components:
     size: 44px
     rounded: "{rounded.pill}"
     backgroundColor: "{colors.canvas-subtle}"
+    shadow: "{shadow.border-light}, hover: {shadow.border-light-hover} (dark: {shadow.border-dark} / {shadow.border-dark-hover})"
   lightbox:
     trigger: "cursor-zoom-in, focus-visible ring, wraps every case-study screenshot"
     scrimColor: "{colors.canvas}/95 with backdrop-blur-sm"
-    controlStyle: "{component.back-to-top} pill pattern"
+    controlStyle: "{component.back-to-top} pill pattern, same shadow"
     zIndex: 60
   numbered-callout:
     labelColor: "{colors.accent-weak}"
@@ -255,7 +262,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 ### Surface
 - **Canvas** (`{colors.canvas-light}` #fdfdfd / `{colors.canvas-dark}` #0a0a0d) — the page floor.
-- **Canvas Subtle** (`{colors.canvas-subtle-light}` #f6f6f8 / `{colors.canvas-subtle-dark}` #141417) — cards, tags, the password-gate panel, alternating section backgrounds. The only surface elevation step in the system — no shadows-as-depth beyond this.
+- **Canvas Subtle** (`{colors.canvas-subtle-light}` #f6f6f8 / `{colors.canvas-subtle-dark}` #141417) — cards, tags, the password-gate panel, alternating section backgrounds. The only *surface-color* elevation step in the system. The only shadow-based elevation is `{shadow.border}` on the floating pill controls (`back-to-top`, `lightbox` zoom/close) and the `principle-card` micro-shadow — nowhere else.
 
 ### Text
 - **Ink** (`{colors.ink-light}` #14151a / `{colors.ink-dark}` #f5f5f7) — headlines, primary button text-on-accent is `{colors.on-accent}` instead.
@@ -358,7 +365,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`footer`** — Plain `{colors.canvas}`, contact links (email, LinkedIn, resume download) plus a single small colophon-style line in `{typography.mono-detail}` (a Billy Sweeney-style craft signal, e.g. noting the stack or a build detail) — one quiet credibility moment, not a marketing footer.
 
-**`back-to-top`** — 44px circular button, `{colors.canvas-subtle}`, appears after scrolling past the hero on long case-study pages — preserved from the current site.
+**`back-to-top`** — 44px circular button, `{colors.canvas-subtle}`, edged with `{shadow.border-light}` (a layered transparent shadow acting as a 1px border ring plus subtle lift, deepening to `{shadow.border-light-hover}` on hover; dark mode simplifies to a single `{shadow.border-dark}` ring since layered depth shadows don't read on a near-black canvas) instead of an actual `border` — appears after scrolling past the hero on long case-study pages, preserved from the current site.
 
 **`lightbox`** — Every case-study screenshot (`FramedScreenshot`, used by `Screenshot` and `ScreenshotPair`) is a `cursor-zoom-in` trigger button that opens a full-screen, single-image, zoomable overlay: `{colors.canvas}/95` scrim with a `backdrop-blur-sm`, image at natural resolution (`quality={95}`), fit to the viewport with generous padding. Interaction is hand-rolled (no dependency): wheel/pinch/double-click/double-tap zoom anchored at the pointer, drag-to-pan once zoomed, `+`/`−`/arrow-key/`Escape` keyboard support, and a 3-control focus trap (zoom out, zoom in, close) styled as `{component.back-to-top}` pills. No prev/next gallery and no thumbnail→overlay morph in v1 — the overlay is image-only, `alt` doubles as the dialog's accessible name.
 
@@ -379,12 +386,12 @@ A flat, documented stacking order — every `fixed`/`sticky` element on the site
 - Let weight and size build hierarchy. Resist the urge to add a second typeface for "personality" — the mono voice already provides that contrast in small doses.
 - Treat the theme toggle as a real feature: test both themes for every component before calling it done, not just the default.
 - Reserve sustained/interactive motion for the homepage hero visual and the halftone portrait, plus small state-change micro-interactions elsewhere. If a component's animation doesn't communicate a state change or an entrance, cut it.
-- Let case-study screenshots and videos sit flat on the canvas at content width, with only a hairline outline for edge definition — the interface itself is the frame. Reserve actual borders and shadows for the `principle-card` micro-shadow, the system's single card elevation step.
+- Let case-study screenshots and videos sit flat on the canvas at content width, with only a hairline outline for edge definition — the interface itself is the frame. Reserve actual shadows for the `principle-card` micro-shadow and `{shadow.border}` on the floating pill controls — nowhere else.
 
 ### Don't
 - Don't add a second display typeface or a serif — that's Rebecca Ling's move specifically, not a shared "premium" pattern, and would clash with the single-voice system here.
 - Don't make the dark theme an inverted afterthought — every color pair above was chosen independently for contrast and warmth in its own theme.
-- Don't add shadows beyond the one elevation step (`{colors.canvas-subtle}` surfaces + the `principle-card` micro-shadow). No layered/soft-glow shadow systems.
+- Don't add shadows beyond the documented set: the one `{colors.canvas-subtle}` elevation step, the `principle-card` micro-shadow, and `{shadow.border}` on the floating pill controls (`back-to-top`, `lightbox` zoom/close). No soft-glow or arbitrary one-off shadow values outside these.
 - Don't animate on scroll everywhere — a scroll-reveal on every single section reads as a template, not craft.
 - Don't use `{rounded.pill}` on cards or containers — it's reserved for buttons, tags, and the theme toggle.
 
