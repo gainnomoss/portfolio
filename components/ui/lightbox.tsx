@@ -12,11 +12,9 @@ import { LightboxOverlay } from "@/components/ui/lightbox-overlay";
  * in transformed `motion.div`s, which would break `position: fixed`
  * containment if the overlay rendered in place.
  *
- * The trigger's outline is a preview candidate: design.md currently
- * documents screenshots as flat, borderless, shadowless surfaces
- * ("Real UI screenshots sit flat on the canvas... no border, no shadow"),
- * so this hasn't been reconciled with that rule yet — added on request to
- * compare against the documented flat treatment.
+ * The trigger also carries the screenshot's image outline (see design.md's
+ * "Case-study screenshot" component entry) since it's the element that
+ * actually wraps every rendered image.
  */
 export function Lightbox({
   src,

@@ -18,15 +18,6 @@
   --danger-subtle: rgba(255, 74, 74, 0.05);
   --warning: #96650a;
   --success: #1f7a4d;
-
-  /* Shadow-as-border for elevation-only surfaces (floating pill controls),
-     per make-interfaces-feel-better's "shadows for elevation, borders for
-     structure" — NOT yet reconciled with design.md's "no shadows beyond the
-     canvas-subtle step" rule; this is a preview candidate. */
-  --shadow-border: 0px 0px 0px 1px oklch(0 0 0 / 0.06), 0px 1px 2px -1px oklch(0 0 0 / 0.06),
-    0px 2px 4px 0px oklch(0 0 0 / 0.04);
-  --shadow-border-hover: 0px 0px 0px 1px oklch(0 0 0 / 0.08), 0px 1px 2px -1px oklch(0 0 0 / 0.08),
-    0px 2px 4px 0px oklch(0 0 0 / 0.06);
 }
 
 .dark {
@@ -45,11 +36,6 @@
   --danger-subtle: rgba(255, 107, 92, 0.08);
   --warning: #e6b34d;
   --success: #4ade95;
-
-  /* Dark mode simplifies to a single ring — layered depth shadows aren't
-     visible on a near-black canvas. */
-  --shadow-border: 0 0 0 1px oklch(1 0 0 / 0.08);
-  --shadow-border-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
 }
 
 @media (prefers-reduced-motion: reduce) {
