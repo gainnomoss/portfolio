@@ -27,11 +27,11 @@ const links = [
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-content px-6 py-16 sm:py-24">
-      <h1 className="text-display-lg text-ink">Let&apos;s talk</h1>
+      <h1 className="text-display-lg text-ink">Let’s talk</h1>
       <p className="mt-4 max-w-reading text-body-lg text-body">
-        I&apos;m currently open to Product Designer opportunities. If you&apos;re looking for
+        I’m currently open to Product Designer opportunities. If you’re looking for
         someone who enjoys untangling complex problems and designing intuitive experiences,
-        I&apos;d love to chat.
+        I’d love to chat.
       </p>
       <p className="mt-4 max-w-reading text-body-lg text-body">
         The fastest way to reach me is by email.

@@ -23,7 +23,7 @@ export function HeroCopy({ avatarSrc }: { avatarSrc: string }) {
   return (
     <div>
       <motion.div className="flex items-center gap-2" {...fadeUp(0)}>
-        <p className="text-body-sm text-muted">Hi, I&apos;m Ke Er</p>
+        <p className="text-body-sm text-muted">Hi, I’m Ke Er</p>
         <span className="relative flex size-[26px] shrink-0 items-center justify-center rounded-full bg-accent/25">
           <Image
             src={avatarSrc}

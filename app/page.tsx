@@ -51,13 +51,13 @@ export default function Home() {
             ) : null}
             <div>
               <p className="max-w-reading text-body-lg text-body">
-                Whether I&apos;m designing AI-powered tools for investigators or building
-                personal projects from scratch, I&apos;m motivated by understanding users,
+                Whether I’m designing AI-powered tools for investigators or building
+                personal projects from scratch, I’m motivated by understanding users,
                 solving meaningful problems, and crafting experiences that feel intuitive and
                 reliable.
               </p>
               <p className="mt-4 max-w-reading text-body-lg text-body">
-                Outside of design, you&apos;ll usually find me at aerial classes, hiking,
+                Outside of design, you’ll usually find me at aerial classes, hiking,
                 reading, or working on my next side project.
               </p>
               <Button href="/about" variant="secondary" className="mt-6">
@@ -70,7 +70,7 @@ export default function Home() {
 
       <section className="border-t border-border py-16 sm:py-24">
         <div className="mx-auto max-w-content px-6 text-center">
-          <SectionHeading>Let&apos;s work together.</SectionHeading>
+          <SectionHeading>Let’s work together.</SectionHeading>
           <p className="mx-auto mt-4 max-w-reading text-body-lg text-body">
             Open to Product Designer opportunities — I enjoy untangling complex problems and
             designing intuitive experiences.

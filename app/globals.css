@@ -12,12 +12,21 @@
   --border-strong: #c7c8d1;
   --accent: #0b5fff;
   --accent-active: #0a4fd6;
-  --accent-weak: #4772c2;
+  --accent-weak: #3468c9;
   --on-accent: #ffffff;
   --danger: #c43737;
   --danger-subtle: rgba(255, 74, 74, 0.05);
-  --warning: #a8710a;
+  --warning: #96650a;
   --success: #1f7a4d;
+
+  /* Shadow-as-border for elevation-only surfaces: the floating pill controls
+     (back-to-top, lightbox zoom/close) — see design.md "Shadow". Layered
+     transparent shadow acts as a 1px border ring plus subtle lift/ambient
+     depth. */
+  --shadow-border: 0px 0px 0px 1px oklch(0 0 0 / 0.06), 0px 1px 2px -1px oklch(0 0 0 / 0.06),
+    0px 2px 4px 0px oklch(0 0 0 / 0.04);
+  --shadow-border-hover: 0px 0px 0px 1px oklch(0 0 0 / 0.08), 0px 1px 2px -1px oklch(0 0 0 / 0.08),
+    0px 2px 4px 0px oklch(0 0 0 / 0.06);
 }
 
 .dark {
@@ -36,6 +45,11 @@
   --danger-subtle: rgba(255, 107, 92, 0.08);
   --warning: #e6b34d;
   --success: #4ade95;
+
+  /* Dark mode simplifies to a single ring — layered depth shadows aren't
+     visible on a near-black canvas. */
+  --shadow-border: 0 0 0 1px oklch(1 0 0 / 0.08);
+  --shadow-border-hover: 0 0 0 1px oklch(1 0 0 / 0.13);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -53,6 +67,26 @@
 body {
   background: var(--canvas);
   color: var(--body);
+}
+
+/* Deliberate wrapping per type token (see design.md "Wrapping"): headings
+   balance across lines, body copy avoids a single orphaned word on the last
+   line. Applied once here so every current and future use of these
+   font-size utilities gets it for free, instead of chasing it per component. */
+.text-display-xl,
+.text-display-lg,
+.text-display-md,
+.text-display-sm,
+.text-title-xl,
+.text-title-lg,
+.text-title-md {
+  text-wrap: balance;
+}
+
+.text-body-lg,
+.text-body-md,
+.text-body-sm {
+  text-wrap: pretty;
 }
 
 /* Safety-net focus ring: guarantees every link/control gets the design

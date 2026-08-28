@@ -11,6 +11,10 @@ import { LightboxOverlay } from "@/components/ui/lightbox-overlay";
  * overlay is portaled to `document.body` because `Reveal` wraps MDX sections
  * in transformed `motion.div`s, which would break `position: fixed`
  * containment if the overlay rendered in place.
+ *
+ * The trigger also carries the screenshot's image outline (see design.md's
+ * "Case-study screenshot" component entry) since it's the element that
+ * actually wraps every rendered image.
  */
 export function Lightbox({
   src,
@@ -46,7 +50,7 @@ export function Lightbox({
         aria-haspopup="dialog"
         onClick={() => setOpen(true)}
         className={clsx(
-          "block w-full cursor-zoom-in overflow-hidden rounded-md bg-canvas focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent",
+          "block w-full cursor-zoom-in overflow-hidden rounded-md bg-canvas outline outline-1 -outline-offset-1 outline-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent dark:outline-white/10",
           className
         )}
       >

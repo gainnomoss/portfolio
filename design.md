@@ -22,14 +22,14 @@ colors:
   accent-light-active: "#0a4fd6"
   accent-dark: "#5b8cff"
   accent-dark-active: "#7fa3ff"
-  accent-weak-light: "#4772c2"
+  accent-weak-light: "#3468c9"
   accent-weak-dark: "#7c93d1"
   on-accent: "#ffffff"
   danger-light: "#c43737"
   danger-dark: "#ff6b5c"
   danger-subtle-light: "rgba(255, 74, 74, 0.05)"
   danger-subtle-dark: "rgba(255, 107, 92, 0.08)"
-  warning-light: "#a8710a"
+  warning-light: "#96650a"
   warning-dark: "#e6b34d"
   success-light: "#1f7a4d"
   success-dark: "#4ade95"
@@ -127,6 +127,12 @@ motion:
   duration-slow: 400ms
   easing-standard: "cubic-bezier(0.4, 0, 0.2, 1)"
 
+shadow:
+  border-light: "0px 0px 0px 1px oklch(0 0 0 / 0.06), 0px 1px 2px -1px oklch(0 0 0 / 0.06), 0px 2px 4px 0px oklch(0 0 0 / 0.04)"
+  border-light-hover: "0px 0px 0px 1px oklch(0 0 0 / 0.08), 0px 1px 2px -1px oklch(0 0 0 / 0.08), 0px 2px 4px 0px oklch(0 0 0 / 0.06)"
+  border-dark: "0 0 0 1px oklch(1 0 0 / 0.08)"
+  border-dark-hover: "0 0 0 1px oklch(1 0 0 / 0.13)"
+
 components:
   nav-bar:
     backgroundColor: "{colors.canvas}"
@@ -205,10 +211,11 @@ components:
     size: 44px
     rounded: "{rounded.pill}"
     backgroundColor: "{colors.canvas-subtle}"
+    shadow: "{shadow.border-light}, hover: {shadow.border-light-hover} (dark: {shadow.border-dark} / {shadow.border-dark-hover})"
   lightbox:
     trigger: "cursor-zoom-in, focus-visible ring, wraps every case-study screenshot"
     scrimColor: "{colors.canvas}/95 with backdrop-blur-sm"
-    controlStyle: "{component.back-to-top} pill pattern"
+    controlStyle: "{component.back-to-top} pill pattern, same shadow"
     zIndex: 60
   numbered-callout:
     labelColor: "{colors.accent-weak}"
@@ -236,7 +243,7 @@ This system exists to get a hiring manager to trust the designer's craft within 
 - Light and dark are both first-class. The toggle lives top-right, always, and is itself a small delight moment (Aleksi Tappura) — not a system-preference afterthought.
 - One accent color (`{colors.accent}`, a confident blue evolved from the current site's brand blue), used only for links, the active nav state, the toggle icon, and primary interactive affordances. Everything else is ink/canvas grays in both themes.
 - Two deliberate animated moments, and no more: the homepage hero's quiet interactive dot field (desktop-only, Aleksi Tappura-style restraint) and the interactive halftone portrait (the profile photo, on both the homepage About preview and the About page itself). Everywhere else, motion is a micro-interaction (hover/press, tab switch, scroll-reveal) gated behind `prefers-reduced-motion`.
-- Real UI screenshots sit flat on the canvas with subtle rounding (`{rounded.md}`) — no border, no shadow — so the interface being shown carries the visual weight, not its container.
+- Real UI screenshots sit flat on the canvas with subtle rounding (`{rounded.md}`) and a hairline 1px outline for edge definition — no drop shadow — so the interface being shown carries the visual weight, not its container.
 - A connector-line timeline component is the one recurring structural motif (Rebecca Ling-style), used for the About page's experience section and every case study's process/journey narrative.
 
 ## Inspiration Synthesis
@@ -255,7 +262,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 ### Surface
 - **Canvas** (`{colors.canvas-light}` #fdfdfd / `{colors.canvas-dark}` #0a0a0d) — the page floor.
-- **Canvas Subtle** (`{colors.canvas-subtle-light}` #f6f6f8 / `{colors.canvas-subtle-dark}` #141417) — cards, tags, the password-gate panel, alternating section backgrounds. The only surface elevation step in the system — no shadows-as-depth beyond this.
+- **Canvas Subtle** (`{colors.canvas-subtle-light}` #f6f6f8 / `{colors.canvas-subtle-dark}` #141417) — cards, tags, the password-gate panel, alternating section backgrounds. The only *surface-color* elevation step in the system. The only shadow-based elevation is `{shadow.border}` on the floating pill controls (`back-to-top`, `lightbox` zoom/close) and the `principle-card` micro-shadow — nowhere else.
 
 ### Text
 - **Ink** (`{colors.ink-light}` #14151a / `{colors.ink-dark}` #f5f5f7) — headlines, primary button text-on-accent is `{colors.on-accent}` instead.
@@ -269,12 +276,12 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 ### Accent
 - **Accent** (`{colors.accent-light}` #0b5fff / `{colors.accent-dark}` #5b8cff) — links, active nav/tab state, theme-toggle icon, primary button fill (paired with `{colors.on-accent}` #ffffff text), focus rings. This is the only *primary* chromatic color in the system outside semantic states — reserve it.
 - **Accent Active** — press/hover state, darkens in light mode, lightens further in dark mode (`{colors.accent-dark-active}` #7fa3ff) to stay visible against the near-black canvas.
-- **Accent Weak** (`{colors.accent-weak-light}` #3468c9 / `{colors.accent-weak-dark}` #7c93d1) — a secondary, less-saturated blue reserved for case-study narrative markers: the `numbered-callout` label/number and the `principle-card` border. Never used for primary interactive affordances (links, buttons, focus rings) — those stay on `{colors.accent}`. The light value sits a step darker than the Figma source (#3a72dc) to clear WCAG AA (≥4.5:1) as 14px label text on `{colors.canvas-subtle}`.
+- **Accent Weak** (`{colors.accent-weak-light}` #3468c9 / `{colors.accent-weak-dark}` #7c93d1) — a secondary, less-saturated blue reserved for case-study narrative markers: the `numbered-callout` label/number and the `principle-card` border. Never used for primary interactive affordances (links, buttons, focus rings) — those stay on `{colors.accent}`. The light value sits a step darker than the Figma source (#3a72dc) to clear WCAG AA (≥4.5:1) as 14px label text on `{colors.canvas-subtle}` — and, since the `statement-heading` numbered badge renders this same color at 10% opacity as its own background, keep the fill *and* the tint together whenever either changes: a 2026-08-28 audit found the shipped code had drifted to a lighter #4772c2 that measured only 4.09:1 against the 10%-tint badge, below AA.
 
 ### Semantic
 - **Danger** (`{colors.danger-light}` #c43737 / `{colors.danger-dark}` #ff6b5c) — wrong-password state, the "Password protected" tag text, legal/liability warnings (RLCP's case study references this exact pattern). The light value sits a hair darker than the Figma source (#c73a3a) to clear WCAG AA (≥4.5:1) on the danger-subtle tag fill.
 - **Danger Subtle** (`{colors.danger-subtle-light}` / `{colors.danger-subtle-dark}`) — a barely-there red fill reserved for the "Password protected" tag background; never used as a large surface.
-- **Warning** (`{colors.warning-light}` #a8710a / `{colors.warning-dark}` #e6b34d) — advisory notices.
+- **Warning** (`{colors.warning-light}` #96650a / `{colors.warning-dark}` #e6b34d) — advisory notices. Not yet consumed by any component; the light value is darkened from the original #a8710a (4.10:1, below AA) to clear WCAG AA (≥4.5:1) on `{colors.canvas}` before it gets a first user.
 - **Success** (`{colors.success-light}` #1f7a4d / `{colors.success-dark}` #4ade95) — confirmation states (e.g. unlocked case study).
 
 ## Typography
@@ -297,6 +304,8 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 | `{typography.mono-detail}` | 13px | 400 | 1.5 | Footer colophon line, small technical details — Geist Mono |
 
 **Principle:** hierarchy is built from size and weight (400/500/600 only — never below 400, never above 600; nothing needs true bold). Color is never used to create hierarchy among headings; `{colors.muted}` on section labels is a deliberate quiet/loud contrast with `{colors.ink}` body headlines, not a hierarchy device.
+
+**Wrapping:** every heading token (`display-*`, `title-*`) uses `text-wrap: balance` so short headlines don't leave a lopsided last line; every body/description token (`body-*`) uses `text-wrap: pretty` so a paragraph never ends on a single orphaned word. `label`/`mono-detail` stay on default wrapping — they're short enough that it never matters.
 
 ## Layout
 
@@ -330,7 +339,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`project-card`** — `{colors.canvas-subtle}` background, `{rounded.lg}`, full-width row in a single-column list (Home "Selected Work" and the Work page both use one card per row, not a grid). Below `768px` the thumbnail stacks on top of the body, full width; from `768px` up the card splits into two equal columns — thumbnail left, body right, vertically centered against each other. Body content, top to bottom: password tag (if protected) → title in `{typography.title-lg}` + company in `{typography.body-sm}` muted → description in `{typography.body-sm}` → tag row (`{component.tag}`). On hover the whole card lifts (`-translate-y-1.5`) while the thumbnail scales up slightly (`scale-105`) — both on `{motion.duration-base}` / `{motion.easing-standard}`, no shadow added (stays inside the system's one elevation step). A project may optionally opt into a hover-triggered Lottie animation layered over its static thumbnail (frontmatter `thumbnailAnimation`): it only mounts for pointer-hover-capable desktop viewports (`(hover: hover) and (pointer: fine)`), never autoplays, plays on hover and resets on mouse-leave, and is skipped entirely under `prefers-reduced-motion` — the static screenshot underneath is what mobile/touch and reduced-motion visitors always see. A `comingSoon` variant swaps the screenshot for a quiet placeholder pattern, disables the click-through, and skips the hover motion entirely. Thumbnail source images should be high enough resolution, and close enough in aspect ratio to the card's `aspect-[4/3]` frame, that neither `cover` nor `contain` fit crops out meaningful UI or forces visible upscaling — prefer a wide/landscape source (a composited hero shot, a browser screenshot) over a raw tall mobile-app capture. Any empty space around a `contain`-fit thumbnail should come from the source asset having a transparent background (keyed/exported with alpha) rather than a solid fill color, so it sits directly on `{colors.canvas-subtle}` without a mismatched color block behind it. Where a project supplies both a static thumbnail and a hover animation, the static image should depict the same frame the animation opens on (not an unrelated screenshot), and the swap between the two on load is a `{motion.duration-base}` / `{motion.easing-standard}` opacity crossfade, never an instant cut.
 
-**Case-study screenshot** — Product/UI images and video embeds sit flat on `{colors.canvas}` with `{rounded.md}` corners — no border, no shadow. This is a site-wide rule for every media embed, not a per-case-study choice. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge and spanning the image's full width. This caption-matches-media-width rule applies to every captioned embed (single screenshots, pairs, videos).
+**Case-study screenshot** — Product/UI images and video embeds sit flat on `{colors.canvas}` with `{rounded.md}` corners and a subtle 1px inset outline for edge definition — no drop shadow. This is a site-wide rule for every media embed, not a per-case-study choice. The outline is always pure black at 10% opacity in light mode and pure white at 10% opacity in dark mode (`oklch(0 0 0 / 0.1)` / `oklch(1 0 0 / 0.1)`) — never a themed neutral like `{colors.border}`, since a tinted outline picks up the canvas color underneath it and reads as dirt on the image edge, especially across screenshots with varied backgrounds. It's applied via CSS `outline` with `outline-offset: -1px` (not `border`), so it's inset and never affects layout or box size. Images render at high quality (`quality={95}` via next/image) and span the content width; the caption sits below in `{typography.body-sm}` `{colors.muted}`, left-aligned with the image edge and spanning the image's full width. This caption-matches-media-width rule applies to every captioned embed (single screenshots, pairs, videos).
 
 **`principle-card`** — Small informational card used inside case-study body copy to present a set of guiding principles: `{colors.canvas}` background, 1px `{colors.accent-weak}` border, `{rounded.lg}`, 20px padding, and a single micro-shadow (0 1px 1px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.10)) — the system's one allowed card elevation. A 40px icon sits on top, followed by a bold 16px title and a regular 16px description in `{colors.body}`. Cards stack in one column on mobile and sit three-up from 768px.
 
@@ -356,7 +365,7 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 
 **`footer`** — Plain `{colors.canvas}`, contact links (email, LinkedIn, resume download) plus a single small colophon-style line in `{typography.mono-detail}` (a Billy Sweeney-style craft signal, e.g. noting the stack or a build detail) — one quiet credibility moment, not a marketing footer.
 
-**`back-to-top`** — 44px circular button, `{colors.canvas-subtle}`, appears after scrolling past the hero on long case-study pages — preserved from the current site.
+**`back-to-top`** — 44px circular button, `{colors.canvas-subtle}`, edged with `{shadow.border-light}` (a layered transparent shadow acting as a 1px border ring plus subtle lift, deepening to `{shadow.border-light-hover}` on hover; dark mode simplifies to a single `{shadow.border-dark}` ring since layered depth shadows don't read on a near-black canvas) instead of an actual `border` — appears after scrolling past the hero on long case-study pages, preserved from the current site.
 
 **`lightbox`** — Every case-study screenshot (`FramedScreenshot`, used by `Screenshot` and `ScreenshotPair`) is a `cursor-zoom-in` trigger button that opens a full-screen, single-image, zoomable overlay: `{colors.canvas}/95` scrim with a `backdrop-blur-sm`, image at natural resolution (`quality={95}`), fit to the viewport with generous padding. Interaction is hand-rolled (no dependency): wheel/pinch/double-click/double-tap zoom anchored at the pointer, drag-to-pan once zoomed, `+`/`−`/arrow-key/`Escape` keyboard support, and a 3-control focus trap (zoom out, zoom in, close) styled as `{component.back-to-top}` pills. No prev/next gallery and no thumbnail→overlay morph in v1 — the overlay is image-only, `alt` doubles as the dialog's accessible name.
 
@@ -377,12 +386,12 @@ A flat, documented stacking order — every `fixed`/`sticky` element on the site
 - Let weight and size build hierarchy. Resist the urge to add a second typeface for "personality" — the mono voice already provides that contrast in small doses.
 - Treat the theme toggle as a real feature: test both themes for every component before calling it done, not just the default.
 - Reserve sustained/interactive motion for the homepage hero visual and the halftone portrait, plus small state-change micro-interactions elsewhere. If a component's animation doesn't communicate a state change or an entrance, cut it.
-- Let case-study screenshots and videos sit flat on the canvas at content width — the interface itself is the frame. Reserve borders and shadows for the `principle-card` micro-shadow, the system's single card elevation step.
+- Let case-study screenshots and videos sit flat on the canvas at content width, with only a hairline outline for edge definition — the interface itself is the frame. Reserve actual shadows for the `principle-card` micro-shadow and `{shadow.border}` on the floating pill controls — nowhere else.
 
 ### Don't
 - Don't add a second display typeface or a serif — that's Rebecca Ling's move specifically, not a shared "premium" pattern, and would clash with the single-voice system here.
 - Don't make the dark theme an inverted afterthought — every color pair above was chosen independently for contrast and warmth in its own theme.
-- Don't add shadows beyond the one elevation step (`{colors.canvas-subtle}` surfaces + the `principle-card` micro-shadow). No layered/soft-glow shadow systems.
+- Don't add shadows beyond the documented set: the one `{colors.canvas-subtle}` elevation step, the `principle-card` micro-shadow, and `{shadow.border}` on the floating pill controls (`back-to-top`, `lightbox` zoom/close). No soft-glow or arbitrary one-off shadow values outside these.
 - Don't animate on scroll everywhere — a scroll-reveal on every single section reads as a template, not craft.
 - Don't use `{rounded.pill}` on cards or containers — it's reserved for buttons, tags, and the theme toggle.
 
