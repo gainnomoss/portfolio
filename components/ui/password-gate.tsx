@@ -31,7 +31,7 @@ export function PasswordGate({
           />
           {error ? (
             <p role="alert" className="text-body-sm text-danger">
-              That password isn&apos;t right — try again.
+              That password isn’t right — try again.
             </p>
           ) : null}
           <Button type="submit" className="mt-1">

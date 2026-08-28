@@ -12,11 +12,11 @@
   --border-strong: #c7c8d1;
   --accent: #0b5fff;
   --accent-active: #0a4fd6;
-  --accent-weak: #4772c2;
+  --accent-weak: #3468c9;
   --on-accent: #ffffff;
   --danger: #c43737;
   --danger-subtle: rgba(255, 74, 74, 0.05);
-  --warning: #a8710a;
+  --warning: #96650a;
   --success: #1f7a4d;
 }
 
@@ -53,6 +53,26 @@
 body {
   background: var(--canvas);
   color: var(--body);
+}
+
+/* Deliberate wrapping per type token (see design.md "Wrapping"): headings
+   balance across lines, body copy avoids a single orphaned word on the last
+   line. Applied once here so every current and future use of these
+   font-size utilities gets it for free, instead of chasing it per component. */
+.text-display-xl,
+.text-display-lg,
+.text-display-md,
+.text-display-sm,
+.text-title-xl,
+.text-title-lg,
+.text-title-md {
+  text-wrap: balance;
+}
+
+.text-body-lg,
+.text-body-md,
+.text-body-sm {
+  text-wrap: pretty;
 }
 
 /* Safety-net focus ring: guarantees every link/control gets the design

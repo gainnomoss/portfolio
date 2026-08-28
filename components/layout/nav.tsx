@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import clsx from "clsx";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Logo } from "@/components/ui/logo";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { MAINTENANCE_PATH } from "@/lib/maintenance";
@@ -17,6 +18,10 @@ const links = [
 export function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const iconTransition = shouldReduceMotion
+    ? { duration: 0 }
+    : ({ type: "spring", duration: 0.2, bounce: 0 } as const);
 
   // No nav chrome on the maintenance page — it's a standalone, calm state.
   if (pathname === MAINTENANCE_PATH) return null;
@@ -56,15 +61,26 @@ export function Nav() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-border text-ink transition-transform duration-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent active:scale-[0.96]"
           >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              {open ? (
-                <path d="M3 3l10 10M13 3 3 13" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-              ) : (
-                <path d="M2 4.5h12M2 8h12M2 11.5h12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-              )}
-            </svg>
+            <AnimatePresence mode="popLayout" initial={false}>
+              <motion.span
+                key={open ? "close" : "open"}
+                initial={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
+                animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                exit={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
+                transition={iconTransition}
+                className="flex items-center justify-center"
+              >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  {open ? (
+                    <path d="M3 3l10 10M13 3 3 13" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                  ) : (
+                    <path d="M2 4.5h12M2 8h12M2 11.5h12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                  )}
+                </svg>
+              </motion.span>
+            </AnimatePresence>
           </button>
         </div>
       </div>

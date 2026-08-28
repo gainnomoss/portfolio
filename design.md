@@ -22,14 +22,14 @@ colors:
   accent-light-active: "#0a4fd6"
   accent-dark: "#5b8cff"
   accent-dark-active: "#7fa3ff"
-  accent-weak-light: "#4772c2"
+  accent-weak-light: "#3468c9"
   accent-weak-dark: "#7c93d1"
   on-accent: "#ffffff"
   danger-light: "#c43737"
   danger-dark: "#ff6b5c"
   danger-subtle-light: "rgba(255, 74, 74, 0.05)"
   danger-subtle-dark: "rgba(255, 107, 92, 0.08)"
-  warning-light: "#a8710a"
+  warning-light: "#96650a"
   warning-dark: "#e6b34d"
   success-light: "#1f7a4d"
   success-dark: "#4ade95"
@@ -269,12 +269,12 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 ### Accent
 - **Accent** (`{colors.accent-light}` #0b5fff / `{colors.accent-dark}` #5b8cff) — links, active nav/tab state, theme-toggle icon, primary button fill (paired with `{colors.on-accent}` #ffffff text), focus rings. This is the only *primary* chromatic color in the system outside semantic states — reserve it.
 - **Accent Active** — press/hover state, darkens in light mode, lightens further in dark mode (`{colors.accent-dark-active}` #7fa3ff) to stay visible against the near-black canvas.
-- **Accent Weak** (`{colors.accent-weak-light}` #3468c9 / `{colors.accent-weak-dark}` #7c93d1) — a secondary, less-saturated blue reserved for case-study narrative markers: the `numbered-callout` label/number and the `principle-card` border. Never used for primary interactive affordances (links, buttons, focus rings) — those stay on `{colors.accent}`. The light value sits a step darker than the Figma source (#3a72dc) to clear WCAG AA (≥4.5:1) as 14px label text on `{colors.canvas-subtle}`.
+- **Accent Weak** (`{colors.accent-weak-light}` #3468c9 / `{colors.accent-weak-dark}` #7c93d1) — a secondary, less-saturated blue reserved for case-study narrative markers: the `numbered-callout` label/number and the `principle-card` border. Never used for primary interactive affordances (links, buttons, focus rings) — those stay on `{colors.accent}`. The light value sits a step darker than the Figma source (#3a72dc) to clear WCAG AA (≥4.5:1) as 14px label text on `{colors.canvas-subtle}` — and, since the `statement-heading` numbered badge renders this same color at 10% opacity as its own background, keep the fill *and* the tint together whenever either changes: a 2026-08-28 audit found the shipped code had drifted to a lighter #4772c2 that measured only 4.09:1 against the 10%-tint badge, below AA.
 
 ### Semantic
 - **Danger** (`{colors.danger-light}` #c43737 / `{colors.danger-dark}` #ff6b5c) — wrong-password state, the "Password protected" tag text, legal/liability warnings (RLCP's case study references this exact pattern). The light value sits a hair darker than the Figma source (#c73a3a) to clear WCAG AA (≥4.5:1) on the danger-subtle tag fill.
 - **Danger Subtle** (`{colors.danger-subtle-light}` / `{colors.danger-subtle-dark}`) — a barely-there red fill reserved for the "Password protected" tag background; never used as a large surface.
-- **Warning** (`{colors.warning-light}` #a8710a / `{colors.warning-dark}` #e6b34d) — advisory notices.
+- **Warning** (`{colors.warning-light}` #96650a / `{colors.warning-dark}` #e6b34d) — advisory notices. Not yet consumed by any component; the light value is darkened from the original #a8710a (4.10:1, below AA) to clear WCAG AA (≥4.5:1) on `{colors.canvas}` before it gets a first user.
 - **Success** (`{colors.success-light}` #1f7a4d / `{colors.success-dark}` #4ade95) — confirmation states (e.g. unlocked case study).
 
 ## Typography
@@ -297,6 +297,8 @@ Every color is defined as a light/dark pair; components reference `{colors.X}` a
 | `{typography.mono-detail}` | 13px | 400 | 1.5 | Footer colophon line, small technical details — Geist Mono |
 
 **Principle:** hierarchy is built from size and weight (400/500/600 only — never below 400, never above 600; nothing needs true bold). Color is never used to create hierarchy among headings; `{colors.muted}` on section labels is a deliberate quiet/loud contrast with `{colors.ink}` body headlines, not a hierarchy device.
+
+**Wrapping:** every heading token (`display-*`, `title-*`) uses `text-wrap: balance` so short headlines don't leave a lopsided last line; every body/description token (`body-*`) uses `text-wrap: pretty` so a paragraph never ends on a single orphaned word. `label`/`mono-detail` stay on default wrapping — they're short enough that it never matters.
 
 ## Layout
 

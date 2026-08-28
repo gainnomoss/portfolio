@@ -5,7 +5,7 @@ import clsx from "clsx";
 type Variant = "primary" | "secondary";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-title-md transition-colors duration-fast focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-title-md transition-[color,background-color,border-color,opacity,scale] duration-fast ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:opacity-50 disabled:pointer-events-none active:not-disabled:scale-[0.96]";
 
 const variants: Record<Variant, string> = {
   primary: "bg-ink text-canvas hover:opacity-90",
